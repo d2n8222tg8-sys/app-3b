@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+<title>3B INTER Academy V2</title>
+<meta name="theme-color" content="#0A0A0A">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="3B Academy">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='32' fill='%230A0A0A'/%3E%3Ctext x='96' y='110' font-family='Arial Black' font-size='52' font-weight='900' fill='%236BAA3D' text-anchor='middle'%3E3B%3C/text%3E%3Ctext x='96' y='150' font-family='Arial' font-size='18' font-weight='700' fill='white' text-anchor='middle'%3EAcademy%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--green:#6BAA3D;--green-dark:#558B30;--green-light:#8AC558;--black:#0A0A0A;--dark:#0F1116;--dark2:#181B22;--dark3:#232730;--gray:#8B909A;--light:#E8EAF0;--white:#FFF;--orange:#F4A019;--red:#E74C3C;--blue:#3498DB;--success:#2ECC71;--gold:#FFD700;--safe-top:env(safe-area-inset-top);--safe-bot:env(safe-area-inset-bottom)}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{overflow-x:hidden}
+body{background:var(--dark);color:var(--light);font-family:'Barlow',sans-serif;min-height:100vh;padding-bottom:calc(70px + var(--safe-bot));padding-top:var(--safe-top);-webkit-user-select:none;user-select:none}
+.app-header{position:sticky;top:0;z-index:90;background:linear-gradient(180deg,var(--black) 0%,rgba(10,10,10,0.95) 100%);border-bottom:1px solid var(--dark3);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand-mini{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:900;line-height:1}
+.brand-mini .gr{color:var(--green)}
+.xp-pill{background:linear-gradient(135deg,var(--green),var(--green-dark));color:#fff;font-weight:800;font-size:12px;padding:6px 12px;border-radius:14px;font-family:'Barlow Condensed',sans-serif;letter-spacing:1px}
+.streak-pill{background:linear-gradient(135deg,var(--orange),#D88A0A);color:#fff;font-weight:800;font-size:12px;padding:6px 10px;border-radius:14px;font-family:'Barlow Condensed',sans-serif}
+.content{padding:16px;max-width:780px;margin:0 auto}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:var(--black);border-top:1px solid var(--dark3);display:flex;padding:8px 4px calc(8px + var(--safe-bot))}
+.bn-item{flex:1;display:flex;flex-direction:column;align-items:center;padding:6px 2px;cursor:pointer;color:var(--gray);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;text-align:center;gap:3px}
+.bn-item.active{color:var(--green)}
+.bn-icon{font-size:22px;line-height:1}
+.card{background:var(--dark2);border:1px solid var(--dark3);border-radius:14px;padding:18px;margin-bottom:12px;cursor:pointer;transition:all 0.2s;position:relative;overflow:hidden}
+.card:active{transform:scale(0.98);border-color:var(--green)}
+.card-row{display:flex;align-items:center;gap:14px}
+.card-icon{font-size:30px;flex-shrink:0;width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:var(--dark3);border-radius:12px}
+.card-body{flex:1;min-width:0}
+.card-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;color:var(--white);margin-bottom:3px}
+.card-desc{font-size:12px;color:var(--gray);line-height:1.4}
+.card-arrow{color:var(--gray);font-size:18px}
+.card-badge{position:absolute;top:10px;right:10px;background:var(--green);color:#fff;font-size:9px;font-weight:800;padding:3px 7px;border-radius:8px}
+.section-h{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:900;letter-spacing:1px;margin:18px 0 12px;color:var(--white)}
+.section-h .gr{color:var(--green)}
+.section-sub{color:var(--gray);font-size:13px;margin-bottom:14px;line-height:1.5}
+.greet-card{background:linear-gradient(135deg,rgba(107,170,61,0.18),rgba(107,170,61,0.04));border:1px solid var(--green);border-radius:16px;padding:18px;margin-bottom:16px}
+.greet-h{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;color:var(--white);margin-bottom:4px}
+.greet-sub{color:var(--green-light);font-size:13px;font-weight:600}
+.greet-stats{display:flex;gap:8px;margin-top:14px}
+.greet-stat{flex:1;background:rgba(0,0,0,0.3);border-radius:10px;padding:10px 8px;text-align:center}
+.gs-val{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:var(--green);line-height:1}
+.gs-lbl{font-size:9px;color:var(--gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+.prog-bar{height:6px;background:var(--dark3);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--green-light));transition:width 0.5s}
+.page{display:none}
+.page.active{display:block;animation:fadeIn 0.3s}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.qcm-progress{margin-bottom:20px}
+.qcm-progress-info{display:flex;justify-content:space-between;margin-bottom:8px;font-size:12px;color:var(--gray);font-weight:600}
+.qcm-card{background:var(--dark2);border:1px solid var(--dark3);border-radius:16px;padding:20px}
+.qcm-theme{font-size:10px;color:var(--green);text-transform:uppercase;letter-spacing:2px;font-weight:800;margin-bottom:8px}
+.qcm-question{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:var(--white);margin-bottom:18px;line-height:1.3}
+.qcm-options{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
+.qcm-option{background:var(--dark3);border:2px solid var(--dark3);border-radius:12px;padding:14px 16px;cursor:pointer;font-size:14px;color:var(--light);display:flex;align-items:center;gap:12px}
+.qcm-option:active:not(.disabled){transform:scale(0.98)}
+.qcm-option.correct{border-color:var(--success);background:rgba(46,204,113,0.12);color:var(--success)}
+.qcm-option.wrong{border-color:var(--red);background:rgba(231,76,60,0.12);color:var(--red)}
+.qcm-option.disabled{cursor:default}
+.opt-letter{width:30px;height:30px;border-radius:8px;background:var(--dark2);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;flex-shrink:0}
+.qcm-option.correct .opt-letter{background:var(--success);color:#fff}
+.qcm-option.wrong .opt-letter{background:var(--red);color:#fff}
+.qcm-feedback{padding:12px 14px;border-radius:10px;margin-bottom:12px;font-size:13px;line-height:1.5;display:none}
+.qcm-feedback.show{display:block}
+.qcm-feedback.correct-fb{background:rgba(46,204,113,0.12);border:1px solid var(--success);color:var(--success)}
+.qcm-feedback.wrong-fb{background:rgba(231,76,60,0.12);border:1px solid var(--red);color:var(--red)}
+.btn{background:var(--green);color:#fff;font-weight:800;font-family:'Barlow Condensed',sans-serif;font-size:16px;letter-spacing:1px;padding:14px 22px;border-radius:12px;border:none;cursor:pointer;text-transform:uppercase;width:100%;display:block}
+.btn:active{transform:scale(0.97);background:var(--green-dark)}
+.btn-ghost{background:transparent;color:var(--gray);font-weight:700;font-family:'Barlow Condensed',sans-serif;font-size:14px;padding:12px 18px;border-radius:10px;border:1px solid var(--dark3);cursor:pointer;text-transform:uppercase;width:100%}
+.btn-row{display:flex;gap:8px;margin-top:12px}
+.btn-row > *{flex:1}
+.result-card{text-align:center;padding:30px 20px;background:var(--dark2);border:1px solid var(--dark3);border-radius:18px}
+.result-emoji{font-size:64px;margin-bottom:8px}
+.result-score{font-family:'Barlow Condensed',sans-serif;font-size:54px;font-weight:900;color:var(--green);line-height:1}
+.result-msg{color:var(--gray);font-size:13px;margin:8px 0 18px}
+.xp-gained{background:rgba(107,170,61,0.15);border:1px solid var(--green);padding:10px 16px;border-radius:12px;color:var(--green);font-weight:700;font-size:14px;margin-bottom:16px;display:inline-block}
+.lesson-content{background:var(--dark2);border:1px solid var(--dark3);border-radius:14px;padding:18px;margin-bottom:14px}
+.lesson-title{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;color:var(--white);margin-bottom:14px}
+.lesson-section{margin-bottom:18px}
+.lesson-section h3{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:800;color:var(--green);border-bottom:1px solid var(--dark3);padding-bottom:6px;margin-bottom:10px;text-transform:uppercase}
+.lesson-section p{color:var(--light);line-height:1.65;font-size:14px;margin-bottom:8px}
+.lesson-section ul{padding-left:20px;color:var(--light);line-height:1.7;font-size:13.5px}
+.lesson-section li{margin-bottom:4px}
+.info-box{background:rgba(107,170,61,0.08);border:1px solid rgba(107,170,61,0.3);border-radius:10px;padding:12px 14px;margin-bottom:10px;font-size:13px;line-height:1.55}
+.info-box .ib-title{font-weight:800;color:var(--green);margin-bottom:4px;font-size:11px;text-transform:uppercase}
+.info-box.warn{background:rgba(244,160,25,0.08);border-color:rgba(244,160,25,0.3)}
+.info-box.warn .ib-title{color:var(--orange)}
+.info-box.danger{background:rgba(231,76,60,0.08);border-color:rgba(231,76,60,0.3)}
+.info-box.danger .ib-title{color:var(--red)}
+.game-card{background:linear-gradient(135deg,var(--dark2),var(--dark3));border:1px solid var(--dark3);border-radius:16px;padding:18px;margin-bottom:12px;cursor:pointer}
+.game-card:active{transform:scale(0.98)}
+.game-card-icon{font-size:40px;margin-bottom:8px}
+.game-card-title{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;color:var(--white);margin-bottom:4px}
+.game-card-desc{font-size:12px;color:var(--gray);line-height:1.4}
+.game-card-reward{display:inline-block;background:var(--gold);color:#000;font-size:10px;font-weight:800;padding:3px 8px;border-radius:8px;margin-top:8px}
+.machine-card{background:var(--dark2);border:1px solid var(--dark3);border-radius:12px;padding:14px;margin-bottom:10px;cursor:pointer}
+.machine-card:active{transform:scale(0.98);border-color:var(--green)}
+.mc-brand{font-size:10px;color:var(--green);text-transform:uppercase;letter-spacing:2px;font-weight:800;margin-bottom:4px}
+.mc-name{font-family:'Barlow Condensed',sans-serif;font-size:19px;font-weight:800;color:var(--white);margin-bottom:6px}
+.mc-meta{font-size:12px;color:var(--gray);line-height:1.4;margin-bottom:8px}
+.mc-pills{display:flex;flex-wrap:wrap;gap:5px}
+.pill{background:var(--dark3);padding:3px 8px;border-radius:6px;font-size:11px;color:var(--gray);font-weight:600}
+.pill.tonnage{background:rgba(107,170,61,0.15);color:var(--green)}
+.pill.power{background:rgba(244,160,25,0.15);color:var(--orange)}
+.price-block{background:var(--dark3);border-radius:10px;padding:12px;margin-top:10px}
+.price-row{display:flex;justify-content:space-between;padding:5px 0;font-size:13px}
+.price-row .pk{color:var(--gray)}
+.price-row .pv{color:var(--white);font-weight:700}
+.price-row.neuf .pv{color:var(--green)}
+.price-row.occ3 .pv{color:var(--blue)}
+.price-row.occ5 .pv{color:var(--orange)}
+.panne-card{background:var(--dark2);border:1px solid var(--dark3);border-radius:12px;padding:14px;margin-bottom:10px}
+.panne-symptome{font-family:'Barlow Condensed',sans-serif;font-weight:800;color:var(--white);font-size:16px;margin-bottom:8px}
+.panne-grav{display:inline-block;font-size:10px;font-weight:800;padding:3px 8px;border-radius:6px;margin-bottom:8px}
+.panne-grav.MOYENNE{background:rgba(244,160,25,0.2);color:var(--orange)}
+.panne-grav.ELEVEE{background:rgba(244,160,25,0.3);color:var(--orange)}
+.panne-grav.CRITIQUE{background:rgba(231,76,60,0.2);color:var(--red)}
+.panne-grav.FAIBLE{background:rgba(52,152,219,0.2);color:var(--blue)}
+.panne-block{font-size:12.5px;line-height:1.5;margin-top:8px}
+.panne-block strong{color:var(--green);display:block;font-size:11px;text-transform:uppercase;margin-bottom:3px}
+.cause-item{display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px dashed rgba(255,255,255,0.05)}
+.cause-prob{color:var(--orange);font-weight:700;font-size:11px}
+.stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.stat-tile{background:var(--dark2);border:1px solid var(--dark3);border-radius:14px;padding:14px}
+.st-icon{font-size:24px;margin-bottom:4px}
+.st-val{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;color:var(--green);line-height:1}
+.st-lbl{font-size:11px;color:var(--gray);text-transform:uppercase;margin-top:3px}
+.theme-stats{background:var(--dark2);border:1px solid var(--dark3);border-radius:14px;padding:14px;margin-bottom:10px}
+.ts-row{display:flex;justify-content:space-between;margin-bottom:8px;font-size:13px}
+.ts-name{color:var(--white);font-weight:600}
+.ts-stats{color:var(--gray);font-size:11px}
+.ts-bar{height:5px;background:var(--dark3);border-radius:3px;overflow:hidden}
+.ts-bar-fill{height:100%}
+.game-screen{background:var(--dark2);border:1px solid var(--dark3);border-radius:16px;padding:20px}
+.game-question{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;color:var(--white);text-align:center;margin-bottom:14px;line-height:1.3}
+.game-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px}
+.game-tile{background:var(--dark3);border:2px solid var(--dark3);border-radius:12px;padding:18px 12px;text-align:center;cursor:pointer;font-weight:700;font-size:13px;color:var(--light)}
+.game-tile:active:not(.disabled){transform:scale(0.96)}
+.game-tile.correct{border-color:var(--success);background:rgba(46,204,113,0.15);color:var(--success)}
+.game-tile.wrong{border-color:var(--red);background:rgba(231,76,60,0.15);color:var(--red)}
+.game-tile-icon{font-size:32px;display:block;margin-bottom:6px}
+.game-score-mini{display:flex;justify-content:space-around;padding:10px;background:var(--dark3);border-radius:10px;margin-bottom:14px}
+.gsm-item{text-align:center}
+.gsm-val{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:var(--green);line-height:1}
+.gsm-lbl{font-size:10px;color:var(--gray);text-transform:uppercase;margin-top:2px}
+.toast{position:fixed;bottom:calc(80px + var(--safe-bot));left:50%;transform:translateX(-50%);background:var(--dark2);border:1px solid var(--green);border-radius:12px;padding:12px 20px;font-weight:700;color:var(--green);z-index:200}
+.back-btn{display:flex;align-items:center;gap:6px;color:var(--gray);font-size:14px;font-weight:600;cursor:pointer;margin-bottom:12px;padding:6px 0}
+.install-card{background:linear-gradient(135deg,rgba(107,170,61,0.15),rgba(107,170,61,0.04));border:1px solid var(--green);border-radius:14px;padding:16px;margin-bottom:14px}
+.install-step{display:flex;gap:12px;margin-bottom:10px;padding:10px;background:rgba(0,0,0,0.3);border-radius:10px}
+.install-step-num{background:var(--green);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex-shrink:0}
+.install-step-txt{font-size:13px;line-height:1.5}
+.hidden{display:none !important}
+.cat-btn{display:inline-block;background:var(--dark2);border:1px solid var(--dark3);padding:8px 14px;border-radius:20px;margin:0 6px 8px 0;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray)}
+.cat-btn.active{background:var(--green);color:#fff;border-color:var(--green)}
+.tag-list{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.tag-mini{background:var(--dark3);padding:3px 8px;border-radius:5px;font-size:10px;color:var(--green-light);font-weight:600}
+.point-fort{display:flex;gap:8px;align-items:flex-start;padding:6px 0;font-size:13px;line-height:1.4}
+.point-fort:before{content:"✓";color:var(--green);font-weight:bold;flex-shrink:0}
+.diag-step{padding:8px 12px;background:var(--dark3);border-left:3px solid var(--green);margin-bottom:6px;border-radius:6px;font-size:13px;line-height:1.5}
+.solution-step{padding:8px 12px;background:rgba(46,204,113,0.05);border-left:3px solid var(--success);margin-bottom:6px;border-radius:6px;font-size:13px;line-height:1.5}
+</style>
+</head>
+<body>
+<header class="app-header">
+<div><div class="brand-mini"><span class="gr">3B</span> ACADEMY <span style="font-size:10px;color:var(--gray);font-weight:400;letter-spacing:1px">V2</span></div></div>
+<div class="streak-pill">🔥 <span id="streak-val">0</span></div>
+<div class="xp-pill">⚡ <span id="xp-val">0</span></div>
+</header>
+<main class="content">
+<div class="page active" id="page-home">
+<div class="greet-card">
+<div class="greet-h" id="greet-msg">Bienvenue !</div>
+<div class="greet-sub" id="greet-sub">Prêt à apprendre aujourd'hui ?</div>
+<div class="greet-stats">
+<div class="greet-stat"><div class="gs-val" id="home-qcm">0</div><div class="gs-lbl">QCM faits</div></div>
+<div class="greet-stat"><div class="gs-val" id="home-pct">0%</div><div class="gs-lbl">Réussite</div></div>
+<div class="greet-stat"><div class="gs-val" id="home-themes">0/8</div><div class="gs-lbl">Thèmes</div></div>
+</div>
+</div>
+<div class="section-h">Accès <span class="gr">rapide</span></div>
+<div class="card" onclick="showPage('qcm')"><div class="card-row"><div class="card-icon">🎯</div><div class="card-body"><div class="card-title">QCM (8 thèmes · 400+ questions)</div><div class="card-desc">Engins, BRH, Pannes, Huiles, Prix, CACES, Nomenclature, Usages</div></div><div class="card-arrow">›</div></div></div>
+<div class="card" onclick="showPage('games')"><div class="card-row"><div class="card-icon">🎮</div><div class="card-body"><div class="card-title">Mini-jeux <span class="card-badge">XP+</span></div><div class="card-desc">Devine l'engin, BRH challenge, Pannes...</div></div><div class="card-arrow">›</div></div></div>
+<div class="card" onclick="showPage('cours')"><div class="card-row"><div class="card-icon">📚</div><div class="card-body"><div class="card-title">Cours & fiches</div><div class="card-desc">Fiches engins, huiles, BRH, nomenclature, sécurité</div></div><div class="card-arrow">›</div></div></div>
+<div class="card" onclick="showPage('stats')"><div class="card-row"><div class="card-icon">📊</div><div class="card-body"><div class="card-title">Mes statistiques</div><div class="card-desc">Voir ma progression par thème</div></div><div class="card-arrow">›</div></div></div>
+<div class="section-h">Référence <span class="gr">3B</span></div>
+<div class="card" onclick="showPage('catalogue')"><div class="card-row"><div class="card-icon">🚜</div><div class="card-body"><div class="card-title">Catalogue 3B</div><div class="card-desc">35 engins · 8 à 70T · prix neuf/occasion/location</div></div><div class="card-arrow">›</div></div></div>
+<div class="card" onclick="showPage('pannes')"><div class="card-row"><div class="card-icon">🔧</div><div class="card-body"><div class="card-title">Pannes & diagnostic</div><div class="card-desc">15 pannes détaillées avec démarche complète</div></div><div class="card-arrow">›</div></div></div>
+<div class="card" onclick="showPage('huiles')"><div class="card-row"><div class="card-icon">🛢️</div><div class="card-body"><div class="card-title">Huiles & fluides</div><div class="card-desc">Moteur, hydraulique, refroidissement, AdBlue</div></div><div class="card-arrow">›</div></div></div>
+<div class="card" onclick="showPage('nomenclature')"><div class="card-row"><div class="card-icon">🔤</div><div class="card-body"><div class="card-title">Décoder les modèles</div><div class="card-desc">Cat 320, PC210, EC220... que veulent dire les chiffres ?</div></div><div class="card-arrow">›</div></div></div>
+<div class="card" onclick="showPage('usages')"><div class="card-row"><div class="card-icon">📐</div><div class="card-body"><div class="card-title">Quel engin pour quel projet ?</div><div class="card-desc">15 cas pratiques de chantiers</div></div><div class="card-arrow">›</div></div></div>
+<div class="card" onclick="showPage('install')"><div class="card-row"><div class="card-icon">📱</div><div class="card-body"><div class="card-title">Installer sur iPhone</div><div class="card-desc">3 étapes pour avoir l'icône</div></div><div class="card-arrow">›</div></div></div>
+</div>
+<div class="page" id="page-qcm"><div class="section-h">QCM <span class="gr">par thème</span></div><div class="section-sub">8 thèmes, plus de 400 questions. Choisis et entraîne-toi.</div><div id="qcm-themes-list"></div></div>
+<div class="page" id="page-qcm-game">
+<div class="qcm-progress"><div class="qcm-progress-info"><span id="qcm-counter">Question 1/15</span><span style="color:var(--green)" id="qcm-score-live">Score: 0</span></div><div class="prog-bar"><div class="prog-fill" id="qcm-prog-fill" style="width:0%"></div></div></div>
+<div class="qcm-card"><div class="qcm-theme" id="qcm-theme">Thème</div><div class="qcm-question" id="qcm-question"></div><div class="qcm-options" id="qcm-options"></div><div class="qcm-feedback" id="qcm-feedback"></div><button class="btn hidden" id="qcm-next-btn" onclick="nextQuestion()">Suivante →</button></div>
+</div>
+<div class="page" id="page-qcm-result"><div class="result-card"><div class="result-emoji" id="result-emoji">🏆</div><div class="result-score" id="result-score">0/15</div><div class="result-msg" id="result-msg">-</div><div class="xp-gained" id="result-xp">+0 XP</div><div class="btn-row"><button class="btn-ghost" onclick="showPage('home')">Accueil</button><button class="btn" onclick="restartQCM()">Recommencer</button></div></div></div>
+<div class="page" id="page-games">
+<div class="section-h">Mini-<span class="gr">jeux</span></div>
+<div class="section-sub">Apprends en t'amusant. Chaque réponse correcte = XP bonus.</div>
+<div class="game-card" onclick="startGame('devine-engin')"><div class="game-card-icon">🚜</div><div class="game-card-title">Devine l'engin</div><div class="game-card-desc">Une description, 4 modèles. Trouve le bon !</div><span class="game-card-reward">⚡ +5 XP / bonne réponse</span></div>
+<div class="game-card" onclick="startGame('brh-challenge')"><div class="game-card-icon">🔨</div><div class="game-card-title">BRH Challenge</div><div class="game-card-desc">Pour cette pelle, quel BRH Montabert ?</div><span class="game-card-reward">⚡ +8 XP / bonne réponse</span></div>
+<div class="game-card" onclick="startGame('marque-modele')"><div class="game-card-icon">🏭</div><div class="game-card-title">Marque & modèle</div><div class="game-card-desc">Ce modèle appartient à quelle marque ?</div><span class="game-card-reward">⚡ +3 XP / bonne réponse</span></div>
+<div class="game-card" onclick="startGame('panne-detective')"><div class="game-card-icon">🕵️</div><div class="game-card-title">Panne Detective</div><div class="game-card-desc">Un symptôme, 4 causes possibles.</div><span class="game-card-reward">⚡ +10 XP / bonne réponse</span></div>
+<div class="game-card" onclick="startGame('quel-projet')"><div class="game-card-icon">📐</div><div class="game-card-title">Quel engin pour quel projet ?</div><div class="game-card-desc">Un chantier, plusieurs choix possibles.</div><span class="game-card-reward">⚡ +7 XP / bonne réponse</span></div>
+<div class="game-card" onclick="startGame('caces-flash')"><div class="game-card-icon">🎓</div><div class="game-card-title">CACES Flash</div><div class="game-card-desc">Quelle catégorie pour cet engin ?</div><span class="game-card-reward">⚡ +5 XP / bonne réponse</span></div>
+</div>
+<div class="page" id="page-game-play">
+<div class="back-btn" onclick="showPage('games')">‹ Quitter le jeu</div>
+<div class="game-score-mini"><div class="gsm-item"><div class="gsm-val" id="game-q-num">1</div><div class="gsm-lbl">Q.</div></div><div class="gsm-item"><div class="gsm-val" id="game-good">0</div><div class="gsm-lbl">Réussites</div></div><div class="gsm-item"><div class="gsm-val" id="game-streak">0</div><div class="gsm-lbl">Série</div></div><div class="gsm-item"><div class="gsm-val" id="game-xp">0</div><div class="gsm-lbl">XP</div></div></div>
+<div class="game-screen" id="game-screen-content"></div>
+</div>
+<div class="page" id="page-cours"><div class="section-h">Cours & <span class="gr">fiches</span></div><div class="section-sub">Révision libre par thème.</div><div id="cours-list"></div></div>
+<div class="page" id="page-cours-detail"><div class="back-btn" onclick="showPage('cours')">‹ Retour aux cours</div><div id="cours-detail-content"></div></div>
+<div class="page" id="page-catalogue"><div class="section-h">Catalogue <span class="gr">3B</span></div><div class="section-sub">35 engins · prix neuf, occasion et location.</div><div id="cat-cats-list"></div><div id="cat-machines-list"></div></div>
+<div class="page" id="page-machine-detail"><div class="back-btn" onclick="showPage('catalogue')">‹ Retour au catalogue</div><div id="machine-detail-content"></div></div>
+<div class="page" id="page-pannes"><div class="section-h">Pannes <span class="gr">& diagnostic</span></div><div class="section-sub">15 pannes détaillées avec démarche complète.</div><div id="pannes-list"></div></div>
+<div class="page" id="page-pannes-detail"><div class="back-btn" onclick="showPage('pannes')">‹ Retour aux pannes</div><div id="pannes-detail-content"></div></div>
+<div class="page" id="page-huiles"><div class="section-h">Huiles <span class="gr">& fluides</span></div><div class="section-sub">Tout sur les huiles moteur, hydraulique, transmission, refroidissement.</div><div id="huiles-list"></div></div>
+<div class="page" id="page-huiles-detail"><div class="back-btn" onclick="showPage('huiles')">‹ Retour</div><div id="huiles-detail-content"></div></div>
+<div class="page" id="page-nomenclature"><div class="section-h">Décoder <span class="gr">les modèles</span></div><div class="section-sub">Comprendre les chiffres et lettres des modèles.</div><div id="nomen-list"></div></div>
+<div class="page" id="page-nomenclature-detail"><div class="back-btn" onclick="showPage('nomenclature')">‹ Retour</div><div id="nomen-detail-content"></div></div>
+<div class="page" id="page-usages"><div class="section-h">Quel engin <span class="gr">pour quel projet ?</span></div><div class="section-sub">15 cas pratiques de chantiers.</div><div id="usages-list"></div></div>
+<div class="page" id="page-stats"><div class="section-h">Mes <span class="gr">statistiques</span></div><div class="section-sub">Suivi de ta progression par thème.</div><div id="stats-content"></div></div>
+<div class="page" id="page-install">
+<div class="section-h">Installer sur <span class="gr">iPhone</span></div>
+<div class="install-card">
+<div class="install-step"><div class="install-step-num">1</div><div class="install-step-txt">Ouvre cette page dans <strong>Safari</strong>.</div></div>
+<div class="install-step"><div class="install-step-num">2</div><div class="install-step-txt">Touche le bouton <strong>Partager</strong> (carré + flèche ↑).</div></div>
+<div class="install-step"><div class="install-step-num">3</div><div class="install-step-txt">Choisis <strong>« Sur l'écran d'accueil »</strong> puis <strong>« Ajouter »</strong>.</div></div>
+</div>
+<div class="info-box"><div class="ib-title">📱 Hors-ligne</div>L'app fonctionne sans connexion. Tes XP sont sauvegardés.</div>
+</div>
+</main>
+<nav class="bottom-nav">
+<div class="bn-item active" data-page="home" onclick="showPage('home')"><div class="bn-icon">🏠</div>Accueil</div>
+<div class="bn-item" data-page="qcm" onclick="showPage('qcm')"><div class="bn-icon">🎯</div>QCM</div>
+<div class="bn-item" data-page="games" onclick="showPage('games')"><div class="bn-icon">🎮</div>Jeux</div>
+<div class="bn-item" data-page="cours" onclick="showPage('cours')"><div class="bn-icon">📚</div>Cours</div>
+<div class="bn-item" data-page="stats" onclick="showPage('stats')"><div class="bn-icon">📊</div>Stats</div>
+</nav>
+<script>
+// ============================================================================
+// DONNÉES ENGINS (35 modèles - parc 3B INTER 8 à 70T)
+// ============================================================================
+const ENGINS = [
+{id:'pc09',cat:'pelle',marque:'Caterpillar',nom:'308 CR',tonnage:9,puissance:51,caces:'B1',neuf:115000,occ3:80000,occ5:55000,locJour:280,locSem:1100,locMois:3200,desc:"Pelle compacte 9T à rayon court, idéale en zone urbaine étroite.",usages:["Terrassement urbain","Tranchées réseau","VRD"],points_forts:["Rayon arrière court","Polyvalente","Faible coût d'exploitation"]},
+{id:'pc12',cat:'pelle',marque:'Komatsu',nom:'PC118MR-11',tonnage:12,puissance:67,caces:'B1',neuf:135000,occ3:94000,occ5:65000,locJour:320,locSem:1280,locMois:3700,desc:"Pelle 12T midi-rayon, parfaite pour VRD et travaux urbains.",usages:["VRD","Tranchées","Démolition légère"],points_forts:["Rayon court","Bonne hauteur de chargement","Cabine confortable"]},
+{id:'pc14',cat:'pelle',marque:'Volvo',nom:'ECR145E',tonnage:14.5,puissance:90,caces:'B1',neuf:155000,occ3:108000,occ5:75000,locJour:380,locSem:1500,locMois:4400,desc:"Pelle 14.5T à rayon court, polyvalente VRD et terrassement.",usages:["VRD","Voirie","Pose de canalisations"],points_forts:["Compromis taille/puissance","Très répandue","Pièces dispo"]},
+{id:'pc20a',cat:'pelle',marque:'Caterpillar',nom:'320',tonnage:21,puissance:122,caces:'B1',neuf:212000,occ3:135000,occ5:90000,locJour:450,locSem:1800,locMois:5200,desc:"Pelle 20T standard, le best-seller mondial du chantier.",usages:["Terrassement chantier","Démolition standard","Voirie","Pose canalisations"],points_forts:["Polyvalence absolue","Réseau pièces énorme","Valeur résiduelle excellente"]},
+{id:'pc20b',cat:'pelle',marque:'Komatsu',nom:'PC210LC-11',tonnage:22,puissance:123,caces:'B1',neuf:200000,occ3:130000,occ5:88000,locJour:430,locSem:1720,locMois:5000,desc:"Pelle 22T standard, robuste et économique en carburant.",usages:["Terrassement gros oeuvre","Démolition","Pose VRD"],points_forts:["Faible consommation","Hydraulique précise","Robustesse"]},
+{id:'pc22',cat:'pelle',marque:'Volvo',nom:'EC220E',tonnage:22,puissance:128,caces:'B1',neuf:215000,occ3:140000,occ5:95000,locJour:460,locSem:1840,locMois:5300,desc:"Pelle 22T avec moteur Stage V éco-responsable.",usages:["Terrassement","Démolition","VRD","Travaux ferroviaires"],points_forts:["Cabine ergonomique","Système ECO Mode","Excellente visibilité"]},
+{id:'pc25a',cat:'pelle',marque:'Caterpillar',nom:'323',tonnage:25,puissance:127,caces:'B1',neuf:245000,occ3:165000,occ5:115000,locJour:550,locSem:2200,locMois:6400,desc:"Pelle 25T avec assistance Cat Grade pour précision terrassement.",usages:["Terrassement précision","Plateformes","Bassins","Routes"],points_forts:["Cat Grade Assist","Productivité","Confort cabine"]},
+{id:'pc30',cat:'pelle',marque:'Komatsu',nom:'PC290LC-11',tonnage:30,puissance:151,caces:'B1',neuf:280000,occ3:190000,occ5:130000,locJour:650,locSem:2600,locMois:7600,desc:"Pelle 30T pour chantiers gros volumes.",usages:["Carrière","Gros terrassement","Démolition lourde","Chargement camions"],points_forts:["Productivité chargement","Robustesse","Bonne tenue de prix"]},
+{id:'pc35',cat:'pelle',marque:'Caterpillar',nom:'336',tonnage:36,puissance:235,caces:'B1',neuf:360000,occ3:240000,occ5:165000,locJour:780,locSem:3120,locMois:9100,desc:"Pelle 36T pour carrière et démolition lourde.",usages:["Carrière","Démolition d'immeubles","Terrassement gros volumes"],points_forts:["Puissance hydraulique","Châssis renforcé","Compatible BRH lourd V3500/V4500"]},
+{id:'pc38',cat:'pelle',marque:'Volvo',nom:'EC380E',tonnage:38,puissance:230,caces:'B1',neuf:370000,occ3:250000,occ5:170000,locJour:800,locSem:3200,locMois:9300,desc:"Pelle 38T puissante avec mode ECO pour grosses opérations.",usages:["Carrière","Mine","Démolition lourde","Terrassement industriel"],points_forts:["Faible consommation pour la classe","Cabine grand confort","Système hydraulique optimisé"]},
+{id:'pc40',cat:'pelle',marque:'Komatsu',nom:'PC390LC-11',tonnage:40,puissance:202,caces:'B1',neuf:380000,occ3:260000,occ5:178000,locJour:830,locSem:3320,locMois:9700,desc:"Pelle 40T fiable pour exploitation longue durée.",usages:["Carrière","Démolition","Travaux miniers"],points_forts:["Fiabilité Komatsu","Coût exploitation maîtrisé","Polyvalente"]},
+{id:'pc50',cat:'pelle',marque:'Caterpillar',nom:'349',tonnage:50,puissance:311,caces:'B1',neuf:480000,occ3:336000,occ5:230000,locJour:1100,locSem:4400,locMois:13000,desc:"Grosse pelle 50T pour mine et carrière.",usages:["Carrière","Mine","Démolition d'envergure","Travaux portuaires"],points_forts:["Puissance pelle/godet","Châssis ultra-renforcé","Productivité maximale"]},
+{id:'pc55',cat:'pelle',marque:'Volvo',nom:'EC550E',tonnage:55,puissance:317,caces:'B1',neuf:520000,occ3:364000,occ5:250000,locJour:1200,locSem:4800,locMois:14000,desc:"Pelle 55T grande capacité de chargement.",usages:["Carrière intensive","Chargement tombereaux","Mine"],points_forts:["Excellente productivité","Cabine grand confort","Coûts maîtrisés"]},
+{id:'pc70',cat:'pelle',marque:'Caterpillar',nom:'374',tonnage:70,puissance:391,caces:'B1',neuf:680000,occ3:476000,occ5:330000,locJour:1500,locSem:6000,locMois:18000,desc:"Très grosse pelle 70T pour exploitation intensive.",usages:["Carrière intensive","Mine à ciel ouvert","Très gros terrassement"],points_forts:["Bras massif","Productivité chargement record","Châssis lourd"]},
+{id:'mec10',cat:'mecalac',marque:'Mécalac',nom:'10MCR',tonnage:10,puissance:75,caces:'B1',neuf:165000,occ3:115000,occ5:80000,locJour:380,locSem:1520,locMois:4400,desc:"Mécalac 10T : pelle + chargeuse + grue mobile en un seul engin.",usages:["Travaux urbains","Chantiers étroits","VRD","Multi-tâches"],points_forts:["3 engins en 1","Très polyvalent","Mobilité exceptionnelle"]},
+{id:'mec15',cat:'mecalac',marque:'Mécalac',nom:'15MWR',tonnage:15,puissance:115,caces:'B1',neuf:215000,occ3:150000,occ5:105000,locJour:480,locSem:1920,locMois:5600,desc:"Mécalac 15T sur pneus, ultra-polyvalent en ville.",usages:["Travaux urbains denses","VRD","Espaces verts","Démolition légère"],points_forts:["Sur pneus (rapide)","Multi-équipements","Idéal centre-ville"]},
+{id:'cl12',cat:'chargeuse',marque:'Volvo',nom:'L60H',tonnage:11,puissance:120,caces:'C1',neuf:155000,occ3:108000,occ5:75000,locJour:360,locSem:1440,locMois:4200,desc:"Chargeuse sur pneus 11T pour carrière et matériaux.",usages:["Chargement matériaux","Carrière","Manutention vrac","Centrale béton"],points_forts:["Économe en carburant","Confort cabine","Polyvalente"]},
+{id:'cl15',cat:'chargeuse',marque:'Caterpillar',nom:'950M',tonnage:18,puissance:194,caces:'C1',neuf:285000,occ3:200000,occ5:140000,locJour:550,locSem:2200,locMois:6400,desc:"Chargeuse 18T très polyvalente, best-seller carrière.",usages:["Carrière","Chargement camions","Manutention industrielle"],points_forts:["Productivité chargement","Robustesse","Réseau Cat"]},
+{id:'cl20',cat:'chargeuse',marque:'Komatsu',nom:'WA470-8',tonnage:23,puissance:200,caces:'C1',neuf:310000,occ3:217000,occ5:150000,locJour:600,locSem:2400,locMois:7000,desc:"Chargeuse 23T pour exploitation intensive.",usages:["Carrière intensive","Chargement tombereaux","Mine"],points_forts:["Faible consommation","Cinématique Z","Robustesse"]},
+{id:'bull15',cat:'bulldozer',marque:'Caterpillar',nom:'D6',tonnage:18,puissance:160,caces:'C2',neuf:285000,occ3:200000,occ5:140000,locJour:580,locSem:2320,locMois:6800,desc:"Bulldozer Cat D6, classique du terrassement.",usages:["Décapage","Nivellement","Pousse de matériaux","Pistes chantier"],points_forts:["Polyvalent","Très répandu","Cat Grade en option"]},
+{id:'bull22',cat:'bulldozer',marque:'Komatsu',nom:'D65PXi-18',tonnage:22,puissance:160,caces:'C2',neuf:340000,occ3:238000,occ5:165000,locJour:680,locSem:2720,locMois:7900,desc:"Bulldozer 22T avec guidage GPS intégré.",usages:["Terrassement précision","Plateforme","Décapage","Profilage"],points_forts:["GPS intégré (iMC)","Précision","Productivité"]},
+{id:'dump25',cat:'tombereau',marque:'Volvo',nom:'A25G',tonnage:24,puissance:227,caces:'E',neuf:385000,occ3:270000,occ5:185000,locJour:680,locSem:2720,locMois:7900,desc:"Tombereau articulé 24T pour transport hors-route.",usages:["Carrière","Mine","Gros terrassement","Transport matériaux"],points_forts:["Articulation 6x6","Excellent en terrain difficile","Charge utile élevée"]},
+{id:'dump30',cat:'tombereau',marque:'Caterpillar',nom:'730',tonnage:28,puissance:301,caces:'E',neuf:445000,occ3:312000,occ5:215000,locJour:780,locSem:3120,locMois:9100,desc:"Tombereau articulé 28T charge utile renforcée.",usages:["Carrière intensive","Mine","Très gros chantiers"],points_forts:["Charge utile 28T","Confort conducteur","Faible coût d'exploitation"]},
+{id:'co10',cat:'compacteur',marque:'Caterpillar',nom:'CB10',tonnage:10,puissance:130,caces:'D',neuf:115000,occ3:80000,occ5:55000,locJour:280,locSem:1120,locMois:3300,desc:"Compacteur tandem 10T pour enrobé routes.",usages:["Compactage enrobé","Voirie","Pistes","Plateformes"],points_forts:["Vibration efficace","Très répandu","Coût d'exploitation faible"]},
+{id:'co13',cat:'compacteur',marque:'Volvo',nom:'DD110C',tonnage:12,puissance:115,caces:'D',neuf:135000,occ3:94000,occ5:65000,locJour:320,locSem:1280,locMois:3700,desc:"Compacteur tandem 12T efficace sur enrobé épais.",usages:["Enrobé épais","Voirie","Routes neuves"],points_forts:["Réglages vibration","Confort opérateur","Vue dégagée"]},
+{id:'brh04',cat:'brh',marque:'Montabert',nom:'V1600',tonnage:0.80,puissance:0,caces:'-',neuf:28000,occ3:19600,occ5:14000,locJour:90,locSem:360,locMois:1050,desc:"BRH Montabert pour pelles 10 à 15T.",usages:["Démolition béton léger","Tranchées dans roche","Casse béton voirie"],points_forts:["Adapté pelles 10-15T","Frappe régulière","Énergie hydraulique optimisée"]},
+{id:'brh05',cat:'brh',marque:'Montabert',nom:'V2200',tonnage:1.10,puissance:0,caces:'-',neuf:38000,occ3:26600,occ5:19000,locJour:130,locSem:520,locMois:1500,desc:"BRH Montabert pour pelles 15 à 22T (le plus loué).",usages:["Démolition béton","Casse roche","Tranchées en milieu rocheux","Démolition d'ouvrages"],points_forts:["Le BRH le plus polyvalent","Adapté Cat 320, Komatsu PC210","Pic facile à changer"]},
+{id:'brh06',cat:'brh',marque:'Montabert',nom:'V3500',tonnage:1.65,puissance:0,caces:'-',neuf:55000,occ3:38500,occ5:27500,locJour:180,locSem:720,locMois:2100,desc:"BRH Montabert pour pelles 22 à 32T.",usages:["Démolition lourde","Carrière","Casse blocs rocheux"],points_forts:["Énergie de frappe élevée","Pour Cat 336, Komatsu PC290","Pic forgé renforcé"]},
+{id:'brh07',cat:'brh',marque:'Montabert',nom:'V4500',tonnage:2.30,puissance:0,caces:'-',neuf:75000,occ3:52500,occ5:37500,locJour:240,locSem:960,locMois:2800,desc:"BRH Montabert pour pelles 32 à 45T.",usages:["Carrière intensive","Démolition d'envergure","Mine"],points_forts:["Forte énergie","Pour Cat 349, Volvo EC380","Cycle de frappe rapide"]},
+{id:'brh08',cat:'brh',marque:'Montabert',nom:'V5500',tonnage:3.00,puissance:0,caces:'-',neuf:95000,occ3:66500,occ5:47500,locJour:320,locSem:1280,locMois:3700,desc:"BRH Montabert pour pelles 45 à 70T (le plus gros).",usages:["Carrière intensive","Mine à ciel ouvert","Démolition industrielle"],points_forts:["BRH le plus puissant Montabert","Pour Cat 374, Volvo EC550","Chambre azote grande capacité"]},
+{id:'pay01',cat:'equipement',marque:'Payant',nom:'Godet de tri',tonnage:0,puissance:0,caces:'-',neuf:18000,occ3:12500,occ5:9000,locJour:60,locSem:240,locMois:700,desc:"Godet de tri Payant pour pelle 20-25T.",usages:["Tri matériaux démolition","Chargement déchets","Recyclage chantier"],points_forts:["Tri rapide","Solide","Compatible attache rapide"]},
+{id:'pay02',cat:'equipement',marque:'Payant',nom:'Godet crible',tonnage:0,puissance:0,caces:'-',neuf:24000,occ3:16800,occ5:12000,locJour:80,locSem:320,locMois:930,desc:"Godet crible Payant pour séparation des matériaux.",usages:["Criblage terre/cailloux","Tri matériaux carrière","Récupération matière"],points_forts:["Criblage in-situ","Économise les transports","Adaptable pelles 20-30T"]},
+{id:'pay03',cat:'equipement',marque:'Payant',nom:'Pince de démolition',tonnage:0,puissance:0,caces:'-',neuf:28000,occ3:19600,occ5:14000,locJour:100,locSem:400,locMois:1170,desc:"Pince de tri/démolition Payant rotative.",usages:["Démolition d'ouvrages","Tri ferraille","Manipulation gros déchets"],points_forts:["Rotation 360°","Force de serrage élevée","Polyvalente"]},
+{id:'pay04',cat:'equipement',marque:'Payant',nom:'Godet enrochement',tonnage:0,puissance:0,caces:'-',neuf:14000,occ3:9800,occ5:7000,locJour:55,locSem:220,locMois:640,desc:"Godet d'enrochement Payant pour gros blocs.",usages:["Enrochement","Manipulation blocs","Aménagement berges"],points_forts:["Forme adaptée gros blocs","Renforcé","Bord d'attaque massif"]},
+{id:'pay05',cat:'equipement',marque:'Payant',nom:'Broyeur béton',tonnage:0,puissance:0,caces:'-',neuf:45000,occ3:31500,occ5:22500,locJour:160,locSem:640,locMois:1860,desc:"Broyeur à béton Payant pour démolition.",usages:["Démolition béton armé","Séparation béton/ferraille","Recyclage in-situ"],points_forts:["Mâchoires interchangeables","Sépare ferraille","Réduit déchets"]}
+];
+const CATS={'pelle':{nom:'Pelles sur chenilles',icon:'🏗️'},'mecalac':{nom:'Mécalac',icon:'🚜'},'chargeuse':{nom:'Chargeuses sur pneus',icon:'🚛'},'bulldozer':{nom:'Bulldozers',icon:'🚧'},'tombereau':{nom:'Tombereaux',icon:'🚚'},'compacteur':{nom:'Compacteurs',icon:'🛞'},'brh':{nom:'BRH Montabert',icon:'🔨'},'equipement':{nom:'Équipements Payant',icon:'⚙️'}};
+// ============================================================================
+// PANNES DÉTAILLÉES
+// ============================================================================
+const PANNES=[
+{id:'p1',engin:'Pelle/Engin',symptome:"L'engin ne démarre pas",grav:'CRITIQUE',intro:"90% des cas = batterie ou démarreur. Toujours commencer par le plus simple.",causes:[{nom:"Batterie déchargée ou HS",prob:"60%"},{nom:"Coupe-circuit batterie sur OFF",prob:"15%"},{nom:"Cosses oxydées",prob:"10%"},{nom:"Démarreur HS",prob:"8%"},{nom:"Filtre à carburant bouché",prob:"4%"},{nom:"Capteur ou injecteur HS",prob:"3%"}],diagnostic:["Vérifier le coupe-circuit batterie","Tester tension batterie au multimètre (>12.4V au repos)","Vérifier l'état des cosses (brossage, regraissage)","Écouter au démarrage : 'clic' = démarreur, silence = électricité","Si tourne sans partir : amorcer le filtre à gasoil"],solutions:["Recharger ou remplacer batterie (150-400€)","Nettoyer/regraisser cosses (gratuit)","Remplacer démarreur (400-1200€)","Changer filtre à gasoil (30-80€)","Diagnostic valise pour codes défaut"],prevention:"Coupe-circuit OFF si engin > 7 jours sans démarrage."},
+{id:'p2',engin:'Pelle/Engin',symptome:"Démarrage difficile à froid",grav:'MOYENNE',intro:"Souvent lié au préchauffage ou au gasoil paraffiné en hiver.",causes:[{nom:"Bougies de préchauffage HS",prob:"35%"},{nom:"Gasoil paraffiné (hiver)",prob:"25%"},{nom:"Filtre gasoil bouché",prob:"20%"},{nom:"Compression cylindres faible",prob:"15%"},{nom:"Batterie faible",prob:"5%"}],diagnostic:["Voyant préchauffage allumé 5-15 sec ?","Tester chaque bougie au multimètre","Inspecter le filtre à gasoil (cristaux blancs = paraffine)","Vérifier qualité du gasoil"],solutions:["Remplacer bougies préchauffage (80-200€)","Vidanger réservoir + filtre + additif anti-paraffinage","Garage chauffé"],prevention:"Gasoil grand froid -22°C en hiver."},
+{id:'p3',engin:'Pelle/Engin',symptome:"Perte de puissance hydraulique",grav:'ELEVEE',intro:"Symptôme alarmant. Peut indiquer pompe en fin de vie (très coûteux) ou problème simple.",causes:[{nom:"Niveau d'huile hydraulique bas",prob:"30%"},{nom:"Filtre hydraulique colmaté",prob:"25%"},{nom:"Huile dégradée (>5000h)",prob:"15%"},{nom:"Pompe hydraulique en fin de vie",prob:"15%"},{nom:"Soupape pression déréglée",prob:"10%"},{nom:"Fuite interne distributeur",prob:"5%"}],diagnostic:["Vérifier niveau d'huile (engin à plat)","Témoin filtre hydraulique","Couleur et odeur de l'huile","Mesure de pression au manomètre (atelier)","Test vitesse cycle","Bruit pompe : sifflement = aération, gémissement = usure"],solutions:["Compléter huile (50-100€)","Changer filtre hydraulique (80-200€)","Vidange complète + filtres (1500-3500€)","Réfection pompe (4000-15000€)"],prevention:"Vidange respectée + analyse d'huile annuelle."},
+{id:'p4',engin:'Pelle',symptome:"Un mouvement ne fonctionne plus",grav:'ELEVEE',intro:"Si tous les autres mouvements fonctionnent, le problème est circuit-spécifique.",causes:[{nom:"Distributeur grippé",prob:"35%"},{nom:"Vérin HS (joint, fuite interne)",prob:"30%"},{nom:"Flexible coupé/écrasé",prob:"20%"},{nom:"Capteur position défectueux",prob:"10%"},{nom:"Joystick défectueux",prob:"5%"}],diagnostic:["Test inversion du circuit","Inspection visuelle des flexibles","Vérifier vérin sous charge","Lecture codes défaut"],solutions:["Démontage/nettoyage distributeur (500-1500€)","Réfection vérin (800-3500€)","Remplacement flexible (50-300€)","Remplacement joystick (400-1200€)"]},
+{id:'p5',engin:'Pelle/Engin',symptome:"Surchauffe moteur",grav:'CRITIQUE',intro:"À traiter IMMÉDIATEMENT. Continuer = casse moteur.",causes:[{nom:"Manque liquide refroidissement",prob:"35%"},{nom:"Radiateur encrassé extérieurement",prob:"30%"},{nom:"Ventilateur défectueux",prob:"15%"},{nom:"Thermostat bloqué fermé",prob:"10%"},{nom:"Pompe à eau HS",prob:"5%"},{nom:"Joint de culasse fuyant",prob:"5%"}],diagnostic:["ARRÊTER l'engin (ralenti 2-3 min puis stop)","ATTENDRE 1h min avant d'ouvrir le bouchon","Vérifier niveau vase d'expansion","Inspecter radiateur (poussières)","Vérifier rotation ventilateur"],solutions:["Compléter liquide (50-100€)","Souffler radiateur","Remplacer ventilateur (300-1500€)","Remplacer thermostat (80-200€)","Pompe à eau (400-1200€)","Joint de culasse (3000-10000€)"],prevention:"Soufflage radiateur 1x/semaine en chantier poussiéreux."},
+{id:'p6',engin:'BRH Montabert',symptome:"Le BRH ne frappe pas",grav:'ELEVEE',intro:"Plusieurs causes possibles. Diagnostic dans l'ordre du moins cher au plus cher.",causes:[{nom:"Pression d'azote chambre nulle",prob:"40%"},{nom:"Pic complètement HS ou cassé",prob:"15%"},{nom:"Pression hydraulique pelle insuffisante",prob:"15%"},{nom:"Distributeur BRH grippé",prob:"15%"},{nom:"Joint piston usé",prob:"15%"}],diagnostic:["Recharger l'azote (15-18 bars)","Vérifier le pic","Vérifier débit huile pelle","Démontage atelier si nécessaire"],solutions:["Recharge azote (50-400€)","Remplacement pic (500-2500€)","Démontage BRH + nettoyage (800-2000€)","Réfection complète (3000-12000€)"],prevention:"Recharger azote tous les 6 mois. Ne JAMAIS frapper à vide."},
+{id:'p7',engin:'BRH Montabert',symptome:"BRH frappe faiblement",grav:'MOYENNE',intro:"Énergie de frappe diminuée = chantier ralenti. Souvent simple à régler.",causes:[{nom:"Pression azote basse",prob:"50%"},{nom:"Pic émoussé",prob:"20%"},{nom:"Débit hydraulique pelle trop faible",prob:"15%"},{nom:"Usure interne progressive",prob:"15%"}],diagnostic:["Mesurer pression azote","Inspection du pic","Vérifier réglage débit pelle"],solutions:["Recharger azote","Affûter ou remplacer le pic (100-2500€)","Augmenter débit pelle"]},
+{id:'p8',engin:'BRH Montabert',symptome:"Fuite d'huile au pic",grav:'ELEVEE',intro:"Joint inférieur HS. À traiter rapidement.",causes:[{nom:"Joint d'étanchéité pic usé",prob:"60%"},{nom:"Pic sale ou rayé",prob:"25%"},{nom:"Bague de guidage HS",prob:"15%"}],solutions:["Remplacement joint pic (200-500€)","Polissage du pic","Bague de guidage (500-1500€)"]},
+{id:'p9',engin:'Chargeuse',symptome:"Direction articulée dure",grav:'ELEVEE',intro:"Sécurité : ne pas continuer à rouler. Risque accident.",causes:[{nom:"Niveau d'huile direction bas",prob:"40%"},{nom:"Pompe direction usée",prob:"25%"},{nom:"Articulations sèches/grippées",prob:"20%"},{nom:"Vérin direction fuyant",prob:"15%"}],solutions:["Compléter huile (50-100€)","Graisser articulations (10-30€)","Remplacer pompe direction (1500-4000€)","Refaire vérins direction (1000-3000€)"]},
+{id:'p10',engin:'Chargeuse/Tombereau',symptome:"Boîte automatique passe mal",grav:'ELEVEE',causes:[{nom:"Niveau ATF bas",prob:"35%"},{nom:"ATF dégradée",prob:"25%"},{nom:"Filtre ATF colmaté",prob:"20%"},{nom:"Capteur de vitesse défectueux",prob:"10%"},{nom:"Embrayage powershift HS",prob:"10%"}],solutions:["Compléter ATF (50-150€)","Vidange ATF + filtre (400-1200€)","Remplacement capteur (200-600€)","Réfection boîte (5000-25000€)"]},
+{id:'p11',engin:'Tous engins Stage V',symptome:"Voyant moteur orange allumé",grav:'ELEVEE',intro:"Code défaut stocké. À lire absolument.",causes:[{nom:"AdBlue bas ou de mauvaise qualité",prob:"30%"},{nom:"FAP saturé",prob:"25%"},{nom:"Capteur EGR/NOx HS",prob:"20%"},{nom:"Injecteur défaillant",prob:"10%"},{nom:"Sonde lambda",prob:"10%"},{nom:"Autre code moteur",prob:"5%"}],diagnostic:["Lire les codes défaut (valise OBD)","Vérifier niveau AdBlue","Lancer régénération forcée du FAP","Inspecter visuellement les capteurs"],solutions:["Compléter AdBlue (10-50€)","Régénération forcée FAP (200-400€)","Remplacement capteur (300-1500€)","Remplacement injecteur (800-3000€)","FAP nettoyage ou neuf (500-8000€)"],prevention:"AdBlue de qualité (norme ISO 22241)."},
+{id:'p12',engin:'Tous engins Stage V',symptome:"Voyant moteur ROUGE - mode dégradé",grav:'CRITIQUE',intro:"L'engin va s'arrêter. À diagnostiquer immédiatement.",causes:[{nom:"AdBlue vide ou contaminé",prob:"40%"},{nom:"FAP totalement saturé",prob:"25%"},{nom:"Surchauffe non gérée",prob:"15%"},{nom:"Pression d'huile basse",prob:"10%"},{nom:"Système EGR HS critique",prob:"10%"}],solutions:["Compléter AdBlue immédiatement","Si AdBlue contaminé : vidange complète (1000-3000€)","Régénération forcée ou remplacement FAP","Diagnostic atelier obligatoire"]},
+{id:'p13',engin:'Pelle/Bulldozer',symptome:"Chenille déraillée",grav:'CRITIQUE',intro:"Engin immobilisé. Risque pour les opérateurs si tentative de remontage maison.",causes:[{nom:"Tension chenille trop basse",prob:"40%"},{nom:"Galet ou barbotin usé",prob:"30%"},{nom:"Choc latéral récent",prob:"15%"},{nom:"Maillon de chaîne cassé",prob:"15%"}],solutions:["Re-tendre chenille via graisseur","Si déraillée au sol : atelier (1500-4000€)","Remplacement galets (300-1200€/galet)","Remplacement barbotin (1500-4000€)","Chenille neuve (5000-25000€)"],prevention:"Contrôle tension hebdo. Mesure usure trimestrielle."},
+{id:'p14',engin:'Tous engins',symptome:"Fuite d'huile sous l'engin",grav:'ELEVEE',intro:"Localiser l'origine est crucial.",causes:[{nom:"Flexible hydraulique percé/usé",prob:"35%"},{nom:"Joint de vérin HS",prob:"25%"},{nom:"Raccord desserré",prob:"15%"},{nom:"Joint moteur",prob:"15%"},{nom:"Réservoir percé",prob:"10%"}],diagnostic:["Identifier la couleur (rouge=ATF, ambre=hydraulique, noir=moteur)","Localiser l'origine","Évaluer le débit"],solutions:["Resserrer raccord (5-30€)","Remplacer flexible (80-400€)","Réfection vérin (800-3500€)","Joint moteur (1500-6000€)"]},
+{id:'p15',engin:'Tous engins',symptome:"Climatisation ne fonctionne plus",grav:'FAIBLE',intro:"Pas critique mécaniquement mais sécurité été.",causes:[{nom:"Manque de gaz frigorigène",prob:"50%"},{nom:"Compresseur HS",prob:"20%"},{nom:"Filtre habitacle bouché",prob:"15%"},{nom:"Capteur de pression HS",prob:"10%"},{nom:"Faisceau électrique",prob:"5%"}],solutions:["Recharge gaz + recherche fuite (150-400€)","Remplacement compresseur (800-2500€)","Remplacement filtre habitacle (30-100€)"]}
+];
+// ============================================================================
+// HUILES & FLUIDES
+// ============================================================================
+const HUILES={
+moteur:{nom:"Huiles moteur",icon:"🛢️",intro:"L'huile moteur lubrifie, refroidit et nettoie. Sur engins Stage V, la qualité est cruciale pour le FAP.",types:[{nom:"15W40",usage:"Standard tous moteurs diesel BTP",norme:"API CK-4 / ACEA E9",engins:"Cat 320 ancien, anciens Volvo",prix:"8-12 €/L"},{nom:"10W40",usage:"Climats froids ou démarrages fréquents",norme:"API CK-4 / ACEA E9",engins:"Engins en zone montagne",prix:"10-14 €/L"},{nom:"5W30 Low SAPS",usage:"Moteurs Stage V avec FAP/AdBlue",norme:"API CK-4 Low SAPS / ACEA E6/E9",engins:"Cat 336 récent, Volvo EC220E, Komatsu PC210-11",prix:"14-18 €/L",critique:"OBLIGATOIRE Low SAPS sur engins avec FAP"}],notions:["SAE = Society of Automotive Engineers (viscosité)","API = American Petroleum Institute. CK-4 = norme actuelle diesel","ACEA = norme européenne. E9 standard, E6 Low SAPS","Low SAPS = faible cendres sulfatées, phosphore, soufre"],frequence:"Vidange tous les 250 à 500h."},
+hydraulique:{nom:"Huiles hydrauliques",icon:"💧",intro:"Transmet la puissance. 30-60% du coût d'entretien d'une pelle.",types:[{nom:"ISO VG 46",usage:"Standard pelles, climat tempéré",norme:"DIN 51524 / ISO 11158 type HV",engins:"Cat 320, Komatsu PC210, Volvo EC220",prix:"5-8 €/L (200L = 1000-1500€)"},{nom:"ISO VG 68",usage:"Climat chaud ou hydraulique très sollicitée",engins:"Pelles sud-Méditerranée, BRH intensif",prix:"5-8 €/L"},{nom:"ISO VG 32",usage:"Climat froid uniquement",engins:"Engins en montagne hiver",prix:"5-8 €/L"},{nom:"Bio HVI",usage:"Zones sensibles (parcs, captages d'eau)",norme:"ISO 15380 (biodégradable)",engins:"Tous, exigences environnementales",prix:"12-18 €/L (3x plus cher)",avantage:"Dégradation naturelle en 28j"}],notions:["ISO VG = indice viscosité ISO","HV = High Viscosity Index","HLP = qualité standard avec additifs anti-usure"],frequence:"Vidange 2000-5000h. Filtre 500-1000h."},
+transmission:{nom:"Huiles transmission/pont",icon:"⚙️",intro:"Pour chargeuses, tombereaux. Spécifications très différentes.",types:[{nom:"ATF Dexron III",usage:"Boîtes automatiques",engins:"Volvo L60H, Cat 950M boîte powershift",prix:"6-10 €/L"},{nom:"Huile pont 80W90",usage:"Ponts différentiels chargeuses, tombereaux",norme:"API GL-5",engins:"Volvo A25G ponts, Cat 730 ponts",prix:"7-11 €/L"},{nom:"Huile finale drive",usage:"Réducteurs translation chenilles (pelles)",norme:"Spécifique constructeur",engins:"Cat 320, Komatsu PC210, Volvo EC220",prix:"8-12 €/L",frequence:"Vidange 1000-2000h"}]},
+refroidissement:{nom:"Liquide de refroidissement",icon:"❄️",intro:"Refroidit le moteur. Sur engins modernes, anti-corrosif et anti-cavitation.",types:[{nom:"OAT (Organic Acid Technology)",couleur:"Rose ou orange",usage:"Engins récents",duree:"5 ans / 5000h",critique:"NE JAMAIS mélanger avec HOAT/IAT"},{nom:"HOAT (Hybrid OAT)",couleur:"Jaune",usage:"Volvo, certains MAN",duree:"3-5 ans"},{nom:"IAT classique",couleur:"Vert ou bleu",usage:"Anciens engins avant 2010",duree:"2 ans / 2000h",prix:"3-5 €/L"}],regle:"NE JAMAIS mélanger les couleurs/technologies."},
+graisses:{nom:"Graisses",icon:"🧴",intro:"Lubrifient axes, articulations, paliers.",types:[{nom:"EP2 Lithium",usage:"Graissage standard pelle (axes flèche, godet)",norme:"NLGI 2 / EP",prix:"4-7 €/kg",frequence:"Toutes les 8 à 10 heures de travail"},{nom:"EP2 Calcium sulfonate",usage:"Conditions extrêmes (humidité, eau, salin)",prix:"8-14 €/kg",engins:"Travaux portuaires, bord de mer"},{nom:"Bio graisse",usage:"Zones environnementales sensibles",prix:"12-20 €/kg"}]},
+adblue:{nom:"AdBlue",icon:"🔵",intro:"Solution d'urée 32.5% injectée dans l'échappement (SCR) pour réduire les NOx. Obligatoire Stage IV/V.",points:["Consommation : 4-6% du gasoil","Stockage : -10°C à +30°C, gel à -11°C","DLU : 12-18 mois","Prix : 0.40-0.80 €/L cuve, 1-2 €/L bidon","Contamination = catastrophe (5000-15000€)"],panne:"AdBlue manquant ou de mauvaise qualité = mode dégradé puis arrêt."}
+};
+// ============================================================================
+// NOMENCLATURE - Décoder les modèles
+// ============================================================================
+const NOMENCLATURE={
+caterpillar:{nom:"Caterpillar (Cat)",icon:"🟡",intro:"La nomenclature Cat est plutôt logique : les chiffres reflètent généralement le tonnage approximatif pour les pelles.",pelles:["Cat 308 → ~8T","Cat 320 → ~20T","Cat 323 → ~23T (avec Grade Assist)","Cat 336 → ~36T","Cat 349 → ~49T","Cat 374 → ~74T"],chargeuses:["Série 9** (chargeuses sur pneus)","Cat 950 → série 9, taille 50 (~18T)","Cat 966 → plus grosse","Cat 980 → encore plus grosse"],bulldozers:["Série D + numéro de taille","Cat D6 → ~18-20T","Cat D8 → ~38T","Cat D10 → ~70T+"],suffixes:["L = Long Crawler (chenilles longues)","LR = Long Reach","GC = General Construction","M = Wheeled (sur pneus)","F/H/L : générations (F < H < L)"]},
+komatsu:{nom:"Komatsu",icon:"🔵",intro:"Komatsu utilise des codes alphabétiques pour le type d'engin, suivi du tonnage approximatif.",codes:["PC = Power Crane → pelle hydraulique sur chenilles","WA = Wheel loAder → chargeuse sur pneus","D = Dozer → bulldozer","HM = Hydraulic Motorized → tombereau articulé","HD = Heavy Dump → tombereau rigide"],pelles:["PC118 → ~12T (rayon court)","PC138 → ~13T","PC210 → ~21T","PC290 → ~29T","PC390 → ~40T","PC490 → ~49T"],suffixes:["LC = Long Crawler","MR = Midi Rayon (rayon court)","USR = Ultra Short Radius","i = Intelligent Machine Control (GPS)","-8, -10, -11 = générations"],exemple:"PC210LC-11 = Pelle Power Crane 21T Long Crawler 11ème génération"},
+volvo:{nom:"Volvo CE",icon:"🟣",intro:"Volvo utilise EC pour les pelles chenilles, L pour les chargeuses, A pour les tombereaux.",codes:["EC = Excavator Crawler","ECR = Excavator Crawler Reduced (rayon court)","EW = Excavator Wheel","L = Loader → chargeuse","A = Articulated → tombereau articulé"],pelles:["ECR145E → ~14.5T rayon court","EC220E → ~22T","EC380E → ~38T","EC480 → ~48T","EC550E → ~55T"],chargeuses:["L60H → ~6T charge utile","L120 → ~12T charge utile"],tombereaux:["A25 → ~25T","A30 → ~30T","A40 → ~40T"],suffixes:"B/C/D/E/F/G/H = générations (H plus récent que G)"},
+mecalac:{nom:"Mécalac",icon:"⚪",intro:"Marque française d'engins polyvalents urbains.",codes:["MCR = Mécalac Crawler → chenilles","MWR = Mécalac Wheel Rotative → pneus rotatif","MX = Mécalac eXcavator"],exemples:["10MCR → 10T sur chenilles","15MWR → 15T sur pneus rotative","12MTX → 12T sur pneus 4 roues directrices"],particularite:"Concept original : 1 engin = pelle + chargeuse + grue mobile."},
+montabert:{nom:"Montabert",icon:"🔴",intro:"Marque française de BRH. Le numéro reflète l'énergie de frappe en joules.",gammes:["SC = Super Compact (mini-pelles, retiré du parc 3B)","V = Vibration optimisée (pour pelles standard à grosses)"],modeles:["V1600 → 1600 joules → pelles 10-15T","V2200 → 2200 joules → pelles 15-22T (le plus polyvalent)","V3500 → 3500 joules → pelles 22-32T","V4500 → 4500 joules → pelles 32-45T","V5500 → 5500 joules → pelles 45-70T"],regle:"RÈGLE : choisir le BRH selon le tonnage de la pelle. Surdimensionné = casse pelle, sous-dimensionné = casse BRH."}
+};
+// ============================================================================
+// USAGES CHANTIER
+// ============================================================================
+const USAGES=[
+{projet:"Maison individuelle (terrassement)",engins:["Pelle 8-12T"],duree:"2-5 jours"},
+{projet:"Tranchée canalisation eau/électricité",engins:["Pelle 8-15T avec godet étroit"],duree:"1-3 jours/100m"},
+{projet:"Voirie - création de route neuve",engins:["Pelle 20-25T","Bulldozer","Compacteur tandem","Tombereau"],duree:"semaines à mois"},
+{projet:"Démolition d'un bâtiment R+2",engins:["Pelle 20-25T avec pince/BRH V2200"],duree:"3-10 jours"},
+{projet:"Démolition d'un bâtiment industriel",engins:["Pelle 30-40T avec BRH V3500/V4500","Chargeuse pour tri"],duree:"semaines"},
+{projet:"Carrière - extraction de roche",engins:["Pelle 35-50T + BRH V4500/V5500","Chargeuse 20T+","Tombereaux"],duree:"continu"},
+{projet:"VRD lotissement (10 maisons)",engins:["Pelle 14-22T","Chargeuse compacte","Compacteur"],duree:"4-8 semaines"},
+{projet:"Aménagement urbain centre-ville étroit",engins:["Mécalac 10-15T","Mini-chargeuse"],duree:"variable"},
+{projet:"Pose de canalisations grand diamètre",engins:["Pelle 25-35T","Tombereaux"],duree:"semaines"},
+{projet:"Création de bassin de rétention",engins:["Pelle 25-35T avec godet large","Bulldozer","Tombereaux"],duree:"semaines"},
+{projet:"Élagage en bord de route",engins:["Pelle 14-20T avec broyeur"],duree:"jours"},
+{projet:"Travaux ferroviaires",engins:["Pelle 22T rail-route","Compacteur"],duree:"variable"},
+{projet:"Décapage de terre végétale",engins:["Bulldozer D6/D8","Tombereaux"],duree:"semaines"},
+{projet:"Enrochement de berge",engins:["Pelle 25-35T avec godet enrochement Payant"],duree:"jours"},
+{projet:"Tri de matériaux de démolition",engins:["Pelle 20-25T avec godet de tri Payant"],duree:"continu"}
+];
+const QCM={
+'engins':{nom:"Connaissance des engins",icon:"🚜",questions:[
+// === Connaissance générale parc 3B ===
+  {q:"Quelles sont les marques principales du parc 3B INTER ?", o:["Cat, Bobcat, Yanmar, JCB","Cat, Komatsu, Volvo, Mécalac, Montabert","Cat, Hitachi, Hyundai, Doosan","Volvo, Liebherr, JCB, Manitou"], r:1, exp:"3B INTER travaille principalement avec Caterpillar, Komatsu, Volvo, Mécalac, Payant et Montabert."},
+  {q:"Quelle est la plage de tonnage du parc 3B INTER ?", o:["1 à 10 tonnes","8 à 70 tonnes","20 à 100 tonnes","Toutes catégories"], r:1, exp:"Le parc 3B couvre les engins de 8 à 70 tonnes."},
+  {q:"3B INTER est basée dans quelle région ?", o:["Île-de-France","Sud de la France","Bretagne","Grand Est"], r:1, exp:"3B INTER est implantée dans le sud de la France, à Marignane (13)."},
+  {q:"En quelle année 3B INTER a-t-elle été créée ?", o:["2002","2008","2012","2016"], r:2, exp:"3B INTER a été fondée en 2012 par Frank BASTIDE et Tayeb BAHOU."},
+  {q:"Combien de machines compose environ le parc 3B INTER ?", o:["Une vingtaine","Une cinquantaine","Une centaine","Plusieurs centaines"], r:2, exp:"Le parc compte une centaine de machines à la location."},
+
+// === Pelles 8-15T ===
+{q:“La Cat 308 CR pèse environ :”, o:[“5 tonnes”,“9 tonnes”,“13 tonnes”,“18 tonnes”], r:1, exp:“La Cat 308 CR fait environ 9 tonnes (rayon court).”},
+{q:“Que signifie ‘CR’ dans Cat 308 CR ?”, o:[“Cat Reduced”,“Compact Radius”,“Crawler Rotative”,“Construction Rapide”], r:1, exp:“CR = Compact Radius (rayon arrière compact, idéal en zone urbaine).”},
+{q:“La Komatsu PC118MR-11 a une particularité :”, o:[“Bras long”,“Rayon arrière réduit”,“Sur pneus”,“Cabine surélevée”], r:1, exp:“MR = Midi Rayon, le rayon arrière est réduit pour les zones étroites.”},
+{q:“La Volvo ECR145E pèse environ :”, o:[“10 tonnes”,“14.5 tonnes”,“18 tonnes”,“22 tonnes”], r:1, exp:“La ECR145E pèse environ 14.5 tonnes (rayon court).”},
+{q:“Pour creuser une tranchée de canalisation en milieu urbain, quelle pelle privilégier ?”, o:[“Pelle 36T”,“Pelle 8-12T à rayon court”,“Bulldozer”,“Tombereau”], r:1, exp:“Une pelle compacte 8-12T à rayon court est idéale pour les zones étroites.”},
+
+// === Pelles 18-25T (best-sellers) ===
+{q:“La Cat 320 est connue comme :”, o:[“La pelle de carrière”,“Le best-seller mondial”,“La plus économique”,“La plus puissante”], r:1, exp:“La Cat 320 est le best-seller mondial des pelles 20T.”},
+{q:“La Komatsu PC210LC-11 a quel atout principal ?”, o:[“Vitesse de déplacement”,“Faible consommation”,“Cabine surélevée”,“Bras télescopique”], r:1, exp:“La PC210LC-11 est réputée pour sa faible consommation de carburant.”},
+{q:“Que signifie ‘LC’ dans PC210LC-11 ?”, o:[“Light Carrier”,“Long Crawler”,“Low Cost”,“Light Crane”], r:1, exp:“LC = Long Crawler = chenilles longues, pour plus de stabilité.”},
+{q:“La Volvo EC220E répond à quelle norme antipollution ?”, o:[“Stage III B”,“Stage IV”,“Stage V”,“Tier 3”], r:2, exp:“Le suffixe E indique la génération Stage V (la plus récente).”},
+{q:“La Cat 323 propose une assistance unique :”, o:[“Direction assistée”,“Cat Grade Assist (guidage)”,“Détection d’obstacles”,“Pilotage automatique”], r:1, exp:“La 323 intègre Cat Grade Assist pour le guidage de précision en terrassement.”},
+{q:“Une pelle 20T type Cat 320 est idéale pour :”, o:[“Tranchée fine”,“Terrassement standard de chantier”,“Démolition d’immeuble R+10”,“Mine”], r:1, exp:“La 20T est la pelle polyvalente du chantier standard.”},
+{q:“Pour un chantier VRD en lotissement, quelle pelle est idéale ?”, o:[“Pelle 8-12T”,“Pelle 14-22T”,“Pelle 35-40T”,“Pelle 50T+”], r:1, exp:“Une pelle 14-22T est idéale pour les chantiers VRD.”},
+
+// === Grosses pelles 30-40T ===
+{q:“La Cat 336 pèse environ :”, o:[“25 tonnes”,“36 tonnes”,“45 tonnes”,“55 tonnes”], r:1, exp:“La Cat 336 pèse environ 36 tonnes.”},
+{q:“Une pelle de 36T est adaptée pour :”, o:[“Maison individuelle”,“VRD”,“Démolition lourde et carrière”,“Tranchée étroite”], r:2, exp:“Les pelles 30-40T sont dédiées à la démolition lourde et la carrière.”},
+{q:“Le mode ECO sur Volvo EC380E sert à :”, o:[“Augmenter la puissance”,“Réduire la consommation”,“Désactiver l’AdBlue”,“Bloquer les vitesses”], r:1, exp:“Le mode ECO réduit la consommation tout en gardant une bonne productivité.”},
+{q:“La Komatsu PC390LC-11 fait environ :”, o:[“29 tonnes”,“40 tonnes”,“50 tonnes”,“60 tonnes”], r:1, exp:“La PC390LC-11 pèse environ 40 tonnes.”},
+
+// === Très grosses pelles ===
+{q:“La Cat 374 fait environ :”, o:[“50 tonnes”,“60 tonnes”,“70 tonnes”,“85 tonnes”], r:2, exp:“La Cat 374 pèse environ 70 tonnes.”},
+{q:“Pour une exploitation de carrière intensive, quelle pelle ?”, o:[“8-15T”,“15-25T”,“30-50T”,“50-70T+”], r:3, exp:“Les très grosses pelles 50-70T+ sont dédiées à la carrière intensive.”},
+
+// === Mécalac ===
+{q:“Mécalac est une marque :”, o:[“Allemande”,“Italienne”,“Française”,“Japonaise”], r:2, exp:“Mécalac est une marque française spécialisée en engins polyvalents urbains.”},
+{q:“Quelle est la particularité d’un Mécalac MCR ?”, o:[“Sur pneus”,“3 fonctions en 1 (pelle/chargeuse/grue)”,“Très grande pelle”,“Engin radio-commandé”], r:1, exp:“Les Mécalac combinent pelle + chargeuse + grue mobile.”},
+{q:“Un Mécalac 15MWR roule sur :”, o:[“Chenilles”,“Pneus”,“Rails”,“Pneus avec chenilles”], r:1, exp:“MWR = Mécalac Wheeled Rotative = sur pneus.”},
+{q:“Pour un chantier en plein centre-ville étroit, quel engin privilégier ?”, o:[“Cat 336”,“Mécalac 10MCR”,“Volvo A25G”,“Cat D6”], r:1, exp:“Le Mécalac est conçu pour les zones urbaines denses.”},
+
+// === Chargeuses ===
+{q:“Une chargeuse sur pneus relève du CACES :”, o:[“A”,“B1”,“C1”,“D”], r:2, exp:“Catégorie C1 du R482 pour les chargeuses sur pneus.”},
+{q:“La Cat 950M pèse environ :”, o:[“10 tonnes”,“18 tonnes”,“25 tonnes”,“35 tonnes”], r:1, exp:“La 950M pèse environ 18 tonnes.”},
+{q:“À quoi sert une chargeuse sur pneus ?”, o:[“Creuser”,“Charger les camions et manutention vrac”,“Compacter”,“Transporter sur route”], r:1, exp:“La chargeuse charge les camions, manipule du vrac (carrière, centrale).”},
+{q:“La Komatsu WA470-8 est connue pour :”, o:[“Sa vitesse”,“Sa cinématique Z (force de cavage)”,“Ses chenilles”,“Son rayon court”], r:1, exp:“La cinématique Z des Komatsu WA offre une grande force de cavage.”},
+
+// === Bulldozers ===
+{q:“Un bulldozer Cat D6 pèse environ :”, o:[“12 tonnes”,“18 tonnes”,“30 tonnes”,“45 tonnes”], r:1, exp:“Le Cat D6 pèse environ 18-20 tonnes.”},
+{q:“À quoi sert principalement un bulldozer ?”, o:[“Charger les camions”,“Creuser profond”,“Décaper, niveler, pousser des matériaux”,“Compacter l’enrobé”], r:2, exp:“Le bulldozer décape, nivelle et pousse les matériaux.”},
+{q:“Le ‘i’ dans Komatsu D65PXi-18 signifie :”, o:[“Internet”,“Intelligent (GPS intégré)”,“Industriel”,“Improved”], r:1, exp:“i = Intelligent Machine Control (guidage GPS intégré).”},
+{q:“Pour quel type de travaux utilise-t-on un bulldozer ?”, o:[“VRD résidentiel”,“Décapage et terrassement gros volumes”,“Pose de canalisations fines”,“Démolition de bâtiments”], r:1, exp:“Bulldozer = décapage, nivellement, pousse sur grands chantiers.”},
+
+// === Tombereaux ===
+{q:“Un tombereau articulé sert à :”, o:[“Charger des camions”,“Transporter des matériaux hors-route”,“Compacter”,“Pousser des matériaux”], r:1, exp:“Le tombereau transporte les matériaux sur les chantiers (carrière, mine).”},
+{q:“Le CACES pour conduire un tombereau est :”, o:[“A”,“B1”,“C1”,“E”], r:3, exp:“Catégorie E du R482 pour les engins de transport (tombereaux, dumpers).”},
+{q:“Le Volvo A25G a une charge utile de :”, o:[“10 tonnes”,“15 tonnes”,“24 tonnes”,“35 tonnes”], r:2, exp:“Le A25G a une charge utile d’environ 24 tonnes.”},
+{q:“Le ‘A’ dans Volvo A25G signifie :”, o:[“Automatique”,“Articulé”,“Avant”,“Allemand”], r:1, exp:“A = Articulated (tombereau articulé).”},
+
+// === Compacteurs ===
+{q:“Un compacteur tandem sert principalement à :”, o:[“Creuser”,“Compacter l’enrobé”,“Charger”,“Démolir”], r:1, exp:“Le tandem compacte les couches d’enrobé sur les voiries.”},
+{q:“Le CACES pour un compacteur est :”, o:[“A”,“B1”,“D”,“E”], r:2, exp:“Catégorie D du R482 pour les compacteurs.”},
+{q:“Le Cat CB10 pèse environ :”, o:[“3 tonnes”,“5 tonnes”,“10 tonnes”,“18 tonnes”], r:2, exp:“Le CB10 fait environ 10 tonnes.”},
+
+// === Équipements Payant ===
+{q:“Payant est une marque spécialisée dans :”, o:[“Les pelles”,“Les équipements pour pelles (godets, pinces)”,“Les BRH”,“Les chargeuses”], r:1, exp:“Payant fabrique des équipements (godets, pinces, broyeurs) montés sur pelles.”},
+{q:“Un godet de tri Payant sert à :”, o:[“Creuser des fondations”,“Trier des matériaux de démolition”,“Compacter”,“Niveler”], r:1, exp:“Le godet de tri sépare les matériaux issus de la démolition.”},
+{q:“Une pince de démolition rotative permet :”, o:[“De couper des poutres uniquement”,“De pivoter à 360° pour atteindre n’importe quel angle”,“De creuser”,“De compacter”], r:1, exp:“Rotation 360° = polyvalence totale en démolition.”},
+{q:“Un godet enrochement sert à :”, o:[“Trier”,“Manipuler de gros blocs de pierre”,“Creuser fin”,“Compacter”], r:1, exp:“Forme adaptée aux gros blocs (berges, ouvrages d’art).”},
+{q:“Un broyeur béton Payant permet :”, o:[“De casser le béton uniquement”,“De séparer le béton de la ferraille pour recyclage”,“De creuser dans le béton”,“De compacter le béton”], r:1, exp:“Le broyeur écrase le béton et sépare la ferraille pour le recyclage.”},
+
+// === Choix d’engins (théoriques) ===
+{q:“Pour un terrassement de maison individuelle, quel engin choisir ?”, o:[“Cat 374 (70T)”,“Pelle 8-12T”,“Mécalac 15T”,“Bulldozer D6”], r:1, exp:“Une pelle compacte 8-12T est suffisante et adaptée au gabarit du chantier.”},
+{q:“Pour démolir un immeuble R+5, quel engin minimum ?”, o:[“Pelle 12T”,“Pelle 20-25T avec BRH ou pince”,“Mini-pelle”,“Compacteur”], r:1, exp:“Pelle 20-25T équipée BRH ou pince démolition pour ce type d’ouvrage.”},
+{q:“Pour de l’enrochement de berge, quelle config ?”, o:[“Pelle 14T avec godet standard”,“Pelle 25-35T avec godet enrochement”,“Bulldozer”,“Tombereau”], r:1, exp:“Pelle 25-35T + godet enrochement Payant pour manipuler les gros blocs.”},
+{q:“Pour transporter des matériaux sur un grand chantier, on utilise :”, o:[“Une chargeuse”,“Un tombereau articulé”,“Une pelle”,“Un bulldozer”], r:1, exp:“Le tombereau articulé est conçu pour le transport hors-route en grande quantité.”},
+{q:“Pour un chantier VRD avec passage étroit (3m), quelle pelle ?”, o:[“Cat 336 (36T)”,“Volvo EC220 (22T)”,“Komatsu PC118MR (12T rayon court)”,“Cat 374 (70T)”], r:2, exp:“Une pelle compacte rayon court 12T passe partout en VRD étroit.”}
+]},
+‘brh’:{nom:“BRH Montabert”,icon:“🔨”,questions:[
+// === Bases BRH ===
+{q:“Que signifie BRH ?”, o:[“Bras Rotatif Hybride”,“Brise-Roche Hydraulique”,“Broyeur Roche Haut”,“Bloc Régulateur Hydraulique”], r:1, exp:“BRH = Brise-Roche Hydraulique.”},
+{q:“À quoi sert un BRH ?”, o:[“Creuser dans la terre”,“Casser béton, roche et enrobé”,“Charger des matériaux”,“Compacter le sol”], r:1, exp:“Le BRH casse les matériaux durs (béton, roche, enrobé).”},
+{q:“Le BRH est monté sur :”, o:[“Un chargeur uniquement”,“Le bras d’une pelle hydraulique”,“Un bulldozer”,“Une tractopelle uniquement”], r:1, exp:“Le BRH se fixe au bout du bras de la pelle.”},
+{q:“Quelle marque iconique de BRH 3B INTER propose ?”, o:[“Atlas Copco”,“Indeco”,“Montabert”,“NPK”], r:2, exp:“3B INTER est partenaire historique de Montabert (marque française).”},
+{q:“Montabert est une marque :”, o:[“Allemande”,“Suédoise”,“Française”,“Italienne”], r:2, exp:“Montabert est une marque française basée à Saint-Priest (69).”},
+
+// === Gamme Montabert ===
+{q:“Quels sont les 2 grandes gammes de BRH Montabert ?”, o:[“Light et Heavy”,“SC et V”,“Standard et Pro”,“A et B”], r:1, exp:“SC = Super Compact (mini-pelles), V = Vibration optimisée (pelles standard et grosses).”},
+{q:“Le SC dans la gamme Montabert signifie :”, o:[“Standard Crusher”,“Super Compact”,“Steel Cutter”,“Stable Center”], r:1, exp:“SC = Super Compact, gamme dédiée aux mini-pelles.”},
+{q:“Le V dans la gamme Montabert (V1600, V2200…) correspond à :”, o:[“Version”,“Vibration optimisée”,“Vitesse”,“Volume”], r:1, exp:“V = gamme à vibration optimisée pour pelles standard et grosses.”},
+{q:“Le numéro après V dans V2200 correspond à :”, o:[“Le poids en kg”,“L’énergie de frappe en joules”,“La pression en bars”,“Le débit en L/min”], r:1, exp:“Le numéro indique l’énergie de frappe en joules (V2200 = 2200J).”},
+
+// === Choix BRH selon pelle ===
+{q:“Pour une pelle 10-15T (ex: Volvo ECR145), quel BRH Montabert ?”, o:[“V1600”,“V2200”,“V3500”,“V5500”], r:0, exp:“V1600 (800kg, 1600J) est dimensionné pour pelles 10-15T.”},
+{q:“Pour une pelle 20T (Cat 320), quel BRH ?”, o:[“V1600”,“V2200”,“V3500”,“V5500”], r:1, exp:“V2200 (1100kg, 2200J) est calibré pour pelles 15-22T.”},
+{q:“Pour une pelle 30T (Komatsu PC290), quel BRH ?”, o:[“V2200”,“V3500”,“V4500”,“V5500”], r:1, exp:“V3500 (1650kg, 3500J) pour pelles 22-32T.”},
+{q:“Pour une pelle 36T (Cat 336), quel BRH ?”, o:[“V2200”,“V3500”,“V4500”,“V5500”], r:1, exp:“V3500 reste adapté pour les pelles 32-36T.”},
+{q:“Pour une pelle 40T (Komatsu PC390), quel BRH ?”, o:[“V3500”,“V4500”,“V5500”,“V2200”], r:1, exp:“V4500 (2300kg, 4500J) est dimensionné pour pelles 32-45T.”},
+{q:“Pour une pelle 50T (Cat 349), quel BRH ?”, o:[“V3500”,“V4500”,“V5500”,“V2200”], r:1, exp:“V4500 ou V5500 selon usage. V4500 reste polyvalent.”},
+{q:“Pour la plus grosse pelle (Cat 374, 70T), quel BRH ?”, o:[“V3500”,“V4500”,“V5500”,“V2200”], r:2, exp:“V5500 (3000kg, 5500J), le plus puissant de la gamme.”},
+{q:“Le V5500 Montabert pèse environ :”, o:[“1100 kg”,“2300 kg”,“3000 kg”,“5500 kg”], r:2, exp:“V5500 pèse environ 3000 kg, c’est le plus lourd de la gamme V.”},
+
+// === Risques de mauvais dimensionnement ===
+{q:“Que se passe-t-il si on monte un BRH trop gros sur une petite pelle ?”, o:[“Rien”,“Casse de la pelle (bras, vérins, châssis)”,“Le BRH ne fonctionne pas”,“Économie de carburant”], r:1, exp:“BRH surdimensionné = casse mécanique de la pelle.”},
+{q:“Que se passe-t-il si on monte un BRH trop petit sur une grosse pelle ?”, o:[“Rien”,“Casse rapide du BRH (joints, corps)”,“Plus de puissance de frappe”,“Meilleure précision”], r:1, exp:“BRH sous-dimensionné = casse rapide (énergie hydraulique trop forte).”},
+
+// === Maintenance BRH ===
+{q:“Avant d’utiliser un BRH, on doit vérifier :”, o:[“Le niveau d’huile moteur”,“La pression d’azote”,“La pression des pneus”,“Le niveau d’AdBlue”], r:1, exp:“L’azote dans la chambre est essentiel à la frappe.”},
+{q:“La pression d’azote typique d’un BRH Montabert est de :”, o:[“1 à 3 bars”,“6 à 10 bars”,“15 à 18 bars”,“30 à 40 bars”], r:2, exp:“15 à 18 bars selon le modèle (consulter notice constructeur).”},
+{q:“À quelle fréquence faut-il recharger l’azote d’un BRH ?”, o:[“Tous les jours”,“Toutes les semaines”,“Tous les 6 mois préventivement”,“Jamais”], r:2, exp:“Recharge azote tous les 6 mois en préventif (sinon perte de pression).”},
+{q:“À quelle fréquence faut-il graisser le pic du BRH ?”, o:[“Toutes les 2 heures de travail”,“Tous les jours”,“Toutes les semaines”,“Tous les mois”], r:0, exp:“Le pic doit être graissé toutes les 2 heures d’utilisation pour éviter le grippage.”},
+{q:“Que se passe-t-il si on tape à vide (sans matière) avec un BRH ?”, o:[“Rien”,“Casse rapide du brise-roche (joints, corps)”,“Plus de puissance”,“Économie de carburant”], r:1, exp:“Frapper à vide est INTERDIT : casse rapide des joints et du corps du BRH.”},
+{q:“Le pic d’un BRH doit être :”, o:[“Toujours pointu”,“Adapté au matériau (moiné/burin)”,“Toujours plat”,“En aluminium”], r:1, exp:“Pic moiné pour roche dure, burin pour béton armé, pyramide pour démolition.”},
+{q:“La durée de vie moyenne d’un pic de BRH est de :”, o:[“20-50 heures”,“100-300 heures”,“500-800 heures”,“Plus de 1000 heures”], r:1, exp:“100 à 300 h selon usage et matériau.”},
+
+// === Pannes BRH ===
+{q:“Le BRH ne frappe plus du tout. Première vérification ?”, o:[“Le débit de la pelle”,“La pression d’azote”,“Le pic”,“Les flexibles”], r:1, exp:“Pression d’azote = cause n°1 (40% des cas).”},
+{q:“Le BRH frappe faiblement. Cause la plus probable ?”, o:[“Pression azote basse”,“Batterie pelle”,“Manque de carburant”,“AdBlue vide”], r:0, exp:“Azote basse = perte d’énergie de frappe (50% des cas faibles).”},
+{q:“Une fuite d’huile au niveau du pic indique :”, o:[“Une fuite de réservoir”,“Un joint d’étanchéité pic HS”,“Un manque d’huile”,“Une surchauffe”], r:1, exp:“Joint d’étanchéité pic à remplacer (200-500€).”},
+{q:“Le BRH chauffe anormalement. Que faire ?”, o:[“Continuer”,“Stopper et laisser refroidir”,“Augmenter le débit”,“Recharger l’azote”], r:1, exp:“Stopper immédiatement, sinon casse interne. Vérifier ensuite débit pelle, type de matériau.”},
+
+// === Utilisation BRH ===
+{q:“Sur quel type de matériau utiliser le BRH ?”, o:[“Terre meuble”,“Béton, roche, enrobé”,“Eau”,“Sable”], r:1, exp:“Le BRH est conçu pour matériaux durs (béton, roche, enrobé).”},
+{q:“Quel est l’angle optimal de frappe d’un BRH ?”, o:[“Parallèle au sol”,“Perpendiculaire à la matière”,“À 45°”,“Peu importe”], r:1, exp:“Le BRH doit toujours frapper perpendiculairement à la matière.”},
+{q:“Combien de temps maximum continuer à frapper au même endroit ?”, o:[“Jusqu’à casse”,“15 secondes max si pas d’effet”,“1 minute”,“5 minutes”], r:1, exp:“Si pas d’effet en 15 sec, déplacer le pic (sinon usure inutile).”},
+{q:“Lors de l’utilisation d’un BRH, l’opérateur doit :”, o:[“Sortir de la cabine”,“Rester en cabine, ceinture attachée”,“Crier pour s’entendre”,“Couper la ventilation”], r:1, exp:“Toujours en cabine, ceinturé. Le BRH génère vibrations et projections.”},
+{q:“Pour démolir une dalle béton 20cm, on utilise :”, o:[“Un BRH léger (V1600)”,“Un BRH moyen (V2200) suffit”,“Forcément un V5500”,“Pas besoin de BRH”], r:1, exp:“Un V2200 sur Cat 320 démolit sans problème une dalle béton standard.”},
+
+// === Sécurité BRH ===
+{q:“Le bruit d’un BRH atteint typiquement :”, o:[“60 dB”,“85 dB”,“100-115 dB”,“130 dB”], r:2, exp:“100-115 dB selon modèle, EPI auditifs OBLIGATOIRES.”},
+{q:“L’EPI obligatoire à proximité d’un BRH en marche :”, o:[“Casque seulement”,“Casque + bouchons d’oreille + lunettes”,“Gants seulement”,“Aucun”], r:1, exp:“Casque, protection auditive et lunettes contre projections.”},
+{q:“Distance minimale entre une personne au sol et un BRH en marche :”, o:[“1 mètre”,“5 mètres”,“10 mètres”,“20 mètres”], r:2, exp:“Minimum 10 mètres pour éviter projections.”},
+
+// === Économie/Pratique ===
+{q:“Le V2200 Montabert neuf coûte environ :”, o:[“10 000 €”,“38 000 €”,“75 000 €”,“150 000 €”], r:1, exp:“V2200 neuf : ~38 000 € (selon options et accessoires).”},
+{q:“La location mensuelle d’un BRH V2200 coûte environ :”, o:[“500 €”,“1 500 €”,“3 000 €”,“5 000 €”], r:1, exp:“Location mensuelle V2200 : ~1500 €/mois (indicatif).”},
+{q:“Quel équipement permet d’attacher rapidement le BRH à la pelle ?”, o:[“Un crochet”,“Une attache rapide hydraulique”,“Une chaîne”,“Une corde”], r:1, exp:“L’attache rapide hydraulique permet de switcher entre godet et BRH en quelques secondes.”},
+
+// === Spécifique 3B ===
+{q:“Combien de modèles de BRH Montabert (gamme V) sont disponibles dans le parc 3B ?”, o:[“3”,“5”,“8”,“12”], r:1, exp:“Parc 3B : V1600, V2200, V3500, V4500, V5500 (5 modèles gamme V).”},
+{q:“Le BRH le plus loué chez les loueurs BTP est généralement :”, o:[“V1600”,“V2200”,“V3500”,“V5500”], r:1, exp:“V2200 (Cat 320, Komatsu PC210) = combinaison la plus courante.”},
+{q:“Pour casser une fondation béton armé épaisse (>50cm), on privilégie :”, o:[“V1600”,“V2200”,“V3500/V4500”,“Pas de BRH”], r:2, exp:“V3500/V4500 pour les fondations épaisses (énergie de frappe plus forte).”},
+{q:“L’attache rapide hydraulique permet de gagner :”, o:[“Quelques secondes”,“5 à 10 minutes par changement”,“1 heure”,“1 journée”], r:1, exp:“5-10 min par changement vs 30 min en démontage classique.”},
+
+// === Avancé / Théorie ===
+{q:“Dans un BRH, quel est le rôle de l’azote ?”, o:[“Refroidir”,“Stocker l’énergie pour la frappe”,“Lubrifier”,“Insonoriser”], r:1, exp:“L’azote dans la chambre stocke l’énergie hydraulique et la restitue à la frappe.”},
+{q:“Le distributeur du BRH a pour fonction :”, o:[“De diriger l’huile alternativement pour créer la frappe”,“De filtrer l’huile”,“De stocker de l’azote”,“De graisser le pic”], r:0, exp:“Le distributeur alterne le passage d’huile pour créer le mouvement de va-et-vient du piston.”},
+{q:“L’usure du pic crée une ‘tête plate’. Conséquence ?”, o:[“Meilleure efficacité”,“Perte d’efficacité de 30-50%”,“Aucune”,“Économie d’énergie”], r:1, exp:“Pic émoussé = forte perte d’efficacité, à remplacer/affûter.”},
+{q:“Combien de cycles/minute fait un BRH Montabert V2200 ?”, o:[“50-100”,“300-600”,“1000-2000”,“5000+”], r:1, exp:“~300-600 coups/min selon le modèle et la résistance de la matière.”},
+{q:“L’huile hydraulique recommandée pour BRH est :”, o:[“ATF”,“ISO VG 46 ou 68”,“Huile moteur 15W40”,“Huile pont”], r:1, exp:“ISO VG 46 (climat tempéré) ou 68 (climat chaud / usage intensif).”}
+]},
+‘pannes’:{nom:“Pannes & diagnostic”,icon:“🔧”,questions:[
+// === Démarrage ===
+{q:“Une pelle ne démarre pas. Premier test à effectuer ?”, o:[“Changer le filtre à gasoil”,“Tester la tension batterie”,“Remplacer le démarreur”,“Vidanger le moteur”], r:1, exp:“Toujours commencer par le plus simple : tester la batterie au multimètre (>12.4V au repos).”},
+{q:“Tension batterie minimum acceptable au repos sur un engin BTP :”, o:[“10V”,“11V”,“12.4V”,“14V”], r:2, exp:“Une batterie saine doit afficher au moins 12.4V au repos.”},
+{q:“Au démarrage, on entend un ‘clic’ mais le moteur ne tourne pas. Cause probable ?”, o:[“Filtre à gasoil”,“Démarreur HS ou batterie faible”,“Bougies de préchauffage”,“Coupe-circuit”], r:1, exp:“Le ‘clic’ = solénoïde du démarreur, mais pas assez de courant pour entraîner le moteur.”},
+{q:“Le démarreur tourne mais le moteur ne démarre pas. Cause probable ?”, o:[“Batterie”,“Problème d’alimentation gasoil ou injection”,“Démarreur”,“Préchauffage”], r:1, exp:“Si le démarreur entraîne, le problème vient du circuit carburant ou de l’injection.”},
+{q:“Un coupe-circuit batterie sert à :”, o:[“Charger la batterie”,“Couper l’alimentation électrique pour éviter décharge en stationnement”,“Démarrer plus vite”,“Refroidir la batterie”], r:1, exp:“Le coupe-circuit isole la batterie quand l’engin n’est pas utilisé.”},
+{q:“Démarrage difficile à froid. Cause n°1 ?”, o:[“Bougies de préchauffage HS”,“Filtre à air”,“Niveau d’huile”,“Pneus dégonflés”], r:0, exp:“Bougies de préchauffage HS = 35% des cas de démarrage difficile à froid.”},
+{q:“Le voyant de préchauffage doit s’allumer combien de temps en hiver ?”, o:[“1 seconde”,“5 à 15 secondes”,“1 minute”,“Pas du tout”], r:1, exp:“5 à 15 secondes selon la température extérieure.”},
+{q:“Du gasoil ‘paraffiné’ en hiver provoque :”, o:[“Une meilleure combustion”,“Un colmatage du filtre à gasoil”,“Plus de puissance”,“Une baisse de consommation”], r:1, exp:“À basse température, le gasoil cristallise et colmate le filtre.”},
+{q:“Pour éviter le paraffinage, il faut :”, o:[“Mettre de l’huile dans le gasoil”,“Utiliser un gasoil grand froid (-22°C)”,“Vidanger plus souvent”,“Changer la batterie”], r:1, exp:“En hiver, utiliser du gasoil grand froid ou ajouter un additif anti-paraffinage.”},
+
+// === Hydraulique ===
+{q:“Perte de puissance hydraulique sur tous les mouvements. Premier check ?”, o:[“Filtre à air”,“Niveau d’huile hydraulique”,“Pneus”,“Batterie”], r:1, exp:“Niveau d’huile hydraulique en premier (30% des cas).”},
+{q:“Le voyant de filtre hydraulique s’allume. Que faire ?”, o:[“L’ignorer”,“Changer le filtre rapidement”,“Augmenter le régime”,“Vidanger l’huile moteur”], r:1, exp:“Filtre colmaté = pression baisse + risque pour la pompe. À changer rapidement.”},
+{q:“Une huile hydraulique foncée et qui sent le brûlé indique :”, o:[“Une huile neuve”,“Une huile dégradée à changer”,“Une huile de qualité”,“Aucun problème”], r:1, exp:“Huile foncée + odeur brûlée = dégradée, vidange complète nécessaire.”},
+{q:“Si UN SEUL mouvement (ex: flèche) ne fonctionne plus :”, o:[“La pompe est HS”,“C’est un problème spécifique au circuit (vérin, distributeur, flexible)”,“Niveau d’huile bas”,“Batterie HS”], r:1, exp:“Si les autres mouvements fonctionnent, c’est circuit-spécifique.”},
+{q:“Un vérin dont la tige rentre toute seule sous charge indique :”, o:[“Une fuite externe”,“Un joint interne HS (fuite interne)”,“Une pompe puissante”,“Aucun problème”], r:1, exp:“La tige doit tenir la charge. Si elle descend, c’est un joint interne défectueux.”},
+{q:“Une pompe hydraulique qui siffle indique :”, o:[“Aucun problème”,“De l’air dans le circuit”,“Une pompe neuve”,“Une huile froide”], r:1, exp:“Sifflement = aération (niveau bas, fuite à l’aspiration).”},
+{q:“Une pompe hydraulique qui gémit indique :”, o:[“Une pompe neuve”,“Une usure interne”,“Aucun problème”,“Une économie”], r:1, exp:“Gémissement = usure interne, signe avant-coureur de panne grave.”},
+{q:“Le coût d’une réfection complète de pompe hydraulique sur Cat 320 :”, o:[“500€”,“2000€”,“4000-15000€”,“50000€”], r:2, exp:“Réfection ou échange standard : 4000 à 15000€ selon état.”},
+{q:“Le niveau d’huile hydraulique se contrôle :”, o:[“Engin penché”,“Engin à plat, mouvements rentrés”,“Engin en marche”,“Engin en pente”], r:1, exp:“Toujours engin à plat, vérins rentrés, après 5 min d’arrêt.”},
+
+// === Surchauffe ===
+{q:“Surchauffe moteur. Action immédiate ?”, o:[“Continuer le travail”,“Arrêter et laisser refroidir”,“Augmenter le régime”,“Ouvrir le capot et le radiateur”], r:1, exp:“STOPPER immédiatement (ralenti 2-3 min puis arrêt). Continuer = casse.”},
+{q:“Combien de temps attendre avant d’ouvrir le bouchon de radiateur après surchauffe ?”, o:[“Immédiatement”,“10 minutes”,“Au moins 1 heure (moteur froid)”,“Jamais”], r:2, exp:“Au moins 1h, sinon projection brûlante (risque grave).”},
+{q:“Cause n°1 de surchauffe en chantier poussiéreux ?”, o:[“Manque d’huile moteur”,“Radiateur encrassé extérieurement”,“Batterie faible”,“Mauvais carburant”], r:1, exp:“En chantier poussiéreux, le radiateur s’encrasse vite (terre, paille, feuilles).”},
+{q:“Fréquence recommandée de soufflage du radiateur en chantier poussiéreux :”, o:[“Tous les jours”,“1x par semaine”,“1x par mois”,“Jamais”], r:1, exp:“1x par semaine en environnement poussiéreux.”},
+{q:“Un thermostat bloqué fermé provoque :”, o:[“Une surchauffe”,“Une montée en température normale”,“Un sous-refroidissement”,“Aucun effet”], r:0, exp:“Thermostat fermé = liquide ne circule pas vers le radiateur = surchauffe.”},
+{q:“Un thermostat bloqué ouvert provoque :”, o:[“Une surchauffe”,“Un moteur qui ne monte pas en température”,“Un sur-refroidissement (problème en hiver)”,“Une consommation accrue”], r:2, exp:“Thermostat ouvert en permanence = moteur trop froid, surconsommation, mauvaise combustion.”},
+{q:“Quel risque ultime en cas de surchauffe non traitée ?”, o:[“Aucun”,“Joint de culasse fuyant ou bloc moteur fissuré”,“Batterie HS”,“Pneus crevés”], r:1, exp:“Joint de culasse (3000-10000€) ou bloc fissuré (moteur à remplacer).”},
+
+// === BRH ===
+{q:“Le BRH ne frappe plus du tout. Cause n°1 ?”, o:[“Pression d’azote nulle”,“Manque d’huile pelle”,“Batterie”,“FAP”], r:0, exp:“Pression azote = 40% des cas (toujours commencer par recharger l’azote).”},
+{q:“Le BRH frappe faiblement. Cause n°1 ?”, o:[“Pression azote basse”,“Carburant”,“Pneus”,“Batterie”], r:0, exp:“Azote basse = 50% des cas de frappe faible.”},
+{q:“Une fuite d’huile au niveau du pic indique :”, o:[“Une fuite réservoir”,“Un joint d’étanchéité pic HS”,“Une surchauffe”,“Un manque d’azote”], r:1, exp:“Joint pic à remplacer (200-500€).”},
+{q:“Symptôme grave avec un BRH : “, o:[“Frappe régulière”,“Cliquetis métallique anormal”,“Démarrage rapide”,“Bonne efficacité”], r:1, exp:“Cliquetis anormal = casse interne en cours, arrêter immédiatement.”},
+
+// === Stage V / Électronique ===
+{q:“Voyant moteur ORANGE allumé. Que signifie-t-il ?”, o:[“Tout va bien”,“Un code défaut est stocké, à diagnostiquer”,“Niveau d’huile bas”,“Batterie déchargée”], r:1, exp:“Voyant orange = code défaut présent, à lire avec valise diagnostic.”},
+{q:“Voyant moteur ROUGE allumé. Action ?”, o:[“Continuer”,“Arrêter immédiatement, mode dégradé”,“Augmenter le régime”,“Ignorer”], r:1, exp:“Voyant rouge = arrêt imminent forcé, mode dégradé. Diagnostic obligatoire.”},
+{q:“AdBlue manquant sur engin Stage V. Conséquence ?”, o:[“Aucune”,“Mode dégradé puis arrêt forcé”,“Plus de puissance”,“Économie de gasoil”], r:1, exp:“L’engin se bride puis s’arrête (dépollution obligatoire).”},
+{q:“Que signifie FAP ?”, o:[“Filtre à Air Premium”,“Filtre à Particules”,“Frein Auto Parking”,“Force Auxiliaire Pression”], r:1, exp:“FAP = Filtre à Particules (capture les suies de combustion).”},
+{q:“Que signifie SCR (système de dépollution) ?”, o:[“Système Contrôle Régime”,“Selective Catalytic Reduction (réduction des NOx avec AdBlue)”,“Surveillance Carburant Réservoir”,“Système Combustion Renforcée”], r:1, exp:“SCR = système qui injecte l’AdBlue pour réduire les oxydes d’azote (NOx).”},
+{q:“Une régénération du FAP sert à :”, o:[“Brûler les suies accumulées”,“Refroidir le moteur”,“Charger la batterie”,“Refaire le plein d’AdBlue”], r:0, exp:“Régénération = montée en température pour brûler et évacuer les suies.”},
+{q:“Une régénération forcée se lance par :”, o:[“Le démarreur”,“Une procédure spécifique (valise ou bouton dédié)”,“Un coup de clé”,“Le ralenti”], r:1, exp:“Procédure constructeur via valise ou interface tableau de bord.”},
+{q:“Coût d’un FAP neuf complet :”, o:[“100€”,“500€”,“2000-8000€”,“50000€”], r:2, exp:“FAP neuf : 2000 à 8000€ selon engin, nettoyage : 500-3000€.”},
+{q:“Contamination du réservoir AdBlue avec du gasoil. Conséquence ?”, o:[“Aucune”,“Vidange + remplacement injecteurs SCR (5000-15000€)”,“Économie”,“Plus de puissance”], r:1, exp:“Catastrophique : il faut tout vidanger et souvent remplacer les injecteurs SCR.”},
+
+// === Train de roulement ===
+{q:“Une chenille déraille en exploitation. Action ?”, o:[“Continuer doucement”,“STOPPER et appeler l’atelier”,“Re-rouler par-dessus”,“Mettre du sable”], r:1, exp:“Stopper et atelier obligatoire (1500-4000€). Tenter une réparation maison = risque accident.”},
+{q:“La tension d’une chenille se contrôle via :”, o:[“Une pompe”,“Un graisseur dédié (avec ressort visible)”,“Un boulon”,“Une chaîne”], r:1, exp:“Graisseur de tension : injection de graisse pour tendre, purge pour détendre.”},
+{q:“Cause n°1 d’un déraillement de chenille :”, o:[“Un choc”,“Tension trop basse”,“Surcharge”,“Mauvais carburant”], r:1, exp:“Tension trop basse = 40% des déraillements.”},
+{q:“Coût d’une chenille neuve complète sur Cat 320 :”, o:[“1000€”,“5000-25000€”,“100€”,“500000€”], r:1, exp:“5000 à 25000€ par chenille selon taille de l’engin.”},
+{q:“Fréquence de contrôle de la tension chenille :”, o:[“Annuel”,“Hebdomadaire”,“Tous les 5 ans”,“Jamais”], r:1, exp:“Contrôle hebdomadaire en exploitation.”},
+
+// === Fuites ===
+{q:“Fuite d’huile visible sous l’engin. Action immédiate ?”, o:[“Continuer”,“Compléter et finir la journée”,“Stopper et localiser la fuite”,“Augmenter le régime”], r:2, exp:“Une fuite peut vider le circuit en quelques minutes. Stopper et localiser.”},
+{q:“Une huile rouge sous un engin indique :”, o:[“Huile moteur”,“ATF (boîte automatique)”,“Huile hydraulique”,“Liquide de refroidissement”], r:1, exp:“Rouge = ATF (Automatic Transmission Fluid).”},
+{q:“Une huile noire et épaisse sous un engin indique :”, o:[“Huile moteur”,“Huile hydraulique”,“ATF”,“Liquide de refroidissement”], r:0, exp:“Noir et épais = huile moteur usagée.”},
+{q:“Une huile ambrée sous un engin indique généralement :”, o:[“Huile moteur”,“Huile hydraulique”,“ATF”,“Refroidissement”], r:1, exp:“Ambré clair = huile hydraulique.”},
+
+// === Climatisation et confort ===
+{q:“La climatisation ne refroidit plus. Cause n°1 ?”, o:[“Compresseur HS”,“Manque de gaz frigorigène (fuite)”,“Filtre habitacle”,“Capteur”], r:1, exp:“Manque de gaz = 50% des cas (souvent une petite fuite).”},
+{q:“Coût d’une recharge de gaz climatisation avec recherche fuite :”, o:[“50€”,“150-400€”,“1000€”,“5000€”], r:1, exp:“150-400€ selon engin (recharge + détection fuite).”},
+
+// === Direction (chargeuses) ===
+{q:“Direction articulée dure sur une chargeuse. Première vérification ?”, o:[“Pneus”,“Niveau d’huile direction”,“Batterie”,“Carburant”], r:1, exp:“Niveau d’huile direction = 40% des cas.”},
+{q:“Une direction qui devient subitement libre (sans résistance) :”, o:[“Continuer”,“DANGER : stopper immédiatement”,“Forcer”,“Charger plus”], r:1, exp:“Perte totale de direction = risque accident grave, stopper immédiatement.”},
+
+// === Diagnostic général ===
+{q:“L’outil indispensable pour diagnostiquer une panne sur engin moderne :”, o:[“Une clé”,“Une valise diagnostic OBD ou interface constructeur”,“Un tournevis”,“Un manomètre”], r:1, exp:“Valise diagnostic = lecture des codes défaut, indispensable sur engins Stage V.”},
+{q:“Avant de remplacer une pièce coûteuse, on doit :”, o:[“Faire un diagnostic précis”,“Acheter directement”,“Demander au client”,“Tirer au sort”], r:0, exp:“Diagnostic d’abord, sinon on peut remplacer sans résoudre la panne.”}
+]},
+‘huiles’:{nom:“Huiles & fluides”,icon:“🛢️”,questions:[
+// === Bases huile moteur ===
+{q:“Que signifie SAE dans ‘huile SAE 15W40’ ?”, o:[“Standard Automotive Engine”,“Society of Automotive Engineers”,“Système Anti-Échauffement”,“Sécurité Automobile Europe”], r:1, exp:“SAE = Society of Automotive Engineers, organisme qui définit les viscosités.”},
+{q:“Que signifie le ‘W’ dans 15W40 ?”, o:[“Weight”,“Winter (froid)”,“Weak”,“World”], r:1, exp:“W = Winter, indique la viscosité à froid.”},
+{q:“Quelle est la viscosité d’une huile 15W40 à chaud ?”, o:[“15”,“40”,“27”,“100”], r:1, exp:“40 = viscosité à 100°C (chaud).”},
+{q:“Une huile 5W30 est plus fluide à froid qu’une :”, o:[“10W30”,“0W30”,“5W40”,“Aucune”], r:0, exp:“Plus le 1er chiffre est bas, plus l’huile est fluide à froid.”},
+{q:“Quelle huile est OBLIGATOIRE sur un moteur Stage V avec FAP ?”, o:[“15W40 standard”,“Huile Low SAPS (faible cendres)”,“Huile végétale”,“N’importe laquelle”], r:1, exp:“Low SAPS = OBLIGATOIRE sinon colmatage du FAP.”},
+{q:“Que signifie ‘Low SAPS’ ?”, o:[“Low Speed”,“Low Sulfated Ash, Phosphorus, Sulfur (faibles teneurs)”,“Low Standard”,“Low System”], r:1, exp:“Faible teneur en cendres sulfatées, phosphore, soufre. Indispensable pour FAP.”},
+{q:“Que signifie API dans ‘API CK-4’ ?”, o:[“Application Industrielle”,“American Petroleum Institute”,“Auto Pression Injection”,“Antipollution”], r:1, exp:“API = American Petroleum Institute (norme américaine d’huiles).”},
+{q:“Que signifie ACEA (norme européenne huiles) ?”, o:[“Association des Constructeurs Européens d’Automobiles”,“Association des Constructeurs Eco-Auto”,“Auto Compagnie Européenne”,“Aucun rapport”], r:0, exp:“ACEA = Association des Constructeurs Européens d’Automobiles.”},
+{q:“La norme européenne pour huiles moteur diesel BTP avec FAP est :”, o:[“ACEA E9”,“ACEA E6”,“ACEA A3”,“ACEA E2”], r:1, exp:“ACEA E6 = norme Low SAPS pour moteurs diesel récents avec FAP.”},
+{q:“Fréquence de vidange moteur typique sur engin BTP :”, o:[“50h”,“250 à 500h selon constructeur”,“2000h”,“10000h”], r:1, exp:“250 à 500h selon constructeur, JAMAIS dépasser sur engins avec FAP.”},
+
+// === Choix d’huile moteur ===
+{q:“Pour un Cat 320 récent (Stage V), quelle huile recommandée ?”, o:[“15W40 standard”,“5W30 ou 10W30 Low SAPS”,“Huile 80W90”,“ATF”], r:1, exp:“5W30 ou 10W30 Low SAPS pour les engins Stage V récents.”},
+{q:“Pour une pelle Komatsu PC210 ancienne (avant 2015), quelle huile ?”, o:[“15W40 standard”,“5W20”,“Huile pont 80W90”,“Bio huile”], r:0, exp:“15W40 standard reste OK sur engins anciens sans FAP.”},
+{q:“Le coût d’un litre d’huile moteur 5W30 Low SAPS :”, o:[“2-3€”,“8-12€”,“14-18€”,“50€”], r:2, exp:“Les huiles Low SAPS coûtent plus cher (14-18€/L).”},
+{q:“Mélanger une huile 15W40 avec une 5W30 :”, o:[“Bonifie l’huile”,“À éviter (incompatibilité possible)”,“Sans effet”,“Recommandé”], r:1, exp:“À éviter, surtout entre normes différentes (Low SAPS / standard).”},
+
+// === Huile hydraulique ===
+{q:“L’huile hydraulique transmet :”, o:[“La chaleur”,“La puissance dans le circuit hydraulique”,“Le carburant”,“L’air”], r:1, exp:“L’huile hydraulique transmet la pression et donc la puissance dans tout le circuit.”},
+{q:“L’huile hydraulique standard pour pelle en climat tempéré est :”, o:[“ISO VG 22”,“ISO VG 32”,“ISO VG 46”,“ISO VG 100”], r:2, exp:“ISO VG 46 est le standard pour pelles en climat tempéré.”},
+{q:“Pour un climat très chaud (sud, été), on privilégie :”, o:[“ISO VG 22”,“ISO VG 32”,“ISO VG 46”,“ISO VG 68”], r:3, exp:“ISO VG 68 reste plus stable en températures élevées.”},
+{q:“Que signifie ISO VG 46 ?”, o:[“46 litres”,“Indice viscosité 46 cSt à 40°C”,“46 bars de pression”,“46 ans de vie”], r:1, exp:“Indice viscosité ISO = 46 centiStokes à 40°C.”},
+{q:“Que signifie ‘HV’ dans une huile hydraulique HV ?”, o:[“High Voltage”,“High Viscosity Index (indice de viscosité élevé)”,“Heavy”,“High Volume”], r:1, exp:“HV = High Viscosity Index = stable sur grande plage de température.”},
+{q:“Une huile hydraulique ‘HLP’ contient :”, o:[“De l’eau”,“Des additifs anti-usure (zinc)”,“Du carburant”,“De l’air”], r:1, exp:“HLP = qualité standard avec additifs anti-usure (zinc).”},
+{q:“Fréquence de vidange d’huile hydraulique typique :”, o:[“50h”,“500h”,“2000-5000h”,“Jamais”], r:2, exp:“2000 à 5000h selon constructeur (et analyse d’huile).”},
+{q:“Fréquence de remplacement du filtre hydraulique :”, o:[“50h”,“500-1000h”,“5000h”,“Jamais”], r:1, exp:“500 à 1000h, ou dès l’allumage du voyant.”},
+{q:“Le pire ennemi d’une huile hydraulique :”, o:[“Le froid”,“L’eau et les particules”,“Le soleil”,“Le vent”], r:1, exp:“L’eau (oxydation, perte de propriétés) et les particules (abrasion).”},
+{q:“Le niveau de propreté hydraulique recommandé (norme ISO 4406) :”, o:[“25/23/20”,“18/16/13 ou meilleur”,“Aucune importance”,“30/30/30”], r:1, exp:“18/16/13 = norme de propreté visée pour bon fonctionnement durable.”},
+{q:“L’analyse d’huile hydraulique permet de :”, o:[“Connaître la couleur”,“Détecter usure et contamination en amont”,“Voir le niveau”,“Refaire l’huile”], r:1, exp:“Détecte particules métalliques (usure), eau, dégradation = maintenance prédictive.”},
+
+// === Bio huiles ===
+{q:“Quand utiliser une huile hydraulique bio (biodégradable) ?”, o:[“En carrière”,“En zone sensible (parc, captage d’eau, bord de mer)”,“Toujours”,“Jamais”], r:1, exp:“Zones environnementales sensibles = obligation bio (en cas de fuite).”},
+{q:“Coût d’une huile bio vs huile standard :”, o:[“Identique”,“2 à 3 fois plus cher”,“Moins cher”,“10 fois plus cher”], r:1, exp:“~3x le prix d’une huile minérale standard.”},
+{q:“En cas de fuite d’huile bio, durée de dégradation naturelle :”, o:[“1 an”,“28 jours”,“100 ans”,“Jamais”], r:1, exp:“~28 jours pour les huiles bio (norme ISO 15380).”},
+
+// === Transmission / Pont ===
+{q:“Une boîte automatique de chargeuse utilise :”, o:[“Huile moteur”,“ATF Dexron III”,“Huile hydraulique”,“Liquide de refroidissement”], r:1, exp:“ATF (Automatic Transmission Fluid) pour les boîtes powershift et automatiques.”},
+{q:“L’huile pour un pont différentiel chargeuse est :”, o:[“15W40”,“ATF”,“80W90 API GL-5”,“ISO VG 46”], r:2, exp:“80W90 API GL-5 pour les ponts (haute pression d’engrènement).”},
+{q:“Les réducteurs finaux de chenilles (pelle) utilisent :”, o:[“De l’huile moteur”,“Une huile spécifique ‘Final Drive’”,“De l’eau”,“Rien”], r:1, exp:“Huile spécifique constructeur, contrôle niveau toutes les 500h.”},
+{q:“Fréquence de vidange des réducteurs finaux de chenilles :”, o:[“50h”,“1000-2000h”,“10000h”,“Jamais”], r:1, exp:“1000 à 2000h selon constructeur, niveau à vérifier chaque 500h.”},
+
+// === Liquide de refroidissement ===
+{q:“Sur engin récent, le liquide de refroidissement est généralement :”, o:[“De l’eau pure”,“OAT (rose ou orange)”,“De l’huile”,“De l’AdBlue”], r:1, exp:“OAT (Organic Acid Technology) = standard récent, longue durée (5 ans).”},
+{q:“Mélanger un liquide OAT (rose) avec un IAT (vert) :”, o:[“Pas de problème”,“À ÉVITER : gélification, perte de protection”,“Bonifie”,“Refroidit mieux”], r:1, exp:“INCOMPATIBILITÉ chimique = gélification, perte de propriétés. JAMAIS mélanger.”},
+{q:“Durée de vie d’un liquide OAT :”, o:[“6 mois”,“1 an”,“5 ans / 5000h”,“20 ans”], r:2, exp:“OAT = longue durée, 5 ans / 5000h.”},
+{q:“En cas de doute sur le type de liquide refroidissement :”, o:[“Mélanger les couleurs”,“Vidange complète + rinçage avant remise à neuf”,“Ignorer”,“Mettre de l’eau”], r:1, exp:“Vidange complète + rinçage = seul moyen sûr en cas de doute.”},
+{q:“Plage d’utilisation typique d’un liquide OAT :”, o:[“0 à 50°C”,”-37°C à +110°C”,”-100°C à +200°C”,“20 à 30°C”], r:1, exp:”-37°C à +110°C, protection antigel et anti-ébullition.”},
+
+// === Graisses ===
+{q:“La graisse standard pour pelle (axes flèche, godet) :”, o:[“EP2 lithium NLGI 2”,“Huile moteur”,“ATF”,“Eau”], r:0, exp:“EP2 lithium NLGI 2 = standard universel.”},
+{q:“Que signifie EP dans ‘EP2’ (graisse) ?”, o:[“Easy Pump”,“Extreme Pressure (haute pression)”,“Eco Performance”,“Ester Polymer”], r:1, exp:“EP = Extreme Pressure = additifs pour hautes charges.”},
+{q:“Fréquence de graissage d’une pelle en exploitation :”, o:[“Toutes les 8 à 10 heures de travail”,“Tous les ans”,“Jamais”,“Tous les 5 ans”], r:0, exp:“8-10h de travail = graissage de tous les axes (flèche, balancier, godet).”},
+{q:“Trop graisser un engin :”, o:[“C’est mieux”,“Fait sortir les joints, surconsommation”,“Augmente la durée de vie”,“Refroidit”], r:1, exp:“Excès = joints qui sortent, gaspillage. Suivre les préconisations.”},
+{q:“Graisse pour environnement très humide ou bord de mer :”, o:[“EP2 lithium standard”,“EP2 calcium sulfonate”,“Huile moteur”,“Eau”], r:1, exp:“Calcium sulfonate = excellente résistance à l’eau et à la corrosion.”},
+
+// === AdBlue ===
+{q:“L’AdBlue est composé de :”, o:[“Eau pure”,“Solution d’urée à 32.5%”,“Carburant”,“Huile”], r:1, exp:“AdBlue = solution d’urée à 32.5% dans de l’eau déminéralisée.”},
+{q:“L’AdBlue est injecté :”, o:[“Dans le moteur”,“Dans les gaz d’échappement (système SCR)”,“Dans le réservoir”,“Dans le radiateur”], r:1, exp:“L’AdBlue est injecté dans la ligne d’échappement avant le catalyseur SCR.”},
+{q:“Consommation typique d’AdBlue par rapport au gasoil :”, o:[“50%”,“4 à 6%”,“100%”,“0.1%”], r:1, exp:“4 à 6% de la consommation de gasoil.”},
+{q:“L’AdBlue gèle à :”, o:[”-50°C”,”-11°C”,“0°C”,”-30°C”], r:1, exp:”-11°C, attention au stockage en hiver.”},
+{q:“Date limite d’utilisation (DLU) typique d’un bidon d’AdBlue :”, o:[“1 mois”,“12 à 18 mois”,“5 ans”,“Illimité”], r:1, exp:“12 à 18 mois selon stockage (à l’abri du gel et du soleil).”},
+{q:“Prix typique d’1 litre d’AdBlue en cuve :”, o:[“0.40 à 0.80€”,“5€”,“10€”,“50€”], r:0, exp:“0.40 à 0.80€/L en cuve, 1 à 2€/L en bidon.”},
+{q:“Conséquence d’AdBlue de mauvaise qualité ou contaminé :”, o:[“Aucune”,“Mode dégradé moteur, pannes système SCR”,“Plus de puissance”,“Économie”], r:1, exp:“Système SCR très sensible : utiliser AdBlue norme ISO 22241.”},
+{q:“Symbole de la norme officielle AdBlue :”, o:[“ISO 22241”,“API CK-4”,“DIN 51524”,“SAE 15W40”], r:0, exp:“ISO 22241 = norme officielle AdBlue.”}
+]},
+‘prix’:{nom:“Prix & marché”,icon:“💰”,questions:[
+// === Prix neuf - Pelles ===
+{q:“Le prix neuf d’une pelle 10-12T (Cat 308 ou Komatsu PC118) en 2025 :”, o:[“50-80 000 €”,“100-140 000 €”,“200-240 000 €”,“300 000 €+”], r:1, exp:“100 à 140 000 € HT pour les pelles 10-12T (source : marché 2025).”},
+{q:“Le prix neuf d’une pelle Volvo ECR145E (14.5T) :”, o:[“80-100 000 €”,“130-170 000 €”,“200-250 000 €”,“300 000 €+”], r:1, exp:“130 à 170 000 € HT pour les pelles 15T.”},
+{q:“Le prix neuf d’une Cat 320 (21T) en 2025 :”, o:[“80 000 €”,“130 000 €”,“190-240 000 €”,“350 000 €”], r:2, exp:“190 à 240 000 € HT (annonce Cat 320 neuve 2024 vue à 212 000 €).”},
+{q:“Le prix neuf d’une pelle 25T (Cat 323, Volvo EC250) :”, o:[“140 000 €”,“180 000 €”,“230-270 000 €”,“400 000 €”], r:2, exp:“230 à 270 000 € HT pour les pelles 25T.”},
+{q:“Le prix neuf d’une pelle 30T (Komatsu PC290) :”, o:[“180 000 €”,“260-300 000 €”,“450 000 €”,“600 000 €”], r:1, exp:“260 à 300 000 € HT pour les pelles 30T.”},
+{q:“Le prix neuf d’une Cat 336 (36T) :”, o:[“200 000 €”,“280 000 €”,“340-400 000 €”,“550 000 €”], r:2, exp:“340 à 400 000 € HT (les pelles 36T+ dépassent 340k€).”},
+{q:“Le prix neuf d’une pelle 50T (Cat 349) :”, o:[“250 000 €”,“350 000 €”,“450-520 000 €”,“700 000 €”], r:2, exp:“450 à 520 000 € HT pour les très grosses pelles.”},
+{q:“Le prix neuf d’une Cat 374 (70T) :”, o:[“350 000 €”,“500 000 €”,“680 000 €+”,“1 200 000 €”], r:2, exp:“680 000 € et plus pour les très grosses pelles 70T.”},
+
+// === Prix occasion - réels ===
+{q:“Une Cat 320 de 2024 avec moins de 500h vaut environ :”, o:[“80 000 €”,“150 000 €”,“200-220 000 €”,“300 000 €”], r:2, exp:“Cat 320 de 2024 (~500h) vue à 212 000 € sur Europe-TP.”},
+{q:“Une Cat 320 de 2021 avec ~4000h vaut environ :”, o:[“50 000 €”,“90-130 000 €”,“180 000 €”,“250 000 €”], r:1, exp:“Cat 320 2021 ~4000h vue à 129 800 € (source réelle marché).”},
+{q:“Une Cat 320 de 2017 (~1700h) en France vaut environ :”, o:[“50 000 €”,“96 000 €”,“150 000 €”,“200 000 €”], r:1, exp:“Cat 320 de 2017, 1700h en France : 96 000 € HT (Lespinasse 31).”},
+{q:“Une Cat 320 ancienne (2010, ~15000h) vaut :”, o:[“10 000 €”,“49 500 €”,“100 000 €”,“150 000 €”], r:1, exp:“Cat 320 EL 2010 (15000h) : 49 500 € (occasion réelle vue marché).”},
+{q:“Décote moyenne d’un engin BTP à 3 ans :”, o:[“10%”,“20%”,“30-35%”,“60%”], r:2, exp:“~30-35% à 3 ans (data marché 2024).”},
+{q:“Décote moyenne d’un engin BTP à 5 ans :”, o:[“20%”,“35%”,“50%”,“75%”], r:2, exp:“~50% à 5 ans pour un engin bien entretenu.”},
+{q:“Décote d’un engin à 10 ans :”, o:[“30%”,“50%”,“70-80%”,“100%”], r:2, exp:“70 à 80% à 10 ans (selon heures et état).”},
+
+// === Critères de cotation ===
+{q:“Le critère le plus important pour estimer une occasion :”, o:[“La couleur”,“Les heures de service”,“La marque uniquement”,“L’année seule”], r:1, exp:“Heures de service + entretien + état général priment.”},
+{q:“Seuil d’heures où une pelle perd beaucoup de valeur :”, o:[“1 000h”,“3 000h”,“5 000h”,“10 000h”], r:2, exp:“Au-delà de 5000h, la décote s’accélère fortement.”},
+{q:“Heures de mi-vie d’une pelle 20T :”, o:[“2 000h”,“5 000h”,“8 000-10 000h”,“20 000h”], r:2, exp:“~8 000 à 10 000h = mi-vie d’une pelle 20T bien entretenue.”},
+{q:“Heures de mi-vie d’une mini-pelle :”, o:[“2 000h”,“4 000-5 000h”,“10 000h”,“20 000h”], r:1, exp:“~4 000-5 000h = mi-vie d’une mini-pelle.”},
+{q:“Pour estimer une occasion, on regarde en priorité :”, o:[“Heures + carnet entretien + état + train de chenilles”,“La couleur”,“Le réseau routier”,“Le poids”], r:0, exp:“Heures + entretien + état + chenilles + cabine = ces 5 critères.”},
+{q:“Quel élément augmente la valeur d’une pelle d’occasion ?”, o:[“Une réparation récente non documentée”,“Un carnet d’entretien complet et VGP à jour”,“Une couleur sortie d’usine”,“Une vieille radio”], r:1, exp:“Carnet d’entretien + VGP à jour = sécurité acheteur, valeur préservée.”},
+
+// === Location journalière (prix réels) ===
+{q:“Location journalière d’une mini-pelle 2.5T :”, o:[“50 €”,“220-350 €”,“800 €”,“1 500 €”], r:1, exp:“220-350 €/j HT (source Loxam, Ripeurs).”},
+{q:“Location journalière d’une pelle 8-10T :”, o:[“100 €”,“250-350 €”,“640 €”,“1 200 €”], r:2, exp:“~640 €/j HT (Ripeurs : 8-10T = 640€/j).”},
+{q:“Location journalière d’une pelle 13-15T :”, o:[“200 €”,“350-650 €”,“1 145 €”,“2 000 €”], r:2, exp:“~1 145 €/j HT (Ripeurs : 13-15T = 1145€/j).”},
+{q:“Location journalière d’une pelle 20-22T (Cat 320) :”, o:[“150 €”,“350 €”,“350-860 €”,“2 500 €”], r:2, exp:“350-860 €/j HT selon loueur. 1315€/j chez Ripeurs (haut de gamme).”},
+{q:“Location journalière d’une pelle 25T :”, o:[“250 €”,“500 €”,“1 380 €”,“3 000 €”], r:2, exp:“~1 380 €/j HT (Ripeurs : 23-25T).”},
+{q:“Location journalière d’une pelle 35-40T :”, o:[“400 €”,“750-900 €”,“2 500 €”,“4 000 €”], r:1, exp:“750-900 €/j HT pour les pelles 35-40T.”},
+
+// === Location semaine/mois ===
+{q:“Réduction typique d’une location à la semaine vs journée :”, o:[“5%”,“10-15%”,“20-30%”,“50%”], r:2, exp:”-20 à -30% à la semaine (source Loxam, M3, Aurama).”},
+{q:“Location mensuelle d’une pelle 20T (Cat 320) typique :”, o:[“1 500 €”,“5 000-6 000 €”,“12 000 €”,“25 000 €”], r:1, exp:“~5 000 €/mois HT (équivalent ~165€/j en mensuel = -50% vs journée).”},
+{q:“Location avec chauffeur pour une 20T : tarif TYPIQUE journalier :”, o:[“200 €”,“400 €”,“700-900 €”,“2 000 €”], r:2, exp:“600-900 €/j HT incluant chauffeur (source : ligne de bus, M3).”},
+{q:“Tarif horaire moyen pour une pelle 20T avec chauffeur :”, o:[“20 €”,“50-100 €”,“200 €”,“500 €”], r:1, exp:“50-100 €/h TTC machine + chauffeur (source ligne de bus).”},
+
+// === BRH ===
+{q:“Le prix neuf d’un BRH Montabert V2200 :”, o:[“10 000 €”,“35-40 000 €”,“80 000 €”,“150 000 €”], r:1, exp:“~38 000 € HT pour V2200 (le plus polyvalent).”},
+{q:“Le prix neuf d’un BRH Montabert V5500 (le plus gros) :”, o:[“20 000 €”,“50 000 €”,“90-100 000 €”,“200 000 €”], r:2, exp:“~95 000 € HT pour V5500.”},
+{q:“Location mensuelle d’un BRH V2200 :”, o:[“500 €”,“1 500 €”,“4 000 €”,“8 000 €”], r:1, exp:“~1 500 €/mois indicatif.”},
+{q:“Location journalière d’un BRH V3500 :”, o:[“50 €”,“180 €”,“500 €”,“1 000 €”], r:1, exp:“~180 €/j HT pour un BRH V3500.”},
+
+// === Frais annexes ===
+{q:“Coût typique d’une livraison aller-retour pour pelle 20T :”, o:[“50 €”,“100-250 €”,“800 €”,“2 000 €”], r:1, exp:“100 à 250 € A/R pour transport sur courte distance (source : ouestmat 2026).”},
+{q:“L’assurance casse/vol sur une grosse pelle peut multiplier la facture par :”, o:[“1.1”,“1.5”,“3 à 4”,“10”], r:2, exp:“Pour une 25T, ×3 ou ×4 (source Aurama).”},
+{q:“Le carburant en location est généralement :”, o:[“Inclus”,“À la charge du client”,“Offert”,“Refacturé après location”], r:1, exp:“Le carburant reste presque toujours à la charge du client.”},
+{q:“Caution typique pour une mini-pelle :”, o:[“100-300 €”,“1 000-3 000 €”,“10 000 €”,“50 000 €”], r:1, exp:“1 000 à 3 000 € selon tonnage (source : ouestmat).”},
+
+// === Investissement vs location ===
+{q:“Pour un usage de moins de 100 jours/an, on privilégie :”, o:[“L’achat neuf”,“La location”,“L’achat d’occasion”,“Le leasing 7 ans”], r:1, exp:“Location plus rentable pour usage <100 jours/an.”},
+{q:“Pour un usage intensif (>200 jours/an) :”, o:[“Location courte”,“Achat ou leasing longue durée”,“Prêt entre amis”,“Aucun”], r:1, exp:“Achat ou leasing longue durée plus rentable au-delà de 200 j/an.”},
+
+// === Consommation et coûts d’exploitation ===
+{q:“Consommation moyenne d’une pelle 20T en chantier standard :”, o:[“3 L/h”,“12-18 L/h”,“50 L/h”,“100 L/h”], r:1, exp:“12-18 L/h selon usage (chargement vs travail léger).”},
+{q:“Consommation d’un BRH en travail intensif :”, o:[“Aucune”,“Augmente conso pelle de 20-30%”,“Diminue la conso”,“Double la conso”], r:1, exp:“Le BRH augmente la consommation de 20-30% (forte sollicitation hydraulique).”},
+{q:“Coût d’entretien annuel approximatif d’une pelle 20T (huiles, filtres, pièces d’usure) :”, o:[“500 €”,“3 000-5 000 €”,“15 000 €”,“50 000 €”], r:1, exp:“3 000 à 5 000 €/an pour entretien standard (hors panne lourde).”},
+
+// === Évolution du marché ===
+{q:“En 2024-2025, les prix neufs des engins BTP :”, o:[“Ont fortement baissé”,“Sont stables ou en légère hausse (inflation)”,“Ont été divisés par 2”,“Sont devenus gratuits”], r:1, exp:“Stables ou légère hausse (inflation matières premières).”},
+{q:“Les délais de livraison d’un engin neuf en 2024 :”, o:[“Quelques jours”,“6 à 18 mois selon modèle”,“5 ans”,“Immédiat”], r:1, exp:“6 à 18 mois (rupture composants post-Covid encore présente).”},
+{q:“Le marché de l’occasion en 2024-2025 :”, o:[“Sec (peu d’offre)”,“Très tendu (forte demande, peu d’offre, prix soutenus)”,“Effondré”,“Inexistant”], r:1, exp:“Marché tendu, prix occasion élevés.”},
+
+// === Spécifique loueurs ===
+{q:“Un loueur applique généralement une marge de :”, o:[“5%”,“20-30%”,“50-70%”,“100%”], r:1, exp:“Marge typique de 20-30% sur la location pour amortir l’engin.”},
+{q:“L’amortissement d’une pelle 20T est typiquement sur :”, o:[“1 an”,“3 à 5 ans”,“10 ans”,“20 ans”], r:1, exp:“Amortissement sur 3-5 ans en location intensive.”},
+{q:“Pour rentabiliser une pelle 20T (achat ~200k€), il faut louer environ :”, o:[“50 jours/an”,“150-200 jours/an”,“365 jours/an”,“Jamais”], r:1, exp:“~150-200 jours/an minimum sur 5 ans pour amortir.”},
+
+// === Fiches en mémoire ===
+{q:“Quel critère est SECONDAIRE dans l’estimation d’une occasion ?”, o:[“Heures”,“Couleur d’origine”,“Carnet d’entretien”,“État du train de chenilles”], r:1, exp:“La couleur ne change rien à la valeur.”},
+{q:“Quel élément peut DIMINUER fortement la valeur d’une pelle d’occasion ?”, o:[“VGP à jour”,“Train de chenilles usé”,“Cabine propre”,“Pneus neufs”], r:1, exp:“Train de chenilles usé = remplacement = -10 à -30k€ de valeur.”}
+]},
+‘caces’:{nom:“CACES & sécurité”,icon:“🎓”,questions:[
+// === Bases CACES ===
+{q:“Le CACES R482 concerne :”, o:[“Les voitures”,“Les engins de chantier”,“Les nacelles uniquement”,“Les camions”], r:1, exp:“R482 = engins de chantier (pelles, chargeuses, bulldozers, etc.).”},
+{q:“Le CACES est délivré par :”, o:[“Le constructeur”,“Un organisme de formation agréé”,“La mairie”,“La préfecture”], r:1, exp:“Organismes de formation agréés CNAM/INRS.”},
+{q:“Validité d’un CACES R482 :”, o:[“3 ans”,“5 ans”,“10 ans”,“À vie”], r:2, exp:“R482 : 10 ans, recyclage ensuite.”},
+{q:“Le CACES est obligatoire pour :”, o:[“Tout conducteur d’engin en entreprise”,“Uniquement les +5T”,“Les engins en location”,“Personne”], r:0, exp:“Obligatoire pour tout conducteur d’engin de chantier en entreprise (Code du travail).”},
+{q:“Sans CACES en entreprise, en cas d’accident :”, o:[“Aucune conséquence”,“L’employeur engage sa responsabilité pénale”,“Seul le conducteur est responsable”,“La police arrive”], r:1, exp:“L’employeur est pénalement responsable (faute inexcusable).”},
+
+// === Catégories R482 ===
+{q:“Catégorie A du R482 :”, o:[“Compacts < 6T”,“Pelles > 6T”,“Tombereaux”,“Compacteurs”], r:0, exp:“A = engins compacts < 6T (mini-pelles, mini-chargeuses).”},
+{q:“Catégorie B1 du R482 :”, o:[“Mini-pelles”,“Pelles à chenilles ou pneus > 6T”,“Chargeuses”,“Compacteurs”], r:1, exp:“B1 = pelles > 6T (Cat 320, Komatsu PC210, etc.).”},
+{q:“Catégorie B2 du R482 :”, o:[“Engins de tunnel”,“Pelles à pneus”,“Tombereaux”,“Compacteurs”], r:0, exp:“B2 = engins de chantier de génie civil et tunnel.”},
+{q:“Catégorie B3 du R482 :”, o:[“Foreuses”,“Pelles”,“Chargeuses”,“Compacteurs”], r:0, exp:“B3 = engins de forage et de fondations.”},
+{q:“Catégorie C1 du R482 :”, o:[“Compacteurs”,“Chargeuses-pelleteuses (tractopelles)”,“Chargeuses sur pneus”,“Tombereaux”], r:2, exp:“C1 = chargeuses sur pneus (Volvo L60H, Cat 950M).”},
+{q:“Catégorie C2 du R482 :”, o:[“Bulldozers”,“Pelles”,“Compacteurs”,“Tombereaux”], r:0, exp:“C2 = bulldozers (Cat D6, Komatsu D65).”},
+{q:“Catégorie C3 du R482 :”, o:[“Niveleuses”,“Compacteurs”,“Pelles”,“Tombereaux”], r:0, exp:“C3 = niveleuses (graders).”},
+{q:“Catégorie D du R482 :”, o:[“Compacteurs”,“Pelles”,“Tombereaux”,“Chargeuses”], r:0, exp:“D = compacteurs (Bomag, Hamm, Cat CB10).”},
+{q:“Catégorie E du R482 :”, o:[“Pelles”,“Tombereaux”,“Chargeuses”,“Bulldozers”], r:1, exp:“E = engins de transport de matériaux (tombereaux, dumpers).”},
+{q:“Catégorie F du R482 :”, o:[“Chariots élévateurs de chantier”,“Pelles”,“Compacteurs”,“Tombereaux”], r:0, exp:“F = chariots élévateurs de chantier (télescopiques).”},
+{q:“Catégorie G du R482 :”, o:[“Pelles”,“Engins hors gabarit ou télécommandés”,“Chargeuses”,“Compacteurs”], r:1, exp:“G = engins hors gabarit, télécommandés ou très spéciaux.”},
+
+// === CACES nacelles ===
+{q:“Les nacelles relèvent de quelle référentiel CACES ?”, o:[“R482”,“R486”,“R489”,“R490”], r:1, exp:“R486 pour les PEMP (Plates-formes Élévatrices Mobiles de Personnes).”},
+{q:“Catégorie B du R486 (nacelles) :”, o:[“Ciseaux”,“Articulées/télescopiques (multidirectionnelles)”,“Camions”,“Tracteurs”], r:1, exp:“B = nacelles articulées ou télescopiques (PEMP multidirectionnelles).”},
+{q:“Catégorie A du R486 (nacelles) :”, o:[“Ciseaux (élévation verticale)”,“Articulées”,“Camions”,“Tracteurs”], r:0, exp:“A = nacelles ciseaux ou à élévation verticale uniquement.”},
+
+// === Sécurité de base ===
+{q:“Avant chaque prise de poste, le conducteur doit :”, o:[“Faire le plein”,“Effectuer la VGP”,“Faire un tour de l’engin (visuel)”,“Changer l’huile”], r:2, exp:“Tour de l’engin obligatoire : pneus/chenilles, niveaux, fuites, EPI.”},
+{q:“Que vérifier au tour de l’engin ?”, o:[“La couleur”,“Niveaux, état général, fuites éventuelles”,“Le ciel”,“La radio”], r:1, exp:“Niveaux fluides, fuites, état chenilles/pneus, vérins, vitres.”},
+{q:“VGP signifie :”, o:[“Vérification Générale Périodique”,“Visite Globale Préventive”,“Validation Générale Production”,“Visite Garage Personnel”], r:0, exp:“VGP = Vérification Générale Périodique (annuelle pour engins de levage).”},
+{q:“Périodicité d’une VGP :”, o:[“Mensuelle”,“Annuelle”,“Tous les 10 ans”,“Jamais”], r:1, exp:“Annuelle obligatoire (Code du travail) pour engins de levage.”},
+{q:“L’EPI obligatoire en cabine d’engin BTP :”, o:[“Casque”,“Ceinture de sécurité”,“Gants”,“Lunettes”], r:1, exp:“Ceinture de sécurité (anti-renversement, structure ROPS).”},
+{q:“En cas de renversement de l’engin :”, o:[“Sauter de la cabine”,“Rester ceinturé en cabine”,“Ouvrir la portière”,“Couper le moteur d’abord”], r:1, exp:“Rester ceinturé : la structure ROPS (Roll-Over Protective Structure) protège.”},
+{q:“ROPS signifie :”, o:[“Roll-Over Protective Structure”,“Rotating Operator Protection System”,“Reinforced Outer Plate Safety”,“Random Operating Pre-Start”], r:0, exp:“ROPS = Roll-Over Protective Structure (anti-renversement).”},
+{q:“FOPS signifie :”, o:[“Front Operator Protection”,“Falling Objects Protective Structure”,“Fast Operator Pre-Start”,“Fixed Outer Plate”], r:1, exp:“FOPS = Falling Objects Protective Structure (chute d’objets).”},
+
+// === Sécurité chantier ===
+{q:“Distance de sécurité par rapport à une fouille :”, o:[“10 cm”,“50 cm”,“Égale à la profondeur (anti-éboulement)”,“2 mètres minimum”], r:2, exp:“Recul = profondeur de la fouille (règle de base).”},
+{q:“Distance de sécurité par rapport à une ligne électrique aérienne :”, o:[“1 mètre”,“3 mètres”,“5 mètres minimum”,“20 mètres”], r:2, exp:“5 mètres mini sous tension. Plus si haute tension (consultable Enedis).”},
+{q:“Avant de creuser, on doit :”, o:[“Foncer”,“Faire une DICT (Déclaration d’Intention de Commencement de Travaux)”,“Demander à la mairie”,“Rien”], r:1, exp:“DICT obligatoire pour identifier les réseaux enterrés (loi anti-endommagement).”},
+{q:“DICT signifie :”, o:[“Déclaration d’Intention de Commencement de Travaux”,“Demande Inter-Communale Travaux”,“Décision Immédiate Chantier”,“Document Industriel de Conduite”], r:0, exp:“Déclaration d’Intention de Commencement de Travaux.”},
+{q:“DT-DICT s’effectue via :”, o:[“Le téléphone”,“Le site reseaux-et-canalisations.gouv.fr”,“Le facteur”,“La mairie obligatoirement”], r:1, exp:“Site officiel reseaux-et-canalisations.gouv.fr (guichet unique).”},
+{q:“Avant utilisation, l’opérateur doit s’assurer :”, o:[“Que la radio fonctionne”,“Qu’aucune personne n’est dans le rayon de pivotement”,“Que la peinture est propre”,“Que la boîte aux lettres est vide”], r:1, exp:“Sécurité de la zone de pivotement = vital sur pelle.”},
+{q:“Le balisage du chantier sert à :”, o:[“Décorer”,“Délimiter et alerter le public/personnel”,“Faire joli”,“Rien”], r:1, exp:“Balisage = sécurité publique et personnel chantier.”},
+
+// === EPI ===
+{q:“EPI obligatoires sur chantier BTP :”, o:[“Casque, chaussures, gilet HV, gants”,“Costume cravate”,“Maillot de bain”,“Aucun”], r:0, exp:“Casque + chaussures sécurité + gilet haute visibilité + gants.”},
+{q:“Le casque chantier doit être :”, o:[“En plastique fin”,“Conforme EN 397”,“En métal”,“En carton”], r:1, exp:“EN 397 = norme casque protection chantier.”},
+{q:“Les chaussures de sécurité chantier sont :”, o:[“Souples”,“S3 (anti-perforation, anti-écrasement, étanche)”,“En toile”,“En caoutchouc fin”], r:1, exp:“S3 minimum (norme EN ISO 20345) avec coque acier.”},
+{q:“Les gants doivent protéger contre :”, o:[“Le froid uniquement”,“Coupures, abrasion, vibrations selon usage”,“Le soleil”,“Rien”], r:1, exp:“Différents niveaux selon norme EN 388 (résistance mécanique).”},
+
+// === Levage et manutention ===
+{q:“Une pelle peut être utilisée pour le levage si :”, o:[“Toujours”,“Équipée d’un crochet de levage homologué et VGP à jour”,“Jamais”,“Avec accord verbal”], r:1, exp:“Crochet homologué + indicateur de charge + VGP de levage.”},
+{q:“L’élingage d’une charge nécessite :”, o:[“Aucun savoir-faire”,“Une formation spécifique élingueur”,“Un permis B”,“Un casque”], r:1, exp:“L’élingage est une compétence dédiée (formation élingueur).”},
+{q:“En cas de levage avec pelle, le conducteur doit :”, o:[“Aller vite”,“Rester sous la charge”,“Ne JAMAIS rester sous la charge”,“Tourner brusquement”], r:2, exp:“NE JAMAIS rester ni faire passer quelqu’un sous la charge suspendue.”},
+
+// === Bruit et vibrations ===
+{q:“Niveau sonore typique d’un BRH en marche :”, o:[“50 dB”,“85 dB”,“100-115 dB”,“150 dB”], r:2, exp:“100-115 dB selon modèle. EPI auditifs OBLIGATOIRES.”},
+{q:“À partir de quel niveau les EPI auditifs sont obligatoires ?”, o:[“50 dB”,“65 dB”,“80 dB (>85 dB obligatoire)”,“120 dB”], r:2, exp:”>80 dB recommandé, >85 dB obligatoire (Code du travail).”},
+
+// === Stabilisation et terrain ===
+{q:“Avant de travailler avec une pelle, le sol doit être :”, o:[“Mou”,“Stable, plat ou correctement aménagé”,“En pente forte”,“Boueux”], r:1, exp:“Sol stable et plat. Sinon stabilisation par lit de roulement.”},
+{q:“Pour stabiliser une nacelle articulée, on doit :”, o:[“Sortir tous les stabilisateurs”,“Travailler sur un sol mou”,“Ignorer les capteurs”,“Aller vite”], r:0, exp:“Tous les stabilisateurs sortis et sur cales si nécessaire.”},
+{q:“Si une nacelle alarme ‘devers’ :”, o:[“Désactiver l’alarme”,“Repositionner sur sol plat”,“Continuer prudemment”,“Mettre des cales sous une roue”], r:1, exp:“Capteur de devers = sécurité vitale, repositionner immédiatement.”},
+
+// === Entretien et VGP ===
+{q:“La VGP d’un engin de levage est annuelle. Qui la fait ?”, o:[“Le conducteur”,“Un organisme agréé indépendant”,“Le client”,“La mairie”], r:1, exp:“Organisme agréé indépendant (Apave, Bureau Veritas, Socotec, etc.).”},
+{q:“Le carnet d’entretien doit être :”, o:[“Optionnel”,“Tenu à jour et accompagner l’engin”,“Brûlé”,“Jeté”], r:1, exp:“Carnet à jour obligatoire, suit l’engin (preuve d’entretien).”},
+
+// === Réglementation ===
+{q:“L’âge minimum pour conduire un engin de chantier en entreprise :”, o:[“16 ans”,“18 ans”,“21 ans”,“25 ans”], r:1, exp:“18 ans minimum (Code du travail) pour la conduite professionnelle.”},
+{q:“Le conducteur doit aussi posséder :”, o:[“Une autorisation de conduite signée par l’employeur”,“Rien”,“Une autorisation parentale”,“Un permis F”], r:0, exp:“Autorisation de conduite délivrée par l’employeur (en plus du CACES).”}
+]},
+‘nomenclature’:{nom:“Décoder les modèles”,icon:“🔤”,questions:[
+// === Caterpillar ===
+{q:“Chez Caterpillar, dans ‘Cat 320’, les chiffres représentent :”, o:[“L’année”,“Le tonnage approximatif (~20T)”,“La puissance en CV”,“Un numéro de série”], r:1, exp:“Cat 320 = ~20T (les 2 derniers chiffres reflètent le tonnage).”},
+{q:“La Cat 336 pèse environ :”, o:[“3 tonnes”,“20 tonnes”,“36 tonnes”,“60 tonnes”], r:2, exp:“Cat 336 = 36 tonnes.”},
+{q:“La Cat 349 pèse environ :”, o:[“3 tonnes”,“49 tonnes”,“20 tonnes”,“100 tonnes”], r:1, exp:“Cat 349 = ~49 tonnes.”},
+{q:“La Cat 374 pèse environ :”, o:[“37 tonnes”,“70-74 tonnes”,“100 tonnes”,“20 tonnes”], r:1, exp:“Cat 374 = ~70-74 tonnes (très grosse pelle).”},
+{q:“Sur Cat 950M, le 9 indique :”, o:[“L’année 2009”,“La série 9 (chargeuses sur pneus)”,“9 cylindres”,“9 vitesses”], r:1, exp:“La série 9** désigne les chargeuses sur pneus Cat.”},
+{q:“Sur Cat 950M, à quoi correspond le M ?”, o:[“Modèle”,“Sur pneus (Wheeled / mobile)”,“Marche”,“Métal”], r:1, exp:“M = engin sur pneus (mobile/wheeled).”},
+{q:“Le Cat D6 désigne :”, o:[“Une pelle”,“Un bulldozer série D, taille 6 (~18-20T)”,“Une chargeuse”,“Un compacteur”], r:1, exp:“Série D = Dozer, taille 6 = ~18-20T.”},
+{q:“Cat D8 vs Cat D6 :”, o:[“Le D8 est plus petit”,“Le D8 est plus gros (~38T)”,“Identique”,“Le D8 est sur pneus”], r:1, exp:“D8 = ~38T, plus gros que le D6.”},
+{q:“Cat D10 vs Cat D6 :”, o:[“Identique”,“Le D10 est beaucoup plus gros (~70T+)”,“Le D10 est plus petit”,“Le D10 est une mini-pelle”], r:1, exp:“D10 = ~70T+, gros bulldozer de mine.”},
+{q:“Le suffixe ‘L’ à la fin d’un modèle Cat (ex: 320L) signifie :”, o:[“Light”,“Long Crawler (chenilles longues)”,“Lithium”,“Locked”], r:1, exp:“L = Long Crawler = chenilles longues, plus de stabilité.”},
+{q:“Sur Cat 320 GC, GC signifie :”, o:[“Grand Confort”,“General Construction (entrée de gamme)”,“Grand Chantier”,“Gros Calibre”], r:1, exp:“GC = General Construction, version entrée de gamme moins équipée.”},
+{q:“Les générations Cat (F, H, L) :”, o:[“L > H > F (L plus récent)”,“F > H > L (F plus récent)”,“Aléatoires”,“Aucun ordre”], r:0, exp:“L plus récent que H, plus récent que F (ordre alphabétique chronologique).”},
+
+// === Komatsu ===
+{q:“Chez Komatsu, PC signifie :”, o:[“Personal Computer”,“Power Crane (pelle hydraulique)”,“Pump Connector”,“Premium Class”], r:1, exp:“PC = Power Crane = pelle hydraulique.”},
+{q:“Chez Komatsu, WA signifie :”, o:[“Wide Area”,“Wheel loAder (chargeuse sur pneus)”,“Worldwide”,“Water Active”], r:1, exp:“WA = Wheel loAder = chargeuse sur pneus.”},
+{q:“Chez Komatsu, D signifie :”, o:[“Diesel”,“Dozer (bulldozer)”,“Dump”,“Driver”], r:1, exp:“D = Dozer = bulldozer.”},
+{q:“Chez Komatsu, HM signifie :”, o:[“Heavy Machine”,“Hydraulic Motorized (tombereau articulé)”,“High Mobility”,“Hour Meter”], r:1, exp:“HM = tombereau articulé Komatsu.”},
+{q:“Chez Komatsu, HD signifie :”, o:[“High Definition”,“Heavy Dump (tombereau rigide)”,“Hydraulic Drive”,“Half Day”], r:1, exp:“HD = tombereau rigide Komatsu.”},
+{q:“Komatsu PC210 pèse environ :”, o:[“12 tonnes”,“21 tonnes”,“30 tonnes”,“40 tonnes”], r:1, exp:“PC210 = ~21 tonnes (les chiffres ≈ tonnage).”},
+{q:“Komatsu PC290 pèse environ :”, o:[“12 tonnes”,“21 tonnes”,“29 tonnes”,“49 tonnes”], r:2, exp:“PC290 = ~29 tonnes.”},
+{q:“Komatsu PC390 pèse environ :”, o:[“19 tonnes”,“29 tonnes”,“40 tonnes”,“60 tonnes”], r:2, exp:“PC390 = ~40 tonnes.”},
+{q:“Sur PC210LC-11, le ‘LC’ signifie :”, o:[“Light Cabin”,“Long Crawler (chenilles longues)”,“Low Cost”,“Last Class”], r:1, exp:“LC = Long Crawler, chenilles longues pour stabilité.”},
+{q:“Sur PC118MR-11, le ‘MR’ signifie :”, o:[“Multi Reduction”,“Midi Rayon (rayon court)”,“Mining Range”,“Manual Reverse”], r:1, exp:“MR = Midi Rayon, rayon arrière réduit (zones étroites).”},
+{q:“Sur PC228USLC, le ‘US’ signifie :”, o:[“United States”,“Ultra Short (rayon ultra court)”,“Used”,“Up Speed”], r:1, exp:“US = Ultra Short, rayon arrière encore plus court que MR.”},
+{q:“Sur PC210-11, le ‘-11’ indique :”, o:[“11 tonnes”,“La 11ème génération”,“11 cylindres”,“Le mois de fabrication”], r:1, exp:”-11 = 11ème génération (la plus récente).”},
+{q:“PC210-8 vs PC210-11 :”, o:[“Le -8 est plus récent”,“Le -11 est plus récent (8ème → 11ème génération)”,“Identiques”,“Aucun rapport”], r:1, exp:”-11 plus récent (-10 < -11).”},
+{q:“Sur Komatsu D65PXi-18, le ‘i’ signifie :”, o:[“International”,“Intelligent (GPS intégré pour guidage)”,“Improved”,“Inspection”], r:1, exp:“i = Intelligent Machine Control (GPS intégré, guidage automatique).”},
+
+// === Volvo ===
+{q:“Chez Volvo CE, EC signifie :”, o:[“European Construction”,“Excavator Crawler (pelle sur chenilles)”,“Eco Class”,“Engine Cylinder”], r:1, exp:“EC = Excavator Crawler = pelle sur chenilles.”},
+{q:“Chez Volvo, ECR signifie :”, o:[“Excavator Crawler Rapid”,“Excavator Crawler Reduced (rayon court)”,“Engine Cooling Refrigerant”,“Eco Crawler”], r:1, exp:“ECR = Excavator Crawler Reduced, rayon court.”},
+{q:“Chez Volvo, EW signifie :”, o:[“East-West”,“Excavator Wheel (pelle sur pneus)”,“Extra Weight”,“Engine Wheel”], r:1, exp:“EW = pelle sur pneus.”},
+{q:“Chez Volvo, L signifie :”, o:[“Long”,“Loader (chargeuse)”,“Light”,“Low”], r:1, exp:“L = Loader = chargeuse sur pneus.”},
+{q:“Chez Volvo, A signifie :”, o:[“Advanced”,“Articulated (tombereau articulé)”,“Avant”,“Auto”], r:1, exp:“A = Articulated = tombereau articulé.”},
+{q:“Volvo EC220E pèse environ :”, o:[“12 tonnes”,“22 tonnes”,“30 tonnes”,“40 tonnes”], r:1, exp:“EC220 = ~22 tonnes.”},
+{q:“Volvo EC380E pèse environ :”, o:[“28 tonnes”,“38 tonnes”,“50 tonnes”,“60 tonnes”], r:1, exp:“EC380 = ~38 tonnes.”},
+{q:“Volvo EC480 pèse environ :”, o:[“38 tonnes”,“48 tonnes”,“60 tonnes”,“80 tonnes”], r:1, exp:“EC480 = ~48 tonnes.”},
+{q:“Volvo EC550E pèse environ :”, o:[“35 tonnes”,“55 tonnes”,“70 tonnes”,“100 tonnes”], r:1, exp:“EC550 = ~55 tonnes.”},
+{q:“Volvo ECR145E vs EC220E :”, o:[“L’ECR145 est plus gros”,“L’ECR145 est plus petit (14.5T) à rayon court”,“Identiques”,“L’ECR145 est sur pneus”], r:1, exp:“ECR145 = 14.5T rayon court ; EC220 = 22T standard.”},
+{q:“Volvo L60H pèse environ :”, o:[“6 tonnes”,“11 tonnes (charge utile ~6T)”,“20 tonnes”,“30 tonnes”], r:1, exp:“L60H = chargeuse, charge utile ~6T, masse ~11T.”},
+{q:“Volvo L120 vs L60 :”, o:[“Le L120 est plus petit”,“Le L120 est plus gros (charge utile ~12T)”,“Identiques”,“Le L120 est une pelle”], r:1, exp:“L120 = chargeuse plus grande, charge utile ~12T.”},
+{q:“Sur Volvo, les générations sont notées :”, o:[“1, 2, 3”,“B, C, D, E, F, G, H (alphabétique)”,“I, II, III”,“2010, 2015, 2020”], r:1, exp:“Génération alphabétique : H > G > F > E (H plus récent).”},
+{q:“Volvo A25G vs A30G :”, o:[“A30 est plus petit”,“A30 est plus gros (~30T charge utile)”,“Identiques”,“A25 est sur chenilles”], r:1, exp:“A25G = ~25T charge utile, A30G = ~30T (plus gros).”},
+
+// === Mécalac ===
+{q:“Mécalac est une marque :”, o:[“Allemande”,“Italienne”,“Française”,“Japonaise”], r:2, exp:“Marque française basée à Annecy.”},
+{q:“Sur Mécalac, MCR signifie :”, o:[“Mining Crane”,“Mécalac Crawler (chenilles)”,“Multi Cargo”,“Mid Range”], r:1, exp:“MCR = Mécalac Crawler = chenilles.”},
+{q:“Sur Mécalac, MWR signifie :”, o:[“Maxi Wheel Range”,“Mécalac Wheel Rotative (pneus rotatif)”,“Mid Wheel Round”,“Multi Way”], r:1, exp:“MWR = Mécalac Wheeled Rotative = sur pneus avec rotation.”},
+{q:“Mécalac 10MCR fait :”, o:[“10 tonnes sur chenilles”,“1 tonne”,“100 tonnes”,“Sur pneus”], r:0, exp:“10 tonnes sur chenilles.”},
+{q:“Mécalac 15MWR fait :”, o:[“1.5 tonnes”,“15 tonnes sur pneus”,“50 tonnes”,“Sur chenilles”], r:1, exp:“15 tonnes sur pneus avec tourelle rotative.”},
+{q:“La particularité d’un Mécalac est :”, o:[“Sa lenteur”,“3 fonctions en 1 (pelle/chargeuse/grue)”,“Sa taille”,“Sa couleur”], r:1, exp:“Concept original : pelle + chargeuse + grue mobile en un seul engin.”},
+
+// === Montabert ===
+{q:“Montabert est une marque française basée à :”, o:[“Marseille”,“Saint-Priest (69)”,“Paris”,“Lyon centre”], r:1, exp:“Saint-Priest, banlieue lyonnaise.”},
+{q:“Chez Montabert, V signifie :”, o:[“Volume”,“Vibration optimisée (gamme pelles standard et grosses)”,“Vitesse”,“Volvo”], r:1, exp:“V = gamme à vibration optimisée pour pelles standard à grosses.”},
+{q:“Chez Montabert, SC signifie :”, o:[“Speed Class”,“Super Compact (mini-pelles, pas dans le parc 3B actuel)”,“Standard Crusher”,“Steel Cutter”], r:1, exp:“SC = Super Compact, gamme dédiée aux mini-pelles.”},
+{q:“Le numéro après V (V2200) indique :”, o:[“Le poids en kg”,“L’énergie de frappe en joules”,“La pression en bars”,“Le débit”], r:1, exp:“V2200 = 2200 joules de frappe.”},
+{q:“V5500 = ?”, o:[“5500 joules de frappe (le plus gros gamme V)”,“5500 kg”,“5500 bars”,“Année 5500”], r:0, exp:“V5500 = 5500 joules, le plus puissant de la gamme V.”},
+{q:“Pour aller dans l’ordre croissant gamme V Montabert :”, o:[“V5500 → V1600”,“V1600 → V2200 → V3500 → V4500 → V5500”,“V2200 → V1600”,“Aléatoire”], r:1, exp:“V1600 < V2200 < V3500 < V4500 < V5500 (énergie croissante).”}
+]},
+‘usages’:{nom:“Quel engin pour quel projet”,icon:“📐”,questions:[
+// === Travaux résidentiels ===
+{q:“Pour terrasser une maison individuelle (200m²), quel engin ?”, o:[“Cat 374 (70T)”,“Pelle 8-12T”,“Cat 950M”,“Bulldozer D8”], r:1, exp:“Pelle compacte 8-12T = adaptée au gabarit du chantier.”},
+{q:“Pour creuser une piscine (10m × 5m × 2m), quel engin ?”, o:[“Mini-pelle 5T”,“Pelle 14-22T”,“Cat 336 (36T)”,“Tombereau”], r:1, exp:“Pelle 14-22T = bonne profondeur d’attaque + productivité.”},
+{q:“Pour aménager un jardin de particulier (accès étroit) :”, o:[“Cat 320”,“Mini-pelle 1-3T”,“Bulldozer”,“Tombereau”], r:1, exp:“Mini-pelle 1-3T = passage étroit (souvent < 1m de large).”},
+{q:“Pour creuser une fosse septique :”, o:[“Pelle 30T”,“Pelle 5-10T”,“Bulldozer”,“Compacteur”], r:1, exp:“Pelle 5-10T = polyvalente et accès facilité.”},
+
+// === VRD ===
+{q:“Pour une tranchée canalisation eau (profondeur 1.5m sur 100m) :”, o:[“Pelle 8-15T avec godet étroit”,“Cat 374”,“Bulldozer”,“Compacteur”], r:0, exp:“Pelle 8-15T + godet étroit = précision et productivité.”},
+{q:“Pour pose de canalisations gros diamètre (>800mm) :”, o:[“Mini-pelle”,“Pelle 25-35T”,“Compacteur”,“Tractopelle”], r:1, exp:“Pelle 25-35T pour la profondeur et le levage des tubes lourds.”},
+{q:“Pour un chantier VRD lotissement (10 maisons) :”, o:[“Pelle 8T uniquement”,“Pelle 14-22T + chargeuse compacte + compacteur”,“Cat 374”,“Tombereau”], r:1, exp:“Combinaison pelle 14-22T + chargeuse + compacteur pour VRD complet.”},
+{q:“Pour la création d’une voirie neuve (2 km) :”, o:[“Pelle 8T”,“Pelle 20-25T + bulldozer + compacteur tandem + tombereau”,“Mini-pelle”,“Compacteur seul”], r:1, exp:“Combinaison complète : pelle, bulldozer, compacteur, tombereau.”},
+{q:“Pour de l’élargissement de chaussée :”, o:[“Pelle 14-22T”,“Cat 374”,“Mini-pelle”,“Tombereau seul”], r:0, exp:“Pelle 14-22T polyvalente + bonne portée.”},
+
+// === Démolition ===
+{q:“Pour démolir une maison individuelle (R+1) :”, o:[“Pelle 8-15T avec pince”,“Cat 374 (70T)”,“Mini-pelle”,“Compacteur”], r:0, exp:“Pelle 8-15T + pince démolition Payant = adapté maison.”},
+{q:“Pour démolir un immeuble R+5 :”, o:[“Pelle 8T”,“Pelle 20-25T + BRH V2200 ou pince démolition”,“Mini-pelle”,“Compacteur”], r:1, exp:“Pelle 20-25T + équipement démolition (BRH ou pince longue portée).”},
+{q:“Pour démolir un bâtiment industriel (charpente béton) :”, o:[“Pelle 8T”,“Pelle 30-40T + BRH V3500/V4500 + chargeuse”,“Mini-pelle”,“Compacteur”], r:1, exp:“Grosse pelle + BRH puissant + chargeuse pour évacuation.”},
+{q:“Pour le tri des matériaux issus de démolition :”, o:[“Mini-pelle”,“Pelle 20-25T avec godet de tri Payant”,“Bulldozer”,“Compacteur”], r:1, exp:“Pelle 20-25T + godet de tri Payant pour séparer matières.”},
+{q:“Pour casser une dalle béton 30cm :”, o:[“BRH V1600”,“BRH V2200 sur pelle 20T”,“BRH V5500”,“Marteau-piqueur”], r:1, exp:“V2200 sur pelle 20T = combinaison classique pour dalle béton standard.”},
+
+// === Carrière et mine ===
+{q:“Pour une exploitation de carrière (extraction roche) :”, o:[“Pelle 8T”,“Pelle 35-50T + BRH V4500/V5500 + chargeuse 20T+ + tombereaux”,“Mini-pelle”,“Tractopelle”], r:1, exp:“Combinaison grosse pelle + BRH lourd + chargeuse + tombereaux.”},
+{q:“Pour le chargement de tombereaux en carrière :”, o:[“Pelle 8-15T”,“Pelle 35-50T ou chargeuse 20T+”,“Mini-pelle”,“Compacteur”], r:1, exp:“Pelle ou chargeuse de gros gabarit pour productivité.”},
+{q:“Pour une mine à ciel ouvert (extraction minière) :”, o:[“Pelle 20T”,“Pelle 50-70T+ et tombereaux 30T+”,“Mini-pelle”,“Tractopelle”], r:1, exp:“Engins de très grand gabarit pour productivité maximale.”},
+{q:“Pour le décapage de la terre végétale (grand chantier) :”, o:[“Mini-pelle”,“Bulldozer D6/D8 + tombereaux”,“Compacteur seul”,“Tractopelle”], r:1, exp:“Bulldozer = nivellement et pousse + tombereaux pour évacuation.”},
+
+// === Chantiers urbains ===
+{q:“Pour un chantier en centre-ville étroit (passage 3m) :”, o:[“Cat 336”,“Mécalac 10-15T”,“Cat 374”,“Bulldozer”], r:1, exp:“Mécalac = ultra-polyvalent en zone urbaine étroite.”},
+{q:“Pour des travaux ferroviaires (voie en service) :”, o:[“Pelle 20T standard”,“Pelle 22T rail-route avec équipements”,“Cat 374”,“Bulldozer”], r:1, exp:“Pelle rail-route équipée pour intervention sur voie.”},
+{q:“Pour réparer un trottoir en ville (passage 2m) :”, o:[“Cat 320”,“Mini-pelle 1-3T”,“Cat D6”,“Tombereau”], r:1, exp:“Mini-pelle 1-3T = seule capable de passer en zone très étroite.”},
+{q:“Pour démolir un mur en zone très urbaine :”, o:[“Cat 374 + BRH V5500”,“Mécalac 10MCR + pince ou BRH”,“Mini-pelle”,“Bulldozer”], r:1, exp:“Mécalac = adapté au gabarit urbain et polyvalent.”},
+
+// === Aménagement extérieur ===
+{q:“Pour une création de bassin de rétention (3000m³) :”, o:[“Mini-pelle”,“Pelle 25-35T + bulldozer + tombereaux”,“Compacteur seul”,“Tractopelle”], r:1, exp:“Combinaison pour gros volumes terrassés.”},
+{q:“Pour de l’enrochement de berge :”, o:[“Pelle 14T + godet standard”,“Pelle 25-35T + godet enrochement Payant”,“Bulldozer”,“Tombereau”], r:1, exp:“Pelle 25-35T + godet enrochement Payant pour gros blocs.”},
+{q:“Pour un aménagement paysager (espaces verts) :”, o:[“Cat 374”,“Pelle 5-12T + chargeuse compacte”,“Mécalac 15MWR”,“Bulldozer”], r:1, exp:“Pelle compacte + chargeuse compacte = bon compromis.”},
+{q:“Pour un broyage de béton armé sur place (recyclage) :”, o:[“Pelle 8T”,“Pelle 20-25T + broyeur béton Payant”,“Bulldozer”,“Compacteur”], r:1, exp:“Pelle 20-25T + broyeur Payant = recyclage in-situ.”},
+{q:“Pour une réhabilitation d’ouvrage d’art :”, o:[“Mini-pelle”,“Pelle 14-22T + équipements (godet curage, BRH, pince)”,“Cat 374”,“Bulldozer”], r:1, exp:“Pelle 14-22T + équipements polyvalents.”},
+
+// === Voirie ===
+{q:“Pour le compactage d’une couche d’enrobé :”, o:[“Bulldozer”,“Compacteur tandem (Cat CB10, Volvo DD110)”,“Pelle”,“Chargeuse”], r:1, exp:“Compacteur tandem = compactage final enrobé.”},
+{q:“Pour le rabotage d’une chaussée :”, o:[“Pelle”,“Fraiseuse routière”,“Bulldozer”,“Compacteur”], r:1, exp:“Fraiseuse spécifique pour rabotage. Possible équipement Payant en option.”},
+{q:“Pour préparer une plateforme avant enrobé :”, o:[“Bulldozer + compacteur”,“Pelle seule”,“Mini-pelle”,“Tombereau seul”], r:0, exp:“Bulldozer pour nivellement + compacteur pour densifier.”},
+{q:“Pour un compactage de remblai (talus, plateforme) :”, o:[“Compacteur tandem 10T”,“Compacteur monocylindre lourd”,“Mini-compacteur”,“Bulldozer”], r:1, exp:“Compacteur monocylindre lourd (à pieds de mouton) pour remblais.”},
+
+// === Travaux spéciaux ===
+{q:“Pour de l’élagage en bord de route :”, o:[“Pelle 14-20T avec broyeur d’élagage”,“Mini-pelle”,“Cat 374”,“Bulldozer”], r:0, exp:“Pelle 14-20T équipée d’un broyeur (équipement spécifique).”},
+{q:“Pour des travaux portuaires (chargement bateaux) :”, o:[“Cat 374 ou pelle 50T+”,“Mini-pelle”,“Bulldozer”,“Compacteur”], r:0, exp:“Pelle de manutention 50T+ pour productivité port.”},
+{q:“Pour un curage de fossé routier :”, o:[“Pelle 8-15T avec godet curage”,“Cat 336”,“Mini-pelle”,“Bulldozer”], r:0, exp:“Pelle 8-15T + godet de curage = combinaison standard.”},
+{q:“Pour du forage de pieux :”, o:[“Pelle standard”,“Foreuse spécifique (engin de fondation)”,“Bulldozer”,“Compacteur”], r:1, exp:“Foreuse dédiée (gamme spécifique BTP).”},
+
+// === Choix selon contraintes ===
+{q:“Si l’accès au chantier est limité à 2.5m de large :”, o:[“Pelle 25T”,“Pelle 30T”,“Mini-pelle ou Mécalac compact”,“Cat 374”], r:2, exp:“Mini-pelle 1-5T ou Mécalac 10T pour passages très étroits.”},
+{q:“Si le chantier doit produire >500 m³/jour de terrassement :”, o:[“Mini-pelle”,“Pelle 25-35T + tombereaux”,“Mécalac 10T”,“Mini-chargeuse”], r:1, exp:“Productivité = grosse pelle + tombereaux pour évacuer.”},
+{q:“Si le sol est meuble (sable, terre détrempée) :”, o:[“Engin sur pneus”,“Engin sur chenilles (meilleur appui)”,“Pelle sur rails”,“Aucun”], r:1, exp:“Chenilles = meilleure répartition du poids sur sol meuble.”},
+{q:“Pour un chantier ponctuel (1-2 jours) :”, o:[“Achat”,“Location courte durée”,“Leasing 5 ans”,“Achat occasion”], r:1, exp:“Location courte durée pour usage ponctuel.”},
+{q:“Pour un chantier longue durée (>6 mois sur même site) :”, o:[“Location courte”,“Achat ou location longue durée (plus économique)”,“Plusieurs micro-locations”,“Aucun”], r:1, exp:“Au-delà de 6 mois, achat ou LLD plus économique que location courte.”},
+
+// === Combinaisons d’engins ===
+{q:“Combinaison classique pour terrassement standard :”, o:[“1 mini-pelle”,“Pelle 20T + chargeuse + tombereau”,“Cat 374 seul”,“Bulldozer seul”], r:1, exp:“Trio pelle + chargeuse + tombereau = standard du terrassement.”},
+{q:“Pour une opération de démolition complète d’un ouvrage :”, o:[“1 pelle uniquement”,“Pelle + BRH/pince + chargeuse pour évacuation”,“Bulldozer seul”,“Mini-pelle”], r:1, exp:“Pelle équipée + chargeuse pour évacuer débris.”},
+{q:“Pour un chantier autoroutier (ex: élargissement A7) :”, o:[“1 mini-pelle”,“Plusieurs grosses pelles + bulldozers + tombereaux + compacteurs”,“Cat 320 seule”,“Tractopelle”], r:1, exp:“Combinaison massive d’engins pour grand chantier d’infrastructure.”},
+{q:“Pour de la construction de barrage :”, o:[“Mini-pelle”,“Pelles 50T+ + bulldozers lourds + tombereaux 30T+”,“Cat 320 seule”,“Tractopelle”], r:1, exp:“Engins de très grand gabarit pour ce type d’ouvrage.”},
+
+// === Conseil & expertise ===
+{q:“Quel est le critère N°1 pour choisir un engin ?”, o:[“La couleur”,“La nature du chantier (volume, accès, matériau)”,“Le prix de location”,“La marque préférée”], r:1, exp:“Le chantier dicte le choix : volume + accès + matériau + délai.”},
+{q:“Avant de proposer un engin à un client, on doit lui demander :”, o:[“Sa couleur préférée”,“Type de travaux, durée, accès, contraintes”,“Son budget uniquement”,“Rien”], r:1, exp:“Comprendre le besoin = qualité du conseil + satisfaction client.”},
+{q:“Pourquoi un engin peut être surdimensionné pour un chantier ?”, o:[“Coût de location plus élevé inutilement + manœuvrabilité réduite”,“C’est mieux”,“Aucun problème”,“Plus rapide”], r:0, exp:“Surdimensionnement = surcoût et difficulté de manœuvre.”},
+{q:“Pourquoi un engin peut être sous-dimensionné ?”, o:[“Économique”,“Productivité insuffisante + risque casse + chantier qui dure”,“C’est mieux”,“Plus précis”], r:1, exp:“Sous-dimensionnement = perte de productivité + risque casse.”},
+{q:“Le bon engin =”, o:[“Le plus gros”,“Le moins cher”,“Celui adapté au chantier (taille, équipement, accès)”,“Celui de la marque préférée”], r:2, exp:“Le bon engin = adapté au chantier (équilibre productivité/coût/accès).”},
+{q:“Pour bien conseiller un client, le commercial doit :”, o:[“Connaître son catalogue + comprendre les besoins terrain”,“Vendre le plus cher”,“Vendre toujours le même modèle”,“Ignorer le client”], r:0, exp:“Connaissance technique + écoute = conseil pertinent.”}
+]},
+};
+// ============================================================================
+// COURS & FICHES
+// ============================================================================
+const COURS=[
+{id:‘c1’,titre:‘Le parc 3B INTER’,icon:‘🏢’,sections:[
+{h:“Présentation”,p:“3B INTER est une société française de location d’engins de BTP fondée en 2012, basée à Marignane (13).”},
+{h:“Le parc”,p:“Une centaine de machines à la location, allant de 8 à 70 tonnes, complétées par leurs équipements (BRH, godets, pinces…).”},
+{h:“Marques principales”,p:“Caterpillar, Komatsu, Volvo CE, Mécalac (engins polyvalents), Payant (équipements pour pelles), Montabert (BRH français).”}
+]},
+{id:‘c2’,titre:‘Comprendre les pelles’,icon:‘🏗️’,sections:[
+{h:“Petites pelles 8-15T”,p:“Idéales pour terrassement urbain, VRD, tranchées. Compactes, bonne maniabilité. Modèles : Cat 308 CR, Komatsu PC118MR, Volvo ECR145E.”},
+{h:“Pelles standards 18-25T”,p:“Le coeur du marché. Polyvalentes : terrassement, démolition légère, VRD, voirie. Modèles : Cat 320, Komatsu PC210, Volvo EC220, Cat 323.”},
+{h:“Grosses pelles 30-40T”,p:“Pour démolition lourde et carrière. Modèles : Komatsu PC290, Cat 336, Volvo EC380, Komatsu PC390.”},
+{h:“Très grosses pelles 50-70T”,p:“Mine, carrière intensive, démolition d’envergure. Modèles : Cat 349, Volvo EC550, Cat 374.”},
+{h:“Choix selon le chantier”,p:“Trop grosse = surcoût + manœuvrabilité réduite. Trop petite = productivité insuffisante + risque de casse. Le bon engin = celui adapté au volume, à l’accès et au matériau.”}
+]},
+{id:‘c3’,titre:‘Les BRH Montabert’,icon:‘🔨’,sections:[
+{h:“Qu’est-ce qu’un BRH ?”,p:“Brise-Roche Hydraulique : marteau monté sur le bras d’une pelle, alimenté par le circuit hydraulique. Casse béton, roche, enrobé.”},
+{h:“Gamme V (parc 3B)”,p:“V1600 (800kg, 1600J) pour 10-15T. V2200 (1100kg, 2200J) pour 15-22T (le plus polyvalent). V3500 (1650kg, 3500J) pour 22-32T. V4500 (2300kg, 4500J) pour 32-45T. V5500 (3000kg, 5500J) pour 45-70T.”},
+{h:“Le numéro = énergie en joules”,p:“V2200 = 2200 joules de frappe. Plus le numéro est grand, plus l’énergie est forte (et plus la pelle doit être grosse).”},
+{h:“Maintenance clé”,p:“Recharger l’azote tous les 6 mois (15-18 bars). Graisser le pic toutes les 2h. NE JAMAIS frapper à vide (casse les joints/corps).”},
+{h:“Choix pic”,p:“Pic moiné pour roche dure, burin pour béton armé, pyramide pour démolition. Durée de vie 100-300h.”}
+]},
+{id:‘c4’,titre:‘Décoder les modèles’,icon:‘🔤’,sections:[
+{h:“Caterpillar”,p:“Cat 320 = ~20T. Cat 336 = ~36T. Cat 374 = ~74T. Pour les chargeuses : Cat 950 = série 9, taille 50. Pour les bulldozers : D6, D8, D10 (le numéro = la taille). Suffixes : L = Long Crawler, GC = entrée de gamme, M = sur pneus.”},
+{h:“Komatsu”,p:“PC = Power Crane (pelle). WA = Wheel loAder. D = Dozer. PC210 = ~21T. PC290 = ~29T. Suffixes : LC = Long Crawler, MR = Midi Rayon, USR = Ultra Short Radius, i = Intelligent (GPS), -8/-10/-11 = générations.”},
+{h:“Volvo CE”,p:“EC = Excavator Crawler. ECR = rayon court. EC220 = ~22T. EC380 = ~38T. L60 = chargeuse charge utile 6T. A = tombereau articulé (A25 = 25T). Générations : B/C/D/E/F/G/H (H plus récent).”},
+{h:“Mécalac”,p:“MCR = chenilles. MWR = pneus rotative. 10MCR = 10T. 15MWR = 15T. Concept : pelle + chargeuse + grue en un seul engin.”},
+{h:“Montabert”,p:“V = vibration optimisée. Le numéro après V = énergie de frappe en joules. V2200 = 2200J. V5500 = 5500J (le plus gros).”}
+]},
+{id:‘c5’,titre:‘Pannes courantes’,icon:‘🔧’,sections:[
+{h:“Démarrage impossible”,p:“90% des cas : batterie. Tester tension (>12V), inspecter cosses, vérifier le coupe-circuit batterie. Démarreur en 2nd intention.”},
+{h:“Surchauffe moteur”,p:“Manque de liquide ou radiateur encrassé en n°1. ARRÊTER immédiatement, attendre 1h avant d’ouvrir le bouchon. Souffler le radiateur 1x/semaine en chantier poussiéreux.”},
+{h:“Perte hydraulique”,p:“Niveau bas + filtre colmaté = causes n°1. Vérifier huile, filtre, puis suspecter pompe (4-15k€). Faire analyse d’huile annuelle.”},
+{h:“BRH faible”,p:“Azote bas (recharger), débit pelle insuffisant, ou usure interne (révision atelier). Toujours commencer par recharger l’azote.”},
+{h:“Voyant moteur”,p:“Orange = code défaut, à lire avec valise. Rouge = mode dégradé, arrêt imminent. AdBlue + FAP = causes n°1 sur engins Stage V.”}
+]},
+{id:‘c6’,titre:‘Les huiles’,icon:‘🛢️’,sections:[
+{h:“Huile moteur”,p:“15W40 standard (anciens engins). 5W30 Low SAPS OBLIGATOIRE sur engins Stage V (FAP). Vidange tous les 250-500h.”},
+{h:“Huile hydraulique”,p:“ISO VG 46 standard. ISO VG 68 climat chaud. Bio en zones sensibles. Vidange 2000-5000h, filtre 500-1000h.”},
+{h:“Liquide de refroidissement”,p:“OAT (rose/orange) = récent, 5 ans. IAT (vert/bleu) = ancien, 2 ans. NE JAMAIS mélanger les couleurs.”},
+{h:“Graisse”,p:“EP2 lithium standard. EP2 calcium sulfonate pour humidité/bord de mer. Graissage axes toutes les 8-10h de travail.”},
+{h:“AdBlue”,p:“Solution d’urée 32.5% pour SCR. Norme ISO 22241 obligatoire. Conso 4-6% du gasoil. NE JAMAIS contaminer (5000-15000€ de réparation).”}
+]},
+{id:‘c7’,titre:‘CACES R482’,icon:‘🎓’,sections:[
+{h:“Catégories”,p:“A : compacts < 6T. B1 : pelles > 6T. B2 : génie civil/tunnel. B3 : forage/fondations. C1 : chargeuses sur pneus. C2 : bulldozers. C3 : niveleuses. D : compacteurs. E : tombereaux. F : chariots élévateurs chantier. G : engins hors gabarit/télécommandés.”},
+{h:“Validité”,p:“R482 valable 10 ans. Recyclage ensuite. Autorisation de conduite délivrée par l’employeur en plus.”},
+{h:“VGP”,p:“Vérification Générale Périodique annuelle obligatoire pour engins de levage (pelles avec crochet, nacelles).”},
+{h:“EPI”,p:“Casque (EN 397), chaussures sécurité (S3), gilet HV, gants. En cabine : ceinture (anti-renversement ROPS).”},
+{h:“DICT”,p:“Avant tout creusement, déclaration obligatoire sur reseaux-et-canalisations.gouv.fr pour identifier les réseaux enterrés.”}
+]},
+{id:‘c8’,titre:‘Prix & marché’,icon:‘💰’,sections:[
+{h:“Décote standard”,p:“3 ans : -30%. 5 ans : -50%. 10 ans : -75%. Heures de service = facteur clé (au-delà de 5000h, décote forte).”},
+{h:“Heures de mi-vie”,p:“Mini-pelle : 4000-5000h. Pelle 20T : 8000-10000h. BRH : 3000h = grosse révision.”},
+{h:“Location mensuelle indicative”,p:“Mini-pelle 3T : 1200-1500€. Pelle 20T : 5000-6000€. Pelle 30T : 7000-8000€. BRH V2200 : 1500€.”},
+{h:“Évaluation occasion”,p:“Heures + carnet entretien + état général + train de chenilles + cabine. La marque et le réseau pèsent aussi sur la valeur.”},
+{h:“Rentabilité”,p:“Pour amortir une pelle 20T (200k€), il faut louer ~150-200 jours/an sur 5 ans.”}
+]},
+{id:‘c9’,titre:‘Quel engin pour quel projet’,icon:‘📐’,sections:[
+{h:“Maison individuelle”,p:“Pelle 8-12T suffit. Mini-pelle pour accès très étroit.”},
+{h:“VRD lotissement”,p:“Pelle 14-22T + chargeuse compacte + compacteur. Combinaison standard.”},
+{h:“Démolition immeuble R+5”,p:“Pelle 20-25T + BRH V2200 ou pince démolition. Adapté au gabarit.”},
+{h:“Carrière”,p:“Pelle 35-50T + BRH V4500/V5500 + chargeuse 20T+ + tombereaux. Productivité maximale.”},
+{h:“Centre-ville étroit”,p:“Mécalac 10-15T = polyvalence + gabarit adapté. Mini-pelle si <2m de large.”},
+{h:“Grand chantier infra (autoroute)”,p:“Combinaison massive : grosses pelles + bulldozers + tombereaux + compacteurs.”}
+]}
+];
+// ============================================================================
+// STATE & STORAGE
+// ============================================================================
+let STATE={xp:0,streak:0,lastVisit:null,qcmCount:0,qcmGood:0,qcmTotal:0,themeStats:{}};
+function loadState(){try{const r=localStorage.getItem(‘3b_academy_v2’);if(r)STATE=Object.assign(STATE,JSON.parse(r));}catch(e){}}
+function saveState(){try{localStorage.setItem(‘3b_academy_v2’,JSON.stringify(STATE));}catch(e){}}
+function addXP(n){STATE.xp+=n;saveState();refreshHeader();}
+function refreshHeader(){document.getElementById(‘xp-val’).textContent=STATE.xp;document.getElementById(‘streak-val’).textContent=STATE.streak;}
+function checkStreak(){const t=new Date().toDateString();if(STATE.lastVisit!==t){const y=new Date(Date.now()-86400000).toDateString();STATE.streak=STATE.lastVisit===y?STATE.streak+1:1;STATE.lastVisit=t;saveState();}}
+function showPage(id){document.querySelectorAll(’.page’).forEach(p=>p.classList.remove(‘active’));const t=document.getElementById(‘page-’+id);if(t)t.classList.add(‘active’);document.querySelectorAll(’.bn-item’).forEach(b=>b.classList.remove(‘active’));const n=document.querySelector(’.bn-item[data-page=”’+id+’”]’);if(n)n.classList.add(‘active’);window.scrollTo(0,0);if(id===‘home’)refreshHome();if(id===‘qcm’)renderQCMThemes();if(id===‘cours’)renderCours();if(id===‘catalogue’)renderCatalogue();if(id===‘pannes’)renderPannes();if(id===‘huiles’)renderHuiles();if(id===‘nomenclature’)renderNomen();if(id===‘usages’)renderUsages();if(id===‘stats’)renderStats();}
+function toast(m){const t=document.createElement(‘div’);t.className=‘toast’;t.textContent=m;document.body.appendChild(t);setTimeout(()=>t.remove(),3000);}
+function refreshHome(){const h=new Date().getHours();let g=‘Bonjour !’;if(h>=12&&h<18)g=‘Bon après-midi !’;else if(h>=18)g=‘Bonsoir !’;document.getElementById(‘greet-msg’).textContent=g;document.getElementById(‘home-qcm’).textContent=STATE.qcmCount;const p=STATE.qcmTotal>0?Math.round((STATE.qcmGood/STATE.qcmTotal)*100):0;document.getElementById(‘home-pct’).textContent=p+’%’;const themesDone=Object.keys(STATE.themeStats||{}).filter(k=>STATE.themeStats[k].total>=10).length;document.getElementById(‘home-themes’).textContent=themesDone+’/8’;}
+function shuffle(a){return a.slice().sort(()=>Math.random()-0.5);}
+function pickRandom(a,n){return shuffle(a).slice(0,n);}
+// === QCM ===
+let qcmCurrent=null,qcmIndex=0,qcmScore=0;
+function renderQCMThemes(){const el=document.getElementById(‘qcm-themes-list’);el.innerHTML=Object.keys(QCM).map(k=>{const t=QCM[k];return ‘<div class="card" onclick="startQCM(\''+k+'\')"><div class="card-row"><div class="card-icon">’+t.icon+’</div><div class="card-body"><div class="card-title">’+t.nom+’</div><div class="card-desc">’+t.questions.length+’ questions disponibles</div></div><div class="card-arrow">›</div></div></div>’;}).join(’’);}
+function startQCM(k){const all=QCM[k].questions.slice();const sample=pickRandom(all,Math.min(15,all.length));qcmCurrent={theme:k,questions:sample};qcmIndex=0;qcmScore=0;showPage(‘qcm-game’);showQuestion();}
+function showQuestion(){const q=qcmCurrent.questions[qcmIndex];document.getElementById(‘qcm-theme’).textContent=QCM[qcmCurrent.theme].nom;document.getElementById(‘qcm-question’).textContent=q.q;document.getElementById(‘qcm-counter’).textContent=“Question “+(qcmIndex+1)+”/”+qcmCurrent.questions.length;document.getElementById(‘qcm-score-live’).textContent=“Score: “+qcmScore;document.getElementById(‘qcm-prog-fill’).style.width=((qcmIndex/qcmCurrent.questions.length)*100)+’%’;document.getElementById(‘qcm-feedback’).className=‘qcm-feedback’;document.getElementById(‘qcm-next-btn’).classList.add(‘hidden’);const opts=document.getElementById(‘qcm-options’);const letters=[‘A’,‘B’,‘C’,‘D’];opts.innerHTML=q.o.map((opt,i)=>’<div class="qcm-option" onclick="answerQCM('+i+')"><div class="opt-letter">’+letters[i]+’</div><div>’+opt+’</div></div>’).join(’’);}
+function answerQCM(i){const q=qcmCurrent.questions[qcmIndex];const opts=document.querySelectorAll(’#qcm-options .qcm-option’);opts.forEach((o,idx)=>{o.classList.add(‘disabled’);o.onclick=null;if(idx===q.r)o.classList.add(‘correct’);else if(idx===i)o.classList.add(‘wrong’);});const fb=document.getElementById(‘qcm-feedback’);if(i===q.r){qcmScore++;fb.className=‘qcm-feedback correct-fb show’;fb.innerHTML=‘✅ <strong>Bonne réponse !</strong><br>’+q.exp;}else{fb.className=‘qcm-feedback wrong-fb show’;fb.innerHTML=‘❌ <strong>Mauvaise réponse.</strong><br>’+q.exp;}document.getElementById(‘qcm-score-live’).textContent=“Score: “+qcmScore;document.getElementById(‘qcm-next-btn’).classList.remove(‘hidden’);}
+function nextQuestion(){qcmIndex++;if(qcmIndex>=qcmCurrent.questions.length)endQCM();else showQuestion();}
+function endQCM(){const total=qcmCurrent.questions.length;const pct=Math.round((qcmScore/total)*100);const xp=qcmScore*3;STATE.qcmCount++;STATE.qcmGood+=qcmScore;STATE.qcmTotal+=total;if(!STATE.themeStats[qcmCurrent.theme])STATE.themeStats[qcmCurrent.theme]={good:0,total:0};STATE.themeStats[qcmCurrent.theme].good+=qcmScore;STATE.themeStats[qcmCurrent.theme].total+=total;addXP(xp);let e=‘😅’,m=“Continue !”;if(pct>=90){e=‘🏆’;m=“Excellent !”;}else if(pct>=70){e=‘👏’;m=“Très bien !”;}else if(pct>=50){e=‘👍’;m=“Pas mal !”;}document.getElementById(‘result-emoji’).textContent=e;document.getElementById(‘result-score’).textContent=qcmScore+”/”+total;document.getElementById(‘result-msg’).textContent=m;document.getElementById(‘result-xp’).textContent=”+”+xp+” XP”;showPage(‘qcm-result’);}
+function restartQCM(){if(qcmCurrent)startQCM(qcmCurrent.theme);}
+// === MINI-JEUX ===
+let gameState=null;
+function startGame(type){gameState={type,qNum:1,good:0,streak:0,xp:0,total:10};document.getElementById(‘game-q-num’).textContent=‘1’;document.getElementById(‘game-good’).textContent=‘0’;document.getElementById(‘game-streak’).textContent=‘0’;document.getElementById(‘game-xp’).textContent=‘0’;showPage(‘game-play’);renderGameQuestion();}
+function renderGameQuestion(){if(gameState.qNum>gameState.total)return endGame();document.getElementById(‘game-q-num’).textContent=gameState.qNum;let h=’’;if(gameState.type===‘devine-engin’)h=renderDevineEngin();else if(gameState.type===‘brh-challenge’)h=renderBrhChallenge();else if(gameState.type===‘marque-modele’)h=renderMarqueModele();else if(gameState.type===‘panne-detective’)h=renderPanneDetective();else if(gameState.type===‘quel-projet’)h=renderQuelProjet();else if(gameState.type===‘caces-flash’)h=renderCacesFlash();document.getElementById(‘game-screen-content’).innerHTML=h;}
+function gameAnswer(ok,btn,cIdx){const tiles=document.querySelectorAll(’#game-screen-content .game-tile’);tiles.forEach((t,i)=>{t.classList.add(‘disabled’);t.onclick=null;if(i===cIdx)t.classList.add(‘correct’);else if(t===btn&&!ok)t.classList.add(‘wrong’);});if(ok){gameState.good++;gameState.streak++;const xpMap={‘devine-engin’:5,‘brh-challenge’:8,‘marque-modele’:3,‘panne-detective’:10,‘quel-projet’:7,‘caces-flash’:5};gameState.xp+=xpMap[gameState.type]||5;}else gameState.streak=0;document.getElementById(‘game-good’).textContent=gameState.good;document.getElementById(‘game-streak’).textContent=gameState.streak;document.getElementById(‘game-xp’).textContent=gameState.xp;setTimeout(()=>{gameState.qNum++;renderGameQuestion();},1500);}
+function endGame(){addXP(gameState.xp);const pct=Math.round((gameState.good/gameState.total)*100);let e=‘🎮’,m=“Bien joué !”;if(pct>=90){e=‘🏆’;m=“Score parfait !”;}else if(pct>=70){e=‘🎯’;m=“Très bon score !”;}else if(pct<50){e=‘💪’;m=“Recommence !”;}document.getElementById(‘game-screen-content’).innerHTML=’<div style="text-align:center;padding:20px"><div style="font-size:64px">’+e+’</div><div class="result-score">’+gameState.good+’/’+gameState.total+’</div><div class="result-msg">’+m+’</div><div class="xp-gained">+’+gameState.xp+’ XP</div><div style="height:14px"></div><button class="btn" onclick="startGame(\''+gameState.type+'\')">Rejouer</button><div style="height:8px"></div><button class="btn-ghost" onclick="showPage(\'games\')">Autre jeu</button></div>’;}
+function renderDevineEngin(){const cand=ENGINS.filter(e=>e.cat!==‘brh’&&e.cat!==‘equipement’);const cor=cand[Math.floor(Math.random()*cand.length)];const oth=pickRandom(cand.filter(e=>e.id!==cor.id),3);const ch=shuffle([cor,…oth]);const cIdx=ch.findIndex(c=>c.id===cor.id);return ‘<div class="game-question">’+cor.desc+’</div><div class="game-grid">’+ch.map((c,i)=>’<div class="game-tile" onclick="gameAnswer('+(i===cIdx)+',this,'+cIdx+')"><span class="game-tile-icon">’+(CATS[c.cat]?CATS[c.cat].icon:‘🚜’)+’</span>’+c.marque+’ ‘+c.nom+’</div>’).join(’’)+’</div>’;}
+function renderBrhChallenge(){const pelles=ENGINS.filter(e=>e.cat===‘pelle’);const p=pelles[Math.floor(Math.random()*pelles.length)];const brhs=ENGINS.filter(e=>e.cat===‘brh’);let g;if(p.tonnage<=15)g=brhs.find(b=>b.nom===‘V1600’);else if(p.tonnage<=22)g=brhs.find(b=>b.nom===‘V2200’);else if(p.tonnage<=32)g=brhs.find(b=>b.nom===‘V3500’);else if(p.tonnage<=45)g=brhs.find(b=>b.nom===‘V4500’);else g=brhs.find(b=>b.nom===‘V5500’);const oth=pickRandom(brhs.filter(b=>b.id!==g.id),3);const ch=shuffle([g,…oth]);const cIdx=ch.findIndex(c=>c.id===g.id);return ‘<div class="game-question">Quel BRH pour <strong style="color:var(--green)">’+p.marque+’ ‘+p.nom+’ (’+p.tonnage+‘T)</strong> ?</div><div class="game-grid">’+ch.map((c,i)=>’<div class="game-tile" onclick="gameAnswer('+(i===cIdx)+',this,'+cIdx+')"><span class="game-tile-icon">🔨</span>’+c.nom+’</div>’).join(’’)+’</div>’;}
+function renderMarqueModele(){const e=ENGINS[Math.floor(Math.random()*ENGINS.length)];const marques=[‘Caterpillar’,‘Komatsu’,‘Volvo’,‘Mécalac’,‘Montabert’,‘Payant’,‘JCB’,‘Hitachi’,‘Bobcat’,‘Hyundai’,‘Liebherr’];const oth=pickRandom(marques.filter(m=>m!==e.marque),3);const ch=shuffle([e.marque,…oth]);const cIdx=ch.indexOf(e.marque);return ‘<div class="game-question">Le modèle <strong style="color:var(--green)">’+e.nom+’</strong> appartient à quelle marque ?</div><div class="game-grid">’+ch.map((c,i)=>’<div class="game-tile" onclick="gameAnswer('+(i===cIdx)+',this,'+cIdx+')"><span class="game-tile-icon">🏭</span>’+c+’</div>’).join(’’)+’</div>’;}
+function renderPanneDetective(){const p=PANNES[Math.floor(Math.random()*PANNES.length)];const goodCause=p.causes[0].nom;const otherPannes=PANNES.filter(x=>x.id!==p.id);const otherCauses=pickRandom(otherPannes,3).map(x=>x.causes[0].nom);const ch=shuffle([goodCause,…otherCauses]);const cIdx=ch.indexOf(goodCause);return ‘<div class="game-question">Symptôme : <strong style="color:var(--orange)">’+p.symptome+’</strong><br><small style="color:var(--gray);font-size:13px">(’+p.engin+’)</small><br><br>Cause la plus probable ?</div><div class="game-grid">’+ch.map((c,i)=>’<div class="game-tile" style="font-size:12px;text-align:left;padding:14px" onclick="gameAnswer('+(i===cIdx)+',this,'+cIdx+')">’+c+’</div>’).join(’’)+’</div>’;}
+function renderQuelProjet(){const u=USAGES[Math.floor(Math.random()*USAGES.length)];const goodEngins=u.engins.join(’, ‘);const otherProjets=USAGES.filter(x=>x.projet!==u.projet);const wrongs=pickRandom(otherProjets,3).map(x=>x.engins.join(’, ‘));const ch=shuffle([goodEngins,…wrongs]);const cIdx=ch.indexOf(goodEngins);return ‘<div class="game-question">Pour ce projet :<br><strong style="color:var(--green)">’+u.projet+’</strong><br><br>Quels engins ?</div><div class="game-grid">’+ch.map((c,i)=>’<div class="game-tile" style="font-size:11px;text-align:left;padding:14px" onclick="gameAnswer('+(i===cIdx)+',this,'+cIdx+')">’+c+’</div>’).join(’’)+’</div>’;}
+function renderCacesFlash(){const list=ENGINS.filter(x=>x.caces!==’-’);const e=list[Math.floor(Math.random()*list.length)];const cats=[‘A’,‘B1’,‘B2’,‘C1’,‘C2’,‘D’,‘E’];const oth=pickRandom(cats.filter(c=>c!==e.caces),3);const ch=shuffle([e.caces,…oth]);const cIdx=ch.indexOf(e.caces);return ‘<div class="game-question">Quel CACES R482 pour <strong style="color:var(--green)">’+e.marque+’ ‘+e.nom+’ (’+e.tonnage+‘T)</strong> ?</div><div class="game-grid">’+ch.map((c,i)=>’<div class="game-tile" onclick="gameAnswer('+(i===cIdx)+',this,'+cIdx+')"><span class="game-tile-icon">🎓</span>Catégorie ‘+c+’</div>’).join(’’)+’</div>’;}
+// === COURS ===
+function renderCours(){document.getElementById(‘cours-list’).innerHTML=COURS.map(c=>’<div class="card" onclick="showCoursDetail(\''+c.id+'\')"><div class="card-row"><div class="card-icon">’+c.icon+’</div><div class="card-body"><div class="card-title">’+c.titre+’</div><div class="card-desc">’+c.sections.length+’ sections</div></div><div class="card-arrow">›</div></div></div>’).join(’’);}
+function showCoursDetail(id){const c=COURS.find(x=>x.id===id);if(!c)return;document.getElementById(‘cours-detail-content’).innerHTML=’<div class="lesson-content"><div class="lesson-title">’+c.icon+’ ‘+c.titre+’</div>’+c.sections.map(s=>’<div class="lesson-section"><h3>’+s.h+’</h3><p>’+s.p+’</p></div>’).join(’’)+’</div>’;showPage(‘cours-detail’);}
+// === CATALOGUE ===
+let catFilter=‘all’;
+function renderCatalogue(){document.getElementById(‘cat-cats-list’).innerHTML=’<div style="margin-bottom:14px"><span class="cat-btn '+(catFilter==='all'?'active':'')+'" onclick="filterCat(\'all\')">Tous</span>’+Object.keys(CATS).map(k=>’<span class="cat-btn '+(catFilter===k?'active':'')+'" onclick="filterCat(\''+k+'\')">’+CATS[k].icon+’ ‘+CATS[k].nom+’</span>’).join(’’)+’</div>’;const f=catFilter===‘all’?ENGINS:ENGINS.filter(e=>e.cat===catFilter);document.getElementById(‘cat-machines-list’).innerHTML=f.map(e=>’<div class="machine-card" onclick="showMachine(\''+e.id+'\')"><div class="mc-brand">’+e.marque+’</div><div class="mc-name">’+e.nom+’</div><div class="mc-meta">’+e.desc+’</div><div class="mc-pills">’+(e.tonnage>0?’<span class="pill tonnage">’+e.tonnage+’ T</span>’:’’)+(e.puissance>0?’<span class="pill power">’+e.puissance+’ kW</span>’:’’)+(e.caces!==’-’?’<span class="pill">CACES ‘+e.caces+’</span>’:’’)+’</div></div>’).join(’’);}
+function filterCat(c){catFilter=c;renderCatalogue();}
+function showMachine(id){const e=ENGINS.find(x=>x.id===id);if(!e)return;let usagesHtml=e.usages?’<div style="margin-top:14px"><div style="font-size:11px;color:var(--green);text-transform:uppercase;letter-spacing:1px;font-weight:800;margin-bottom:6px">Usages chantier</div><div class="tag-list">’+e.usages.map(u=>’<span class="tag-mini">’+u+’</span>’).join(’’)+’</div></div>’:’’;let pointsHtml=e.points_forts?’<div style="margin-top:14px"><div style="font-size:11px;color:var(--green);text-transform:uppercase;letter-spacing:1px;font-weight:800;margin-bottom:6px">Points forts</div>’+e.points_forts.map(p=>’<div class="point-fort">’+p+’</div>’).join(’’)+’</div>’:’’;let locHtml=e.locJour?’<div class="price-block" style="margin-top:10px"><div style="font-size:11px;color:var(--gray);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">Location indicative</div><div class="price-row"><span class="pk">À la journée</span><span class="pv">’+e.locJour.toLocaleString(‘fr’)+’ €</span></div><div class="price-row"><span class="pk">À la semaine</span><span class="pv">’+e.locSem.toLocaleString(‘fr’)+’ €</span></div><div class="price-row"><span class="pk">Au mois</span><span class="pv">’+e.locMois.toLocaleString(‘fr’)+’ €</span></div></div>’:’’;document.getElementById(‘machine-detail-content’).innerHTML=’<div class="machine-card" style="cursor:default"><div class="mc-brand">’+e.marque+’</div><div class="mc-name">’+e.nom+’</div><div class="mc-meta">’+e.desc+’</div><div class="mc-pills">’+(e.tonnage>0?’<span class="pill tonnage">’+e.tonnage+’ T</span>’:’’)+(e.puissance>0?’<span class="pill power">’+e.puissance+’ kW</span>’:’’)+(e.caces!==’-’?’<span class="pill">CACES ‘+e.caces+’</span>’:’’)+’</div>’+pointsHtml+usagesHtml+’<div class="price-block"><div style="font-size:11px;color:var(--gray);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">Prix de vente</div><div class="price-row neuf"><span class="pk">Neuf</span><span class="pv">’+e.neuf.toLocaleString(‘fr’)+’ €</span></div><div class="price-row occ3"><span class="pk">Occasion 3 ans</span><span class="pv">’+e.occ3.toLocaleString(‘fr’)+’ €</span></div><div class="price-row occ5"><span class="pk">Occasion 5 ans</span><span class="pv">’+e.occ5.toLocaleString(‘fr’)+’ €</span></div></div>’+locHtml+’</div>’;showPage(‘machine-detail’);}
+// === PANNES ===
+function renderPannes(){const grouped={};PANNES.forEach(p=>{if(!grouped[p.engin])grouped[p.engin]=[];grouped[p.engin].push(p);});document.getElementById(‘pannes-list’).innerHTML=Object.keys(grouped).map(eng=>’<div class=“card” onclick=“showPanneEngin('’+eng.replace(/’/g,”\’”)+’')”><div class="card-row"><div class="card-icon">🔧</div><div class="card-body"><div class="card-title">’+eng+’</div><div class="card-desc">’+grouped[eng].length+’ pannes répertoriées</div></div><div class="card-arrow">›</div></div></div>’).join(’’);}
+function showPanneEngin(eng){const list=PANNES.filter(p=>p.engin===eng);document.getElementById(‘pannes-detail-content’).innerHTML=’<div class="section-h">’+eng+’</div>’+list.map(p=>{let intro=p.intro?’<div class="info-box"><div class="ib-title">À savoir</div>’+p.intro+’</div>’:’’;let causesHtml=p.causes.map(c=>typeof c===‘string’?’<div class="cause-item"><span>’+c+’</span></div>’:’<div class="cause-item"><span>’+c.nom+’</span><span class="cause-prob">’+c.prob+’</span></div>’).join(’’);let diagHtml=p.diagnostic?’<div class="panne-block"><strong>Démarche diagnostic</strong>’+p.diagnostic.map((d,i)=>’<div class="diag-step">’+(i+1)+’. ‘+d+’</div>’).join(’’)+’</div>’:’’;let prevHtml=p.prevention?’<div class="info-box warn"><div class="ib-title">🛡️ Prévention</div>’+p.prevention+’</div>’:’’;return ‘<div class="panne-card"><div class="panne-grav '+p.grav+'">’+p.grav+’</div><div class="panne-symptome">’+p.symptome+’</div>’+intro+’<div class="panne-block"><strong>Causes possibles</strong>’+causesHtml+’</div>’+diagHtml+’<div class="panne-block"><strong>Solutions</strong>’+p.solutions.map(s=>’<div class="solution-step">✓ ‘+s+’</div>’).join(’’)+’</div>’+prevHtml+’</div>’;}).join(’’);showPage(‘pannes-detail’);}
+// === HUILES ===
+function renderHuiles(){const el=document.getElementById(‘huiles-list’);el.innerHTML=Object.keys(HUILES).map(k=>{const h=HUILES[k];return ‘<div class="card" onclick="showHuileDetail(\''+k+'\')"><div class="card-row"><div class="card-icon">’+h.icon+’</div><div class="card-body"><div class="card-title">’+h.nom+’</div><div class="card-desc">’+(h.intro?h.intro.substring(0,80)+’…’:’’)+’</div></div><div class="card-arrow">›</div></div></div>’;}).join(’’);}
+function showHuileDetail(k){const h=HUILES[k];if(!h)return;let typesHtml=’’;if(h.types){typesHtml=’<div class="lesson-section"><h3>Types principaux</h3>’+h.types.map(t=>{let details=’’;if(t.usage)details+=’<p><strong>Usage :</strong> ‘+t.usage+’</p>’;if(t.norme)details+=’<p><strong>Norme :</strong> ‘+t.norme+’</p>’;if(t.engins)details+=’<p><strong>Engins :</strong> ‘+t.engins+’</p>’;if(t.prix)details+=’<p><strong>Prix :</strong> ‘+t.prix+’</p>’;if(t.critique)details+=’<div class="info-box danger" style="margin-top:6px"><div class="ib-title">⚠️ Critique</div>’+t.critique+’</div>’;if(t.couleur)details+=’<p><strong>Couleur :</strong> ‘+t.couleur+’</p>’;if(t.duree)details+=’<p><strong>Durée de vie :</strong> ‘+t.duree+’</p>’;if(t.avantage)details+=’<p><strong>Avantage :</strong> ‘+t.avantage+’</p>’;return ‘<div class="info-box"><div class="ib-title">’+t.nom+’</div>’+details+’</div>’;}).join(’’)+’</div>’;}let notionsHtml=’’;if(h.notions){notionsHtml=’<div class="lesson-section"><h3>Notions clés</h3><ul>’+h.notions.map(n=>’<li>’+n+’</li>’).join(’’)+’</ul></div>’;}let pointsHtml=’’;if(h.points){pointsHtml=’<div class="lesson-section"><h3>Points clés</h3><ul>’+h.points.map(p=>’<li>’+p+’</li>’).join(’’)+’</ul></div>’;}let frequenceHtml=h.frequence?’<div class="info-box"><div class="ib-title">⏱️ Fréquence</div>’+h.frequence+’</div>’:’’;let regleHtml=h.regle?’<div class="info-box danger"><div class="ib-title">⚠️ Règle d'or</div>’+h.regle+’</div>’:’’;let panneHtml=h.panne?’<div class="info-box warn"><div class="ib-title">🔧 Panne fréquente</div>’+h.panne+’</div>’:’’;document.getElementById(‘huiles-detail-content’).innerHTML=’<div class="lesson-content"><div class="lesson-title">’+h.icon+’ ‘+h.nom+’</div><p style="color:var(--gray);font-size:14px;line-height:1.6;margin-bottom:16px">’+h.intro+’</p>’+typesHtml+notionsHtml+pointsHtml+frequenceHtml+regleHtml+panneHtml+’</div>’;showPage(‘huiles-detail’);}
+// === NOMENCLATURE ===
+function renderNomen(){const el=document.getElementById(‘nomen-list’);el.innerHTML=Object.keys(NOMENCLATURE).map(k=>{const n=NOMENCLATURE[k];return ‘<div class="card" onclick="showNomenDetail(\''+k+'\')"><div class="card-row"><div class="card-icon">’+n.icon+’</div><div class="card-body"><div class="card-title">’+n.nom+’</div><div class="card-desc">Décoder les modèles ‘+n.nom+’</div></div><div class="card-arrow">›</div></div></div>’;}).join(’’);}
+function showNomenDetail(k){const n=NOMENCLATURE[k];if(!n)return;let html=’<div class="lesson-content"><div class="lesson-title">’+n.icon+’ ‘+n.nom+’</div><p style="color:var(--gray);font-size:14px;line-height:1.6;margin-bottom:16px">’+n.intro+’</p>’;if(n.codes)html+=’<div class="lesson-section"><h3>Codes</h3><ul>’+n.codes.map(c=>’<li>’+c+’</li>’).join(’’)+’</ul></div>’;if(n.pelles)html+=’<div class="lesson-section"><h3>Pelles</h3><ul>’+n.pelles.map(p=>’<li>’+p+’</li>’).join(’’)+’</ul></div>’;if(n.chargeuses)html+=’<div class="lesson-section"><h3>Chargeuses</h3><ul>’+n.chargeuses.map(c=>’<li>’+c+’</li>’).join(’’)+’</ul></div>’;if(n.bulldozers)html+=’<div class="lesson-section"><h3>Bulldozers</h3><ul>’+n.bulldozers.map(b=>’<li>’+b+’</li>’).join(’’)+’</ul></div>’;if(n.tombereaux)html+=’<div class="lesson-section"><h3>Tombereaux</h3><ul>’+n.tombereaux.map(t=>’<li>’+t+’</li>’).join(’’)+’</ul></div>’;if(n.gammes)html+=’<div class="lesson-section"><h3>Gammes</h3><ul>’+n.gammes.map(g=>’<li>’+g+’</li>’).join(’’)+’</ul></div>’;if(n.modeles)html+=’<div class="lesson-section"><h3>Modèles</h3><ul>’+n.modeles.map(m=>’<li>’+m+’</li>’).join(’’)+’</ul></div>’;if(n.exemples)html+=’<div class="lesson-section"><h3>Exemples</h3><ul>’+n.exemples.map(e=>’<li>’+e+’</li>’).join(’’)+’</ul></div>’;if(n.suffixes){if(typeof n.suffixes===‘string’)html+=’<div class="info-box"><div class="ib-title">Suffixes</div>’+n.suffixes+’</div>’;else html+=’<div class="lesson-section"><h3>Suffixes</h3><ul>’+n.suffixes.map(s=>’<li>’+s+’</li>’).join(’’)+’</ul></div>’;}if(n.exemple)html+=’<div class="info-box"><div class="ib-title">📌 Exemple complet</div>’+n.exemple+’</div>’;if(n.particularite)html+=’<div class="info-box"><div class="ib-title">⭐ Particularité</div>’+n.particularite+’</div>’;if(n.regle)html+=’<div class="info-box warn"><div class="ib-title">⚠️ Règle</div>’+n.regle+’</div>’;html+=’</div>’;document.getElementById(‘nomen-detail-content’).innerHTML=html;showPage(‘nomenclature-detail’);}
+// === USAGES ===
+function renderUsages(){document.getElementById(‘usages-list’).innerHTML=USAGES.map(u=>’<div class="lesson-content"><div class="lesson-title" style="font-size:17px">’+u.projet+’</div><div style="font-size:11px;color:var(--green);text-transform:uppercase;letter-spacing:1px;font-weight:800;margin-bottom:8px">Engins recommandés</div><div class="tag-list">’+u.engins.map(e=>’<span class="tag-mini" style="background:var(--green);color:#fff">’+e+’</span>’).join(’’)+’</div><div style="margin-top:10px;font-size:13px;color:var(--gray)"><strong style="color:var(--orange)">⏱️ Durée :</strong> ‘+u.duree+’</div></div>’).join(’’);}
+// === STATS ===
+function renderStats(){const pct=STATE.qcmTotal>0?Math.round((STATE.qcmGood/STATE.qcmTotal)*100):0;let html=’<div class="stats-grid"><div class="stat-tile"><div class="st-icon">⚡</div><div class="st-val">’+STATE.xp+’</div><div class="st-lbl">XP totaux</div></div><div class="stat-tile"><div class="st-icon">🔥</div><div class="st-val">’+STATE.streak+’</div><div class="st-lbl">Jours série</div></div><div class="stat-tile"><div class="st-icon">🎯</div><div class="st-val">’+STATE.qcmCount+’</div><div class="st-lbl">QCM faits</div></div><div class="stat-tile"><div class="st-icon">📈</div><div class="st-val">’+pct+’%</div><div class="st-lbl">Réussite</div></div></div>’;html+=’<div class="section-h">Par <span class="gr">thème</span></div>’;Object.keys(QCM).forEach(k=>{const s=STATE.themeStats[k]||{good:0,total:0};const p=s.total>0?Math.round((s.good/s.total)*100):0;let color=’#E74C3C’;if(p>=70)color=’#2ECC71’;else if(p>=50)color=’#F4A019’;html+=’<div class="theme-stats"><div class="ts-row"><div class="ts-name">’+QCM[k].icon+’ ‘+QCM[k].nom+’</div><div class="ts-stats">’+s.good+’/’+s.total+’ • ‘+p+’%</div></div><div class="ts-bar"><div class="ts-bar-fill" style="width:'+p+'%;background:'+color+'"></div></div></div>’;});html+=’<div style="height:20px"></div><button class="btn-ghost" onclick="resetProgress()">🗑️ Réinitialiser ma progression</button>’;document.getElementById(‘stats-content’).innerHTML=html;}
+function resetProgress(){if(confirm(‘Réinitialiser toute ta progression ?’)){STATE={xp:0,streak:0,lastVisit:null,qcmCount:0,qcmGood:0,qcmTotal:0,themeStats:{}};saveState();refreshHeader();renderStats();toast(‘Progression réinitialisée’);}}
+// === INIT ===
+loadState();checkStreak();refreshHeader();refreshHome();
+</script>
+
+</body>
+</html>
